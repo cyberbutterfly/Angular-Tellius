@@ -1,0 +1,35 @@
+.vizpad-main-wrapper
+	.material
+		.hierarchy-header
+			h3 Hierarchy
+		.shareContent.hierarchy-wrapper(ng-if="hierarchyArr.length > 0")
+			i.icon-plus.add-hierarchy-icon(ng-click='addHierarchy();')
+			div.hierarchy(ng-repeat="hierarchy in hierarchyArr track by $index")
+				.title-div(ng-click="hierarchy.showAddBtn = true;")
+					h4.hierarchy-title(contenteditable="true", ng-model="hierarchy.name")
+						| {{hierarchy.name}}
+					i.icon-close2.delete-hierarchy(ng-click='deleteHierarchy(hierarchy, $index);')
+				div.dimension(ng-repeat="dimension in hierarchy.columns track by $index")
+					div.dimension-wrapper(ng-show="dimension.showTitle")
+						.bar(style="margin-left: {{12* ($index)}}px")
+						span.dimension-title(ng-click="dimension.showTitle = false") {{dimension.value}}
+						i.icon-close2.delete-dimension(ng-click='deleteDimension(dimension, $index); ')
+					md-autocomplete.dimension-input(md-floating-label='Which Dimension you want to add ?' ng-show="!dimension.showTitle" md-selected-item-change="dimensionChanged(hierarchy, dimension)" md-selected-item="dimension.newDimension" md-search-text="searchTextX" md-items="item in xColumns | filter: searchTextX" md-min-length="0" md-item-text="item", md-no-cache="true")
+						md-item-template
+							span(md-highlight-text='searchTextX', md-highlight-flags='^i') {{item}}
+				div.add-dimension-div(ng-click='addDimension(hierarchy, $index);' ng-show="hierarchy.showAddBtn")
+					i.icon-plus.add-icon
+					span.add-title Add new Dimension field
+				md-autocomplete.dimension-input(md-floating-label='Which Dimension you want to add ?' ng-show="!hierarchy.showAddBtn" md-selected-item-change="dimensionAdded(hierarchy)" md-selected-item="hierarchy.newDimension" md-search-text="searchTextX" md-items="item in xColumns | filter: searchTextX" md-min-length="0" md-item-text="item", md-no-cache="true")
+					md-item-template
+						span(md-highlight-text='searchTextX', md-highlight-flags='^i') {{item}}
+			.buttones.right(ng-click="hierarchy.showAddBtn = true;")
+				md-button.transparent(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='saveHierarchy();hide();') Save
+		.shareContent.empty-hierarchy(ng-if="hierarchyArr.length == 0")
+			div.icon-wrapper
+				i.icon-plus.empty-add-hierarchy-icon(ng-click='addHierarchy();')
+			div.add-hierarchy-title No existing hierarchies. Please start creating hierarchies by clicking on the "Plus sign" above.
+			.buttones.right
+				md-button.transparent(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='saveHierarchy($event);hide();') Save

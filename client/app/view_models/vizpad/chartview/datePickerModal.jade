@@ -1,0 +1,11 @@
+.vizpad-main-wrapper
+	.material
+		.header
+			h5 Select Date
+		.dialogcontent
+			.flex
+				.relative
+					md-datepicker(ng-model='myDateFrom', md-placeholder='Select Date', md-min-date='minDate', md-max-date='maxDate')
+			.buttones.right
+				md-button.flat(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='hide()') Save

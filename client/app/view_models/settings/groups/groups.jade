@@ -1,0 +1,37 @@
+.groups
+  .groups-list
+    .header
+      h2 Groups ({{$ctrl.groups.length}})
+      .search-groups
+        i.icon-search
+        input(ng-model="$ctrl.searchGroups", placeholder="Search Groups")
+    ul.list
+      li(ng-repeat="group in $ctrl.groups | filter:$ctrl.searchGroups",
+         ng-class="{'active': group.selected}")
+        .name(ng-click="$ctrl.selectGroup(group)")
+          span {{group.name}}
+        .controls
+          a.icon-delete(ng-click="$ctrl.deleteGroup(group)")
+    .add-new
+      a(ng-click="$ctrl.addGroup($event)")
+        i.icon-plus
+        span New Group
+
+  .groups-content
+    .groups-header
+      h2 {{$ctrl.selectedGroup.name}}
+      ul.content-tabs
+        li
+          a(ui-sref="app.settings.groups.members", ui-sref-active="active") 
+            span Members
+        li
+          a(ui-sref="app.settings.groups.datasets", ui-sref-active="active")
+            span DataSets
+        li
+          a(ui-sref="app.settings.groups.modules", ui-sref-active="active") 
+            span Modules
+        li
+          a(ui-sref="app.settings.groups.permissions", ui-sref-active="active") 
+            span User Privileges
+    .content
+      ui-view

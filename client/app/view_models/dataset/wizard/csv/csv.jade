@@ -1,0 +1,32 @@
+form(ng-submit="$ctrl.onSubmit()" novalidate).container
+
+    .wizard-boxed
+        .wizard-boxed-header
+            img(src="assets/img/dataset/csv.png")
+            h1 CSV options
+
+        .wizard-boxed-body
+            md-input-container
+                label Column Delimiter
+                input(id="delimiter"
+                      ng-model="$ctrl.FormData.delimiter"
+                      required="required")
+
+            md-input-container(layout="row", layout-align="start center")
+                div(flex="grow")
+                    h4 First Row is Header?
+                div(flex)
+                    md-switch.green.m0(id="firstRow", ng-model="$ctrl.FormData.header", aria-label="First row is header", required="required")
+
+            md-input-container
+                label Quote
+                input(id="quote"
+                      ng-model="$ctrl.FormData.quote"
+                      required="required")
+                              
+        .wizard-boxed-footer
+            md-button(type="reset", class="transparent") Cancel
+            md-button(type="submit" value="submit") Next
+
+        .wizard-boxed-errors(ng-show="$ctrl.errors.length")
+            span {{$ctrl.errors}}

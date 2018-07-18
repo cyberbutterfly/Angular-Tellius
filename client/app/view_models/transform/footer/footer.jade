@@ -1,0 +1,16 @@
+.transform-footer
+    md-button(ng-click='$ctrl.savePopup()') Save  
+    md-button(ng-click='$ctrl.Visualize()') Visualize
+    
+    //md-button(ng-click='$ctrl.Train()') Train Model
+    
+    md-button.i-right(dropdown-menu='up', toggle-active-src='train-menu')
+        span Train Model
+        i.icon-select
+        ul(toggle-active-dest='train-menu', class="outside-click-close")
+            li
+                md-button.link(ng-click='$ctrl.TrainAutoMode()') Auto Mode
+            li
+                md-button.link(ng-click='$ctrl.TrainUserSelection()') User Selection
+    
+    md-button(ng-click='$ctrl.ApplyExisting()') Apply Existing Models

@@ -1,0 +1,7 @@
+md-list.list(ng-cloak='')
+  md-list-item(ng-repeat="viz in vm.vizLibrary")
+    span.name  {{viz.title}}
+    span.name  {{viz.type}}
+    span.email Last active {{vm.lastActiveTime[$index]}}
+    md-button(aria-label='Use Android', ng-click="vm.loadFromExistingViz($event, $index, viz);") Select
+    md-divider

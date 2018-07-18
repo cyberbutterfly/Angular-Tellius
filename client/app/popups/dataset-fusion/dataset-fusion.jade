@@ -1,0 +1,116 @@
+.header(layout="row")
+    div(flex="")
+        .title Dataset Fusion
+
+.content
+    form(novalidate)
+
+        div(layout="row")
+            md-input-container(flex)
+                label Current dataset
+                input(ng-model="$ctrl.rootDataset.datasetName", readonly)
+
+            md-input-container(flex)
+                label Select dataset
+                md-select(ng-model="$ctrl.FormData.selectedDataset", ng-change="$ctrl.onSelectDataset()")
+                    md-option(ng-repeat="dataset in $ctrl.datasets", value="{{dataset.currentSourceId}}") {{dataset.datasetName}}
+
+        div(ng-show="$ctrl.FormData.selectedDataset")
+
+            div(layout="row")
+                div(flex)
+                    .md-button-group.bg-blue.pb20(ng-init="$ctrl.FormData.jointype = 'left_outer'")
+                        md-button.gray.small(ng-model="$ctrl.FormData.jointype",
+                                             value="left_outer",
+                                             ng-click="$ctrl.FormData.jointype = 'left_outer'",
+                                             ng-class="{active: $ctrl.FormData.jointype == 'left_outer'}")  Left join
+                        md-button.gray.small(ng-model="$ctrl.FormData.jointype",
+                                             value="right_outer",
+                                             ng-click="$ctrl.FormData.jointype = 'right_outer'",
+                                             ng-class="{active: $ctrl.FormData.jointype == 'right_outer'}")  Right join
+                        md-button.gray.small(ng-model="$ctrl.FormData.jointype",
+                                             value="inner",
+                                             ng-click="$ctrl.FormData.jointype = 'inner'",
+                                             ng-class="{active: $ctrl.FormData.jointype == 'inner'}")  Inner join
+                        md-button.gray.small(ng-model="$ctrl.FormData.jointype",
+                                             value="outer",
+                                             ng-click="$ctrl.FormData.jointype = 'outer'",
+                                             ng-class="{active: $ctrl.FormData.jointype == 'outer'}")  Union
+
+
+            div(layout="row" ng-repeat="joinKey in $ctrl.selectedJoinKeys")
+                md-input-container(flex="45")
+                    label When Column
+                    md-select(ng-model="$ctrl.selectedJoinKeys[$index].joinKeys1")
+                        md-option(ng-repeat="key in $ctrl.FormData.columns1", value="{{key}}") {{ key }}
+
+                div(flex="10")
+                    span.custom-icon.equal.mt15
+                        i.icon-equal
+
+                md-input-container(flex="40")
+                    label Column
+                    md-select(ng-model="$ctrl.selectedJoinKeys[$index].joinKeys2")
+                        md-option(ng-repeat="column in $ctrl.FormData.columns2", value="{{column}}") {{ column }}
+
+                div(flex="5")
+                    md-button.md-icon-button.ml20.mt25.mr0(
+                      ng-click="$ctrl.removeJoinType(joinKey)"
+                      ng-hide="$first",
+                      aria-label="Remove")
+                        md-icon.icon-close.fs10
+
+
+            div.pb20.bbd.ml-40.mr-40.pl40
+                md-button(
+                  ng-click="$ctrl.addJoinType()",
+                  class="md-fab small gray-dark",
+                  aria-label="Add")
+                    md-icon.icon-plus
+                md-button(
+                  ng-click="$ctrl.addJoinType()",
+                  class="small white condensed ml0",
+                  aria-label="Add") New column
+            //-
+            //- div(layout="row")
+            //-   md-input-container(flex="50")
+            //-        label Column Selection
+            //-        md-select(ng-model="$ctrl.FormData.combinedDataColumnSelected")
+            //-           md-option(ng-repeat="column in $ctrl.columns", value="{{column}}") {{ column }}
+      div(layout="row")
+        md-button(
+        ng-click="$ctrl.selectColumns()",
+        ng-disabled="!$ctrl.FormData.selectedDataset"
+        class="small gray-dark condensed ml0",
+        aria-label="select") Select all columns
+
+      div(layout="row")
+        md-chips(ng-model="$ctrl.FormData.combinedDataSelectedColumn",
+        ng-class="{'has-items': $ctrl.FormData.combinedDataSelectedColumn.length > 0}"
+        md-item-text = "$chip",
+        md-autocomplete-snap,
+        md-require-match="true",
+        class="md-block pb10",
+        flex-gt-sm)
+          md-autocomplete(md-selected-item="$ctrl.combinedDataSelectedItem",
+          md-search-text="$ctrl.combinedDataSearchText",
+          md-items="column in $ctrl.columns",
+          md-item-text="column",
+          placeholder="Select columns")
+            span(md-highlight-text="$ctrl.combinedDataearchText") {{ column }}
+
+
+      div(layout="row")
+        md-input-container(flex)
+          label Name for new dataset
+          input(
+          placeholder="Name for new dataset",
+          ng-model="$ctrl.FormData.datasetname")
+
+      .footer
+            md-button(type="reset" ng-click="$ctrl.closeDialog()" class="transparent") Cancel
+            md-button(type="submit",
+            ng-click="$ctrl.onSubmit()") Fusion
+
+      .errors(ng-show='$ctrl.errors')
+            span {{ $ctrl.errors.toString() }}

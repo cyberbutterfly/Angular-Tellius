@@ -1,0 +1,121 @@
+﻿@import "../../../../styles/_variables.scss";
+
+.ml .wizard .transformation {
+
+    .feature-table {
+        width: 100%;
+        background-color: $white;
+        box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.03);
+        margin-top:40px;
+        margin-bottom: 30px;
+
+        thead {
+            tr {
+                th {
+                    background-color: $back-gray-light;
+                    text-align: left;
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: $gray-light;
+                    padding: 15px;
+                    border-bottom: 1px solid $border;
+
+                    @media #{$sm} {
+                        padding: 10px;
+                    }
+
+                    .md-button {
+                        padding-left: 0 !important;
+                        margin-left: 0 !important;
+                        text-transform: capitalize !important;
+                        font-size: 13px !important;
+                        color: $gray-light !important;
+                    }
+
+                    i {
+                        font-size: 12px;
+                    }
+
+                    &.filter {
+                        .md-button {
+                            color: $blue !important;
+                        }
+
+                        i {
+                            color: $blue !important;
+                        }
+                    }
+
+                    &:first-child {
+                        padding-left: 30px;
+                    }
+
+                    &:last-child {
+                        padding-right: 30px;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    padding: 15px;
+                    border-bottom: 1px solid $border;
+                    text-align: left;
+                    font-size: 14px;
+                    color: $gray-darkest;
+                    outline: none;
+                    @include transform(0.15s);
+
+                    @media #{$sm} {
+                        padding: 10px;
+                    }
+
+                    &:first-child {
+                        padding-left: 30px;
+                        width:1%;
+                    }
+                    &:nth-child(2) {
+                        width:30%;
+                    }
+
+                    input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea, select {
+                        height:20px;
+                        font-size:14px;
+                        background-color:transparent;
+                        border:none;
+                    }
+                    select {
+                        width:auto;
+                        padding-right:15px;
+                    }
+
+                    .ml-feature-column-options {
+                        padding-left:30px;
+
+                        .ibm {
+                            padding-right:20px;
+                            input[type="text"] {
+                                border-bottom:1px solid $border;
+                                width:80px;
+                            }
+                            &:last-child {
+                                padding-right:0;
+                            }
+                        }
+                    }
+
+                }
+
+                &:hover {
+                    td {
+                        background-color: $back-gray;
+                        color: $gray-darkest;
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,32 @@
+.input
+    i.icon-search
+    input(type='text'
+    id="search-ql-input"    
+    ng-focus="$ctrl.onFocus()"
+    ng-blur="$ctrl.onBlur()"
+    ng-change="$ctrl.onChangeHandler()"
+    ng-model="$ctrl.FormData.query.value"
+    ng-model-options="$ctrl.modelOptions")
+.autocomplete(
+  id="search-ql-input-autocomplete"
+  click-outside="$ctrl.closeThis()"
+  outside-if-not="search-ql-input"
+  ng-class="{'active':$ctrl.isShow()}"
+)
+    ul
+        li(
+          ng-repeat="suggestion in $ctrl.suggestions",
+          ng-click="$ctrl.selectSuggestion(suggestion)"
+        )
+            a(href='')
+                i.icon-search
+                span {{ $ctrl.prerenderSuggestion(suggestion.value) }}
+                
+        li.divider
+        li(
+          ng-repeat="suggestion in $ctrl.historySuggestions",
+          ng-click="$ctrl.selectSuggestion(suggestion)"
+        )
+            a(href='')
+                i.icon-document.green
+                span {{suggestion.value}}

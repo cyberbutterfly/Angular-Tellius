@@ -1,0 +1,13 @@
+{
+    "name": "jsPlumbToolkit Project Utils",
+    "version": "1.0.6",
+    "description": "The jsPlumb Toolkit's project utilities",
+    "main": "Gruntfile.js",
+    "apps-dir": "demo",
+    "apps": [
+        "hierarchy", "circular", "spring", "absolute", "multiple", "paths", "database-visualizer", "flowchart-builder", "hello-world", "angular", "skeleton"
+    ],
+    "devDependencies": {
+
+    }
+}

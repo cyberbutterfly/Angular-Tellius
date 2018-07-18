@@ -1,0 +1,14 @@
+.vizpad-main-wrapper
+	.material
+		.header
+			h5 Choose A Date Column
+		.shareContent.filter-dialog
+			md-autocomplete.input-box(md-floating-label='Choose Date' md-selected-item="filterDate" md-search-text="vm.filterDateSearchText" md-items="item in dateColumns | filter: vm.filterDateSearchText" md-min-length="1" md-item-text="item", md-autofocus="true" placeholder='Dimensions (X-axis)' md-selected-item-change="dateFilterChanged()")
+				md-item-template
+					span(md-highlight-text='vm.filterDateSearchText', md-highlight-flags='^i') {{item}}
+				md-not-found
+					| No column matching "{{vm.filterDateSearchText}}" were found.
+			.buttones.right
+				md-button.flat(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='hide();') Apply
+

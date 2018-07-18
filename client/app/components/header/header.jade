@@ -1,0 +1,21 @@
+.ly-header
+    .left
+        a.left-toggle(toggle-active-src='ly-nav-sidebar', href='')
+        a.brand-img(ui-sref="app.dashboard")
+        a.brand-text(ui-sref="app.dashboard")
+    .center
+        .search-ql-wrapper
+            search-ql
+    .right
+        jobs-indicator
+        a.help(href='') ?
+        a.account(toggle-active-src='account-options', href='')
+            .text(ng-bind="$ctrl.user.name")
+            .caret
+        .account-options.outside-click-close(toggle-active-dest='account-options')
+            ul
+                li
+                    a(ui-sref='app.settings') Settings
+                li.divider
+                li
+                    a(href='', ng-click='$ctrl.logout()') Log out

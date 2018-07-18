@@ -1,0 +1,38 @@
+.header(layout="row")
+  div(flex="")
+    .title Add Members
+
+.content
+  form(ng-submit="$ctrl.submitSelectedMembers({'selectedMembers': $ctrl.selectedMembers})" novalidate)
+
+    .search-members
+      i.icon-search
+      input(ng-model="$ctrl.searchMembers", placeholder="Search People ...")
+    .list-members-wrapper.big
+      table.list-members
+        tbody
+          tr(ng-repeat="member in $ctrl.candidateMembers | filter:$ctrl.searchMembers",
+             ng-click="$ctrl.selectMember(member)",
+             ng-class="{'active': member.selected == true}")
+            td
+              .member-avatar
+                .img(ng-if="member.avatar",style="background-image:url('{{member.avatar}}');")
+                .initials(ng-if="!member.avatar", random-bg-color) {{member.firstName.substring(0,1)}}{{member.lastName.substring(0,1)}}
+            td
+              .name {{member.firstName}} {{member.lastName}}
+              .email {{member.email}}
+            td 
+              md-checkbox(ng-model="member.selected", aria-label="Select")
+
+    //.invite-via-email
+      h4 Invite via Email
+      md-input-container(flex)
+        label Email
+        input()
+
+    .footer
+      md-button(type="reset" class="transparent") Cancel
+      md-button(type="submit") Add Persons
+
+  .errors(ng-show='$ctrl.errors.length')
+    span {{ $ctrl.errors }}

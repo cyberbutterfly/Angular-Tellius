@@ -1,0 +1,49 @@
+div.filter-menu.viz-type(ng-class="{'active' : vm.active}")
+  .dialogcontent
+    h4.viz-type-title.filter-menu-title VIZ TYPE
+    .buttons
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('line')" ng-class="{'active':vm.viz.type == 'line', 'active': vm.createNew}") 
+        md-icon.chart-icons(md-svg-icon="chart-line")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Line Charts
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('column')" ng-class="{'active':vm.viz.type == 'column' || vm.viz.type == 'bar'}") 
+        md-icon.chart-icons(md-svg-icon="chart-bar")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Bar Charts
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('pie')" ng-class="{'active':vm.changedChartType == 'pie'}") 
+        md-icon.chart-icons(md-svg-icon="chart-pie")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Pie Charts
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('area')" ng-class="{'active':vm.changedChartType == 'area'}") 
+        md-icon.chart-icons(md-svg-icon="chart-areaspline")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Area Charts
+      md-button.md-fab.md-mini.square.chart-type.scatter-graph-button(aria-label='Use Android' ng-click="vm.changeChart('scatter')" ng-class="{'active':vm.changedChartType == 'scatter'}") 
+        img.scatter-graph-type(src="assets/scatter.png")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Scatter Plot
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('polar')" ng-class="{'active':vm.changedChartType == 'polar'}") 
+        md-icon.chart-icons(md-svg-icon="web")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Polar Charts
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('heatmap')" ng-class="{'active':vm.changedChartType == 'heatmap'}") 
+        md-icon.chart-icons(md-svg-icon="presentation-play")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Heat Map
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('bubble')" ng-class="{'active':vm.changedChartType == 'bubble'}") 
+        md-icon.chart-icons(md-svg-icon="format-align-left")
+        md-tooltip.req-tooltip(md-direction='top')
+          | Bubble Charts
+      md-button.md-fab.md-mini.square.chart-type(aria-label='Use Android' ng-click="vm.changeChart('combined')" ng-class="{'active':vm.changedChartType == 'combined'}") 
+        i.chart-icons.icon-combine-chart.combined-graph
+        md-tooltip.req-tooltip(md-direction='top')
+          | Combined Charts
+      md-button.md-fab.md-mini.square.chart-type.setting-graph-button(aria-label='Use Android' ng-click="vm.changeChart('others')" ng-class="{'active':vm.changedChartType == 'others'}") 
+        img.setting-graph-type(src='assets/setting-graph-type.png')        
+        md-tooltip.req-tooltip(md-direction='top')
+          | Other Charts
+    h4.viz-sub-type-title SUB CHARTS
+    .buttons
+      md-button.rectangle.subcharts-buttons(ng-repeat="chart in vm.subcharts" aria-label='Use Android' ng-click="vm.changeSubChartType(chart)" ng-class="{'active':vm.viz.type == chart.type || chart.type == 'barsVertical'}") {{chart.name}}
+        md-tooltip.req-tooltip(md-direction='top' ng-show="vm.createNew == true")
+          | {{chart.name}}

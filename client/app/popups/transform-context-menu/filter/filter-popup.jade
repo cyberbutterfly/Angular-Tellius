@@ -1,0 +1,21 @@
+.header(layout="row")
+    div(flex="")
+        .title Filter Column
+        .selected-column {{ vm.columnName }}
+
+.content
+    form(ng-submit="vm.onSubmit()", name="FilterForm" novalidate)
+
+        column-filter(
+          column-name="vm.columnName",
+          column-type="vm.fileType",
+          condition="vm.condition",
+          show-condition="true")
+
+        .footer
+            md-button(type="reset", class="transparent") Cancel
+            md-button(type="submit") Filter
+
+        .errors
+            span(ng-show='vm.errors') {{ vm.errors }}
+            span(ng-show="FilterForm.$submitted && !vm.condition") Please select filter

@@ -1,0 +1,219 @@
+@import "../../styles/_variables.scss";
+
+.ly-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $gray-darker;
+    z-index: 100;
+    display: table;
+    width: 100%;
+    height: $ly-header-height;
+
+    .left, .center, .right {
+        display: table-cell;
+        vertical-align: middle;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    .left {
+        text-align: left;
+
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            text-decoration: none;
+            color: $white;
+            opacity: 0.75;
+
+            &:hover {
+                opacity: 1;
+                text-decoration: none;
+            }
+        }
+
+        .left-toggle {
+            @include icomoon(\e902);
+            @include transform(0.25s);
+            font-size: 20px;
+            padding: ($ly-header-height - 20)/2 ($ly-left-sidebar-width - 4)/2;
+
+            &.active {
+                @include rotate(-90deg);
+            }
+        }
+
+        .brand {
+            &-img {
+                @include icomoon(\e901);
+                height: 35px;
+                width: 35px;
+                border-radius: 50%;
+                background-color: $gray-dark;
+                padding-top: 10px;
+                text-align: center;
+                font-size: 16px;
+                opacity: 1;
+            }
+
+            &-text {
+                @include icomoon(\e900);
+                font-size: 16px;
+                margin-left: 20px;
+                opacity: 1;
+
+                @media #{$md} {
+                    display: none;
+                }
+
+                @media #{$sm} {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .center {
+        width: 100%;
+        padding: 0 15px;
+        text-align:center;
+
+        .search-ql-wrapper {
+            position: relative;
+
+            search-ql {
+              display:block;
+            }
+        }
+    }
+
+    .right {
+        text-align: right;
+
+        .help {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: $gray;
+            padding-top: 6px;
+            font-size: 12px;
+            font-weight: bold;
+
+            &:hover {
+                border: 2px solid rgba(255,255,255,0.18);
+                color: $gray-light;
+            }
+
+            @media #{$md} {
+                margin-right: 10px;
+            }
+        }
+
+        .account {
+            display: inline-block;
+            vertical-align: middle;
+            padding-right: 20px;
+            color: $gray-lighter;
+
+            .img {
+                display: inline-block;
+                vertical-align: middle;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-position: center center;
+                background-size: cover;
+            }
+
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 5px;
+                font-weight: bold;
+                @include transform(0.2s);
+
+                @media #{$md} {
+                    display: none;
+                }
+
+                @media #{$sm} {
+                    display: none;
+                }
+            }
+
+            .caret {
+                color: $gray;
+                margin-left: 5px;
+                @include transform(0.2s);
+            }
+
+            &:hover {
+                .text {
+                    color: $gray-lightest;
+                }
+
+                .caret {
+                    color: $gray-light;
+                }
+            }
+        }
+
+        .account-options {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+            position: absolute;
+            top: $ly-header-height /1.5;
+            right: 20px;
+            @include transform(0.15s);
+
+            ul {
+                margin: 0;
+                padding: 5px 0;
+                list-style: none;
+                background-color: $white;
+                border: 1px solid $border;
+                box-shadow: 0 0 50px rgba(0,0,0,0.15);
+                border-radius: 3px;
+
+                li {
+                    a {
+                        display: block;
+                        text-align: left;
+                        color: $gray;
+                        white-space: nowrap;
+                        padding: 6px 22px;
+
+                        &:hover {
+                            color: $gray-darker;
+                            background-color: $back-gray;
+                        }
+                    }
+
+                    &.divider {
+                        height: 1px;
+                        margin: 9px 1px;
+                        overflow: hidden;
+                        background-color: $border;
+                    }
+                }
+            }
+
+            &.active {
+                height: auto;
+                width: auto;
+                overflow: visible;
+                opacity: 1;
+                top: $ly-header-height - 5;
+            }
+        }
+    }
+}

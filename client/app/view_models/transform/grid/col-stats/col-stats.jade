@@ -1,0 +1,35 @@
+.col-stats(ng-if="$ctrl.stats", resize-element-width-dest1='col-stats', resize-element-width-min1='300')
+
+    button.close(ng-click="$ctrl.hide()")
+        i.icon-close
+    .resize(resize-element-width-src='col-stats', ng-if="$ctrl.stats.uniqueValueCount")
+        i.icon-select-2
+
+    section.data
+        h3.title {{ $ctrl.selectedStatsColumn }}
+
+        .stats
+            .row(ng-if="$ctrl.stats.count")
+                .name Rows
+                .value(ng-bind="$ctrl.stats.count")
+            .row(ng-if="$ctrl.stats.sum")
+                .name Sum
+                .value(ng-bind="$ctrl.stats.sum")
+            .row(ng-if="$ctrl.stats.min")
+                .name Min
+                .value(ng-bind="$ctrl.stats.min")
+            .row(ng-if="$ctrl.stats.max")
+                .name Max
+                .value(ng-bind="$ctrl.stats.max")
+            .row(ng-if="$ctrl.stats.avg")
+                .name Average
+                .value(ng-bind="$ctrl.stats.avg")
+            .row(ng-if="$ctrl.stats.nonNullCount")
+                .name Non-Zero Rows
+                .value(ng-bind="$ctrl.stats.nonNullCount")
+
+    section.graph(ng-if="$ctrl.stats.uniqueValueCount")
+        //h5.title {{ $ctrl.selectedStatsColumn }}
+        //small.subtitle Histogram
+        .chart
+            col-stats-chart(col-stats-chart-data='$ctrl.uniqueValueCount', selected-stats-column='$ctrl.selectedStatsColumn', resize-element-width-dest2='col-stats', resize-element-width-min2='240', style='width:300px;')

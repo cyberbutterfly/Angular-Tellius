@@ -1,0 +1,51 @@
+sudo: required
+dist: trusty
+language: node_js
+
+node_js:
+ - "5.7"
+
+addons:
+  firefox: "latest"
+
+before_install:
+ - "npm install bower"
+ - "npm install babel-register"
+ - "npm install -D"
+ - export DISPLAY=:99.0
+ - sh -e /etc/init.d/xvfb start
+ - "npm run test"
+
+script:
+ - free -g
+ - "npm run build"
+
+before_deploy:
+ - mkdir -p deploy
+ - BUILD_TAR="build_$TRAVIS_COMMIT.tgz"
+ - printf '#!/bin/bash\ncd /var/angular_app\nnpm run dev >> /var/angular_app/angular_server.log 2>&1 &\nexit\n' > start_server.sh
+ - printf '#!/bin/bash\nkillall npm node gulp\nexit 0\n' > stop_server.sh
+ - chmod +x start_server.sh stop_server.sh
+ - tar -zpcf deploy/$BUILD_TAR . --exclude=deploy --exclude=.travis.yml --exclude=README.md --exclude=.git*
+
+deploy:
+ - provider: s3
+   access_key_id: AKIAJU275OSAZU7ACUWA
+   secret_access_key: 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
+   region: us-east-1
+   bucket: angulardeploy
+   local_dir: deploy
+   skip_cleanup: true
+   on: &1
+     repo: Tellius/Angular_Project
+     branch: master
+ - provider: codedeploy
+   access_key_id: AKIAJU275OSAZU7ACUWA
+   secret_access_key: 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
+   region: us-east-1
+   bucket: angulardeploy
+   key: $BUILD_TAR
+   bundle_type: tgz
+   application: AngularApp
+   deployment_group: AngularTesting
+   on: *1

@@ -1,0 +1,77 @@
+form(novalidate)
+
+    h3.mb10.ml3 GBT classifier
+    
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Target Variable:
+                input(ng-model="$ctrl.targetVariable", readonly="readonly")
+        div(flex="40")
+            .helpbox Name of the column which has to be considered as a label in model creation.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Model name:
+                input(ng-model="$ctrl.FormData.modelname", required="required")
+        div(flex="40")
+            .helpbox Name of the new model that we are creating.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Max depth:
+                input(ng-model="$ctrl.FormData.maxdepth")
+        div(flex="40")
+            .helpbox Maximum depth of the tree. (>=0) E.G., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.
+    
+    div(layout="row", layout-align="start center")
+       div(flex="60")
+           md-input-container.il(flex)
+               label.w35p Max iterations:
+               input(ng-model="$ctrl.FormData.maxIter")
+       div(flex="40")
+           .helpbox Maximum number of iterations (>= 0)
+  
+     div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Max bins:
+                input(ng-model="$ctrl.FormData.maxbins")
+        div(flex="40")
+            .helpbox Max number of bins for discretizing continous features. Must be >=2 and >= number of categories for any categorical feature.
+  
+     div(layout="row", layout-align="start center")
+       div(flex="60")
+          md-input-container.il(flex)
+             label.w35p subsamplingRate:
+             input(ng-model="$ctrl.FormData.subsamplingRate")
+       div(flex="40")
+           .helpbox Fraction of the training data used for learning each decision tree, in range (0, 1].
+           
+     div(layout="row", layout-align="start center")
+       div(flex="60")
+          md-input-container.il(flex)
+             label.w35p stepSize:
+             md-slider-container
+                md-slider(flex min="0", max="1", step="0.1" ng-model="$ctrl.FormData.stepSize")
+                input(ng-model="$ctrl.FormData.stepSize", disabled)
+       div(flex="40")
+           .helpbox Step size (a.k.a. learning rate) in interval (0, 1] for shrinking the contribution of each estimator
+     
+   
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Impurity:
+                md-select(ng-model="$ctrl.FormData.impurity")
+                    md-option(ng-repeat="i in $ctrl.inpurityOptions", value="{{i}}") {{i}}
+        div(flex="40")
+            .helpbox Criterion used for information gain calculation (case-sensitive). Supported options: variance, gini
+          
+    div(layout="row", layout-align="start center", ng-show='$ctrl.errors.length').mb30
+        div(flex)
+            span.red {{ $ctrl.errors }}
+
+    hr

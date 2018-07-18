@@ -1,0 +1,8 @@
+div.graph-div( id='viz{{vm.viz.id}}' ng-show="!vm.showTable")
+.pop-up(ng-class="{active : vm.DatafileService.clickedInside}")
+  button.md-fab.md-mini.graph-options.option-1.md-button(type='button', ng-click='vm.popUp($event,"drill", vm.viz)', aria-label='Use Android')
+    i.icon-search.ng-scope
+  button.md-fab.md-mini.graph-options.option-2.md-button(type='button', ng-click='vm.popUp($event,"trend", vm.viz)', aria-label='Use Android')
+    md-icon.chart-line(md-svg-icon="chart-line")
+  button.md-fab.md-mini.graph-options.option-3.md-button(type='button', ng-click='vm.popUp($event,"filter", vm.viz)', aria-label='Use Android')
+    i.icon-filter.ng-scope

@@ -1,0 +1,35 @@
+.list.container
+    .header
+        .left
+            h1 Machine Learning Models
+                span {{ $ctrl.models.length }}
+
+        .right
+            .search
+                i.icon-search
+                input(ng-model="$ctrl.search")
+            .controls
+                md-button.md-fab(aria-label="Create new ML model", ui-sref="app.ml.create")
+                    md-icon.icon-plus
+                    md-tooltip(md-direction="top") Create new ML model
+
+    .list
+        ul
+          li(ng-repeat="model in $ctrl.models | filter:$ctrl.search")
+            i.icon-close.delete-model(
+            ng-click='$ctrl.removeModel(model)',
+            role='button',
+            tabindex='0')
+            .head
+                i(class="icon-{{ model.type }}")
+                .controls
+                    md-button.md-icon-button.explore(aria-label="Explore model" ng-click="$ctrl.exploreModel(model)")
+                        md-icon.icon-search
+                        md-tooltip(md-direction="top") Explore model
+                    md-button.use(ng-click="$ctrl.useModelPopup(model)") Use Model
+            .description
+                .name(ng-bind="model.modelname")
+                .date(ng-bind="model.date")
+                .type(ng-bind="model.type")
+                .user(style="background-image:url('/assets/user.png');")
+                    md-tooltip(md-direction="top") {{ model.userName }}

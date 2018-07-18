@@ -1,0 +1,324 @@
+.vizpad-main-wrapper
+	.app
+		height 100%
+		overflow-x hidden
+		background-color $lightBgColor
+	.vizpad
+		.tophead
+			border-bottom 1px solid #DBE5EA
+			margin-bottom 10px
+			.head
+				margin-top 13px
+				h4
+					display inline-block
+			.date
+				float right
+				margin-top: 23px
+				md-datepicker.md-default-theme, md-datepicker
+					background: initial
+	.square
+		border-radius: 0 !important
+		background-color: #F0F5F8 !important
+		color: #384850 !important
+		transition: all .1s linear
+		box-shadow: none !important
+		&.active, &:hover
+			color: white !important
+			background-color: #26C7DB !important
+
+	.rectangle
+		padding-right: 15px
+		padding-left: 15px
+		margin: 6px 8px 6px 0px !important
+		background-color: #F0F5F8 !important
+		color: #384850 !important
+		transition: all .1s linear
+		&.active, &:hover
+			color: white !important
+			background-color: #26C7DB !important
+
+	.login-overlay
+		form
+			display flex
+			justify-content: center
+		.form-container
+			min-height: 400px
+		padding-bottom 0 !important
+		&:after
+			position absolute
+			top 0
+			width 100%
+			height 300px
+			left 0
+			right 0
+			background #37474F
+			content ""
+			box-shadow 0 2px 4px 1px rgba(0, 0, 0, 0.14)
+	.md-button.md-fab:not([disabled]).md-focused
+		background-color #fff !important
+	md-select.md-default-theme:not([disabled]):focus .md-select-value, md-select:not([disabled]):focus .md-select-value
+		border-bottom-color transparent !important
+	md-autocomplete[md-floating-label] md-input-container
+		padding-bottom 20px !important
+	// md-tabs.md-dynamic-height md-tabs-content-wrapper
+	//   overflow hidden
+
+	.md-autocomplete-suggestions
+		li
+			line-height 40px !important
+			height 40px !important
+
+	@media screen and (max-width: 1500px)
+		.login-overlay
+			padding-bottom 200px !important
+	md-input-container
+		&.md-icon-float
+			& > label
+				margin-left 0 !important
+
+	@media screen and (max-width: 581px)
+		.content-holder
+			margin-left 0 !important
+			margin-right 0 !important
+
+	[class^="tooltip"]
+		position absolute
+		width: 120px
+		top 10px
+		left 0
+		height 40px
+		&:after
+			opacity: 0
+			visibility: hidden
+			position: absolute
+			content: attr(data-tooltip)
+			padding: 6px 10px
+			top: 3.8em
+			left: 50%
+			transform: translateX(-50%) translateY(-2px)
+			background: grey
+			color: white
+			white-space: nowrap
+			z-index: 2
+			border-radius: 2px
+			transition: opacity 0.2s $cubic, transform 0.2s $cubic
+		&:hover
+			&:after
+				display: block
+				opacity: 1
+				visibility: visible
+				transform: translateX(-50%) translateY(0)
+	.tooltip--left
+		&:after
+			top: -4px
+			left: 0
+			transform: translateX(-112%) translateY(0)
+		&:hover
+			&:after
+				transform: translateX(-110%) translateY(0)
+	.tooltip--right
+		&:after
+			top: -4px
+			left: 100%
+			transform: translateX(12%) translateY(0)
+		&:hover
+			&:after
+				transform: translateX(10%) translateY(0)
+	.tooltip--triangle
+		&:before
+			content: ''
+			width: 0
+			height: 0
+			border-left: solid 5px transparent
+			border-right: solid 5px transparent
+			border-bottom: solid 5px grey
+			opacity: 0
+			visibility: hidden
+			position: absolute
+			transform: translateX(-50%) translateY(-2px)
+			top: 3.5em
+			left: 50%
+			transition: opacity 0.2s $cubic, transform 0.2s $cubic
+			z-index: 3
+		&:hover
+			&:before
+				display: block
+				opacity: 1
+				visibility: visible
+				transform: translateX(-50%) translateY(0)
+
+	.md-button
+		font-weight: 600 !important
+
+	.md-button.md-fab
+		z-index: 2
+
+	.create-dialog
+		.subcharts-buttons
+			max-width: 160px;
+			text-overflow: ellipsis;
+		.md-button.md-fab.md-mini
+			width: 37px
+			height: 37px
+			margin: 0 8px 0 0px
+		.viz-type-title
+			margin-top: 10px
+		.menu-setting
+			top : 0
+		.buttons
+			.chart-type
+				margin 5px
+
+	.viz-sub-type-title
+		margin: 10px 0
+
+	.content
+		display: flex
+		height: 500px
+		border: 1px dashed #CDDBE2
+		background: #DEE7EC
+		margin-top: 20px
+		justify-content: center
+		align-items: center
+		align-content: center
+		.create
+			display flex
+			flex-direction column
+			align-items center
+			.center
+				margin-top 15px
+				display flex
+				font-size 18px
+				flex-direction column
+				align-items center
+
+	md-toast
+		min-width 0 !important
+			padding 0 !important
+			left 46% !important
+			position fixed !important
+			max-width 164px !important
+			top 170px !important
+		.md-toast-content
+			background-color #F65161 !important
+
+	md-input-container.md-icon-float>input
+			padding-top 0px !important
+	md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple.md-active
+		color rgb(96,125,139) !important
+	.material
+		padding 25px
+		min-width 500px
+		border-radius 0
+		h5
+			margin-top: 0
+			margin-bottom: 5
+		.dialogcontent
+			display flex
+			flex-direction column
+
+	.create-dialog
+		min-width: 500px
+		max-width: 500px
+
+	md-dialog
+		border-radius: 0 !important
+
+	.viz-type
+		margin 0px 0 16px 0px
+
+	.buttones
+		display flex
+
+	.graph-icon
+		font-size 25px !important
+
+	.flat
+		color #91A5AF !important
+
+	.modalSelect.md-active
+		-webkit-box-shadow 0px 0px 29px -7px rgba(0,0,0,0.65) !important
+		-moz-box-shadow 0px 0px 29px -7px rgba(0,0,0,0.65) !important
+		box-shadow 0px 0px 29px -7px rgba(0,0,0,0.65) !important
+
+	.chartcontainer
+		margin-top 20px
+		height 500px
+		display flex
+		position relative
+		transition all .1s linear
+		-webkit-box-shadow 0px 0px 16px -4px rgba(0,0,0,0.30)
+		-moz-box-shadow 0px 0px 16px -4px rgba(0,0,0,0.30)
+		box-shadow 0px 0px 16px -4px rgba(0,0,0,0.30)
+		&:hover
+			-webkit-box-shadow 0px 0px 16px -4px rgba(0,0,0,0.60) !important
+			-moz-box-shadow 0px 0px 16px -4px rgba(0,0,0,0.60) !important
+			box-shadow 0px 0px 16px -4px rgba(0,0,0,0.60) !important
+
+	.shareInput
+		padding-bottom 0 !important
+		width 100%
+		margin 10px 0 0 0
+		.icon-search
+			position absolute !important
+			bottom 12px !important
+			font-size 20px !important
+		label
+			padding-left 32px !important
+		.md-input
+			padding-left 28px !important
+			padding-bottom 8px !important
+
+	.share-url-Input
+		width 100%
+		.link-input
+			width 73%
+			white-space nowrap
+			text-overflow ellipsis
+			overflow hidden
+
+	.list
+		height 200px
+		overflow auto
+		padding 0!important
+		md-list-item
+			height 52px
+			justify-content space-between
+			md-checkbox
+				margin-right 0 !important
+				margin-top 8 !important
+			.md-list-item-inner
+				justify-content space-between
+				.email
+					margin-left 80px
+					font-weight 200
+					/*color #5F5F5F*/
+				.name
+					left 60px
+					font-size 17px
+					position absolute
+					top 15px
+			img
+				border-radius 50%
+				width 32px
+				height 35px
+				margin-right 10px
+
+
+	.dialogLine
+		margin-left -25px
+		margin-right -25px
+		border-top 1px dashed #ccc
+		margin-top 2em
+
+	.copy
+		position absolute
+		bottom 15px
+		right 0
+
+	.options
+		.mdi-settings
+			right 10px
+			top 5px
+			font-size 22px
+			color #91a5af

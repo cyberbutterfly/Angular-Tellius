@@ -1,0 +1,117 @@
+.vizpad-main-wrapper
+	.vizpad(ng-if="vm.chartView")
+		.tophead
+			span.head
+				img.back-button(src='assets/backButton.png' ui-sref="app.vizpad.list")
+				span.truncate.vizpad-head-title(ng-class="{edit : focuss}" ng-focus="focuss=true;blurr=false;" ng-blur="blurr=true;focuss=false;" spellcheck="false" ng-keyup="vm.vizpadTitleChanged($event)" contenteditable="true") {{vm.vizPadObj.title}}
+				md-tooltip.req-tooltip(md-direction='top')
+					| {{vm.vizPadObj.title}}
+			.menu-btn-small.smallscreen
+				md-fab-speed-dial(md-open='vm.isOpen', md-direction='{{vm.selectedDirection}}', ng-class='vm.selectedMode')
+					md-fab-trigger
+						md-button.md-fab.red(aria-label='menu')
+							i.icon-menu
+					md-fab-actions
+						md-button.md-fab.md-mini.white(aria-label='new Viz', ng-click="vm.addUnsavedViz()")
+							i.icon-plus
+						md-button.md-fab.md-mini.white(aria-label='filter', ng-click='vm.showFilter($event)')
+							i.icon-filter
+						md-button.md-fab.md-mini.white(aria-label='filter', ng-click='vm.showFilter($event)')
+							i.icon-classification.hierarchy-icon
+						md-button.md-fab.md-mini.white(aria-label='share', ng-click='vm.showHierarchy($event)')
+							img.share-img(src="assets/Share.png")
+						md-button.md-fab.md-mini.white(aria-label='calendar', ng-click='vm.showRange($event)')
+							md-icon.mdi-calendar(md-svg-icon="calendar")
+			span.right.tophead-right.largescreen
+				md-input-container.date-picker
+					md-icon.mdi-calendar(md-svg-icon="calendar")
+					label Timeline
+					md-select.calendar-dropdown(ng-model='vm.timelineType', ng-change="vm.timelineChanged()" md-container-class="date-picker-dropdown")
+						md-option(value="today")
+							| Today
+						md-option(value="yesterday")
+							| Yesterday
+						md-option(value="last5days")
+							| Last 5 Days
+						md-option(value="last7days")
+							| Last 7 Days
+						md-option(value="thisMonth")
+							| This Month
+						md-option(value="last30days")
+							| Last 30 Days
+						md-option(value="last3months")
+							| Last 3 Months
+						md-option(value="last6months")
+							| Last 6 Months
+						md-option(value="all" selected="true")
+							| All
+						md-option(value="custom" ng-click='vm.showRange($event)')
+							| Custom Range
+						md-option(value="customDate" ng-click='vm.showDate($event)')
+							| Custom Date        
+				md-menu.timeline-setting(md-position-mode='target-right target')
+					md-button.md-fab.md-mini.white(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+						img.settings-img(src='assets/setting-tophead.png')
+						md-tooltip.req-tooltip(md-direction='top')
+							| Date Settings
+					md-menu-content(width='2')
+						md-menu-item
+							md-button.transparent(ng-click="")
+								i.icon-checkmark-1.date-column-tick
+								p {{vm.vizPadObj.timeRange.dateColumn}}
+						md-menu-item
+							md-button.transparent(ng-click="")
+								p {{vm.vizPadObj.timeRange.dateColumn}}
+				md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click='vm.showShare($event)')
+					img.share-img(src="assets/Share.png")
+					md-tooltip.req-tooltip(md-direction='top')
+						| Share
+				md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click='vm.showHierarchy($event)')
+					i.icon-classification.hierarchy-icon
+					md-tooltip.req-tooltip(md-direction='top')
+						| Hierarchy
+				md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click='vm.showFilter($event)')
+					i.icon-filter
+					md-tooltip.req-tooltip(md-direction='top')
+						| Filters
+				md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click="vm.refreshVizpad()")
+					i.icon-swap
+					md-tooltip.req-tooltip(md-direction='top')
+						| Refresh vizpad
+				.plus-button  
+					md-button.md-fab.md-mini.red.plus-btn(aria-label='Use Android', ng-click="vm.showSubnav('plus')")
+						i.icon-plus
+						md-tooltip.req-tooltip(md-direction='top')
+							| Add Viz
+					div.plus-menu(ng-class="{'active' : vm.showDropdown=='plus'}")
+						.border-line
+						.dialogcontent
+							md-button.transparent(aria-label='Use Android' ng-click="vm.addUnsavedViz()") 
+								i.icon-plus
+								span.plus-menu-labels New Viz
+							md-button.transparent(aria-label='Use Android', ng-click="vm.showLibrary($event)") 
+								i.icon-cloud-upload-1
+								span.plus-menu-labels Load Existing Viz
+				span.line
+				md-button(ng-click='vm.updateAll()') Save
+		div
+			applied-vizpad-filter.global-filters(viz-pad-obj="vm.vizPadObj")
+		div(gridster="vm.gridsterOpts" ng-if="vm.vizPadObj.vizs.length > 0")
+			.chartcontainer(id="chart{{viz.id}}" gridster-item='vm.getGridsterObj(viz)', ng-repeat='viz in vm.vizArr track by $index' ng-click="vm.chartContainer.item = $index" ng-class="{'show' :(vm.showDropdown=='viztype'||vm.showDropdown=='legends'||vm.showDropdown=='filter'||vm.showDropdown=='settings'||vm.showDropdown=='compare') && vm.chartContainer.item == $index, 'dark-theme' : viz.colorPaletteThemeColors == 'dark', 'light-theme' : viz.colorPaletteThemeColors == 'sand', 'default-theme' : viz.colorPaletteThemeColors != 'dark' && viz.colorPaletteThemeColors != 'sand'}" ng-show="viz.normalView")
+				.viz-title-wrapper
+					span.viz-title(ng-class="{ active: focus}" ng-focus="focus=true;blur=false;" ng-blur="blur=true;focus=false;" spellcheck="false" ng-keyup="vm.vizTitleChanged($event, viz)" contenteditable="true") {{viz.title}}
+				.toast-div(ng-hide="vm.loginAlertMessage || vm.SetupVizService.showSetup" ng-if="$index === 0")
+						.border-outer-div
+							.border-div
+								.border-inner-div
+						h6 1. Setup your Viz
+						p Click on the 'Cog' icon to setup X and Y axis or change the color palette or if you want to save the chart to a certain viz.
+				i.icon-close.close-button(ng-click="vm.removeViz(viz, $index)")
+				md-icon.expand-button(md-svg-icon="arrow-all")
+				//- img.expand-button(src="assets/expand icon.png")
+				div.applied-filter-container
+					applied-viz-filter.viz-filters(viz= "viz") 
+				.overflow-div(ng-style="{ overflow: vm.resizing == true ? 'hidden' : 'initial' }")
+					graph.loader-container(file='vm.filePath' vizpad='vm.vizPadObj', viz="viz") 
+	viz-library(ng-if="!vm.chartView" viz-pad-obj="vm.vizPadObj" select="vm.changeToChartview($event);")
+	

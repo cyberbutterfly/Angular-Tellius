@@ -1,0 +1,25 @@
+.header(layout="row")
+    div(flex="")
+        .title Fix {{$ctrl.columnName}} column
+
+.content
+    form(ng-submit="$ctrl.onSubmit()" novalidate)
+        md-radio-group(ng-model='$ctrl.FormData.type')
+          md-radio-button(value='mean') Mean      
+          md-radio-button(value='zero')  Zero 
+          md-radio-button(value='ignore') Ignore
+          md-radio-button(value='value') Custom value
+
+        md-input-container(
+        ng-show="$ctrl.FormData.type === 'value'",
+        class="md-block",
+        flex-gt-sm)
+            label Value
+            input(id="fixedValue"
+                  ng-model="$ctrl.FormData.value")
+
+    .footer
+        md-button(type="reset" class="transparent",
+        ng-click="$ctrl.closeThisDialog()") Cancel
+        md-button(type="submit" value="submit",
+        ng-click="$ctrl.onSubmit()") Fix

@@ -1,0 +1,15 @@
+{
+  "name": "Tellius.EnvVariables",
+  "wrap": "commonjs",
+  "constants": {
+    "BASE_URL": "api/",
+    "LOGIN_URL": "/",
+    "LOAD_API_ENDPOINT": "load",
+    "VIEW_API_ENDPOINT": "view",
+    "FUNCTIONS_API_ENDPOINT": "functions",
+    "TRANSFORM_API_ENDPOINT": "transform",
+    "SAVE_API_ENDPOINT": "save",
+    "DATASET_DESCRIPTION": "dataset",
+    "THUMBNAIL_API_ENDPOINT": "/thumbnail"
+  }
+}

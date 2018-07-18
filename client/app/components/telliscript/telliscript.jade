@@ -1,0 +1,33 @@
+aside.ly-telliscript(toggle-active-dest='ly-telliscript' ng-show="vm.isVisible()")
+  a.right-toggle(toggle-active-src='ly-telliscript', href='')
+  .content
+    .wrapper
+      .header
+        md-button.md-fab.small(ng-click='vm.startNewPipeline()', aria-label='Create' ng-disabled='vm.isActive()')
+          md-icon.icon-plus
+          md-tooltip(md-direction='top') Create New
+        .record
+          md-switch(aria-label='switch' ng-change='vm.onRecord()' ng-model='vm.active')
+        .name
+          md-input-container
+            input(ng-model='vm.name.value' placeholder="Pipeline name" ng-change="vm.onChangePipelineName()")
+        .links
+          //a(href='', title='Add')
+              i.flaticon.stroke.plus-1
+          a(href='', title='Save' ng-click='vm.onSave()')
+            i.flaticon.stroke.download-1
+          a(href='', title='Delete' ng-click='vm.onDestroy()')
+            i.flaticon.stroke.trash-1
+      .body
+        div(ng-model='vm.stages')
+          div(ng-repeat='stage in vm.stages'  class='stage')
+            a(href='' ng-click='vm.deleteStage(stage.uuid())', title='Delete' class='delete')
+              i.flaticon.stroke.trash-1
+            h5 {{ stage.getName() }}
+            div(ng-if="stage.hasChildren()" as-sortable='vm.sortable' ng-model='stage.public_tasks' class='stage-tasks')
+              div(ng-repeat='task in stage.public_tasks' class='task' as-sortable-item data-stage-uuid="{{ stage.uuid() }}")
+                a(href='', title='Remove task' ng-click='vm.deleteTask(stage.uuid(), task.uuid())' class='delete')
+                  i.flaticon.stroke.trash-1
+                div(data-as-sortable-item-handle class='stage-handle')
+                h5 {{ task.title() }}
+                p(am-time-ago="task.created()")

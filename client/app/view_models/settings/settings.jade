@@ -1,0 +1,20 @@
+.settings.container
+  .settings-header-top
+    .left
+      h1 Settings
+    .right
+
+  .settings-header-bottom
+    ul
+      li
+        a(ui-sref="app.settings.user", ui-sref-active="active") 
+          span Profile
+      li
+        a(ui-sref="app.settings.groups", ui-sref-active="active") 
+          span User Groups
+      li
+        a(ui-sref="app.settings.app", ui-sref-active="active") 
+          span Application settings
+
+  .settings-content
+    ui-view

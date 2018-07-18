@@ -1,0 +1,556 @@
+﻿@import "../../styles/_variables.scss";
+
+.dataflow {
+
+    .header {
+        display: table;
+        width: 100%;
+        margin-bottom: 4px;
+
+        .left {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .right {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: right;
+            font-size: 0;
+        }
+    }
+
+    .jtk-canvas {
+        position: relative;
+
+        .jtk-surface {
+            cursor: default;
+
+            .jtk-controls {
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                z-index: 10;
+
+                .md-button {
+                    line-height: 1 !important;
+
+                    md-icon {
+                        font-size: 16px !important;
+                    }
+                }
+
+                i {
+                    display: inline-block;
+                    margin-right: 8px;
+                    cursor: pointer;
+                    line-height: 36px;
+                    text-align: center;
+                    width: 36px;
+                    height: 36px;
+                    color: $gray-light;
+                    background: $white;
+                    border-radius: 50%;
+                    outline: none !important;
+
+                    &:hover {
+                        color: $gray-dark;
+                    }
+                }
+            }
+
+            .miniview {
+                position: absolute;
+                top: 25px;
+                right: 25px;
+                z-index: 15;
+            }
+        }
+
+        .jtk-node {
+
+            &.connection-drop {
+                .node-box {
+                    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.08);
+                }
+            }
+
+            .node-box {
+                position: relative;
+                display: block;
+                background-color: $white;
+                border-top: 2px solid $gray;
+                width: 260px;
+                border-radius: 3px;
+                text-align: center;
+
+
+                .top-wrapper {
+                    padding: 25px 30px 5px 30px;
+
+                    .tasks {
+                        opacity: 0;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        color: $gray-light;
+                        font-size: 12px;
+                        padding: 7px 0 0 7px;
+                        @include transform(0.15s);
+                    }
+
+                    .controls {
+                        opacity: 0;
+                        position: absolute;
+                        top: 2px;
+                        right: 4px;
+                        text-align: right;
+                        @include transform(0.15s);
+
+                        .md-icon-button {
+                            margin: 2px;
+
+                            md-icon {
+                                height: 11px !important;
+                                width: 11px !important;
+                                font-size: 11px;
+                            }
+                        }
+                    }
+
+                    .text {
+                        display: block;
+                        position: relative;
+                        text-align: center;
+                        font-size: 14px;
+                        line-height: 1.3;
+                        color: $gray-darkest;
+                        z-index: 20;
+
+                        .md-button {
+                            position: absolute;
+                            bottom: 3px;
+                            right: -21px;
+                            display: block;
+                            margin: 0;
+                            min-height: 0;
+                            min-width: 0;
+                            line-height: 1;
+                            font-size: 12px;
+                            opacity: 0;
+                            @include transform(0.15s);
+
+                            md-icon {
+                                height: auto !important;
+                                width: auto !important;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .controls {
+                            opacity: 1;
+                        }
+
+                        .tasks {
+                            opacity: 1;
+                        }
+
+                        .text {
+                            .md-button {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                .source-box {
+                    position: relative;
+                    height: 20px;
+                    font-size: 10px;
+                    color: $gray;
+                    text-align: center;
+                    background-color: $back-gray-light;
+                    padding: 8px 0 3px 0;
+                    @include transform(0.15s);
+                    opacity: 0;
+
+                    &:before {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        display: block;
+                        content: "";
+                        background-color: $white;
+                        height: 5px;
+                    }
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+
+
+                &.load {
+                    border-color: $green;
+                }
+
+                &.transform {
+                    border-color: $purple;
+                }
+
+                &.fusion {
+                    border-color: $red;
+                }
+
+                &.save {
+                    border-color: $green;
+                }
+
+                &.split {
+                    border-color: $yellow;
+                }
+
+                &.aggregate {
+                    border-color: $blue;
+                }
+
+                &.mltrain {
+                    border-color: $orange;
+                }
+
+                &.mlpredict {
+                    border-color: $orange;
+                }
+            }
+        }
+
+        .edge-swap-connection {
+            display: none;
+            font-size: 9px;
+            color: $gray;
+            padding: 3px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: $body-bg;
+
+            &:hover {
+                color: $blue;
+            }
+        }
+
+        .jtk-surface-pan {
+            background-color: transparent;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.9;
+                background-color: rgba(0,0,0,0.03);
+                color: $gray-darkest;
+            }
+        }
+    }
+
+    .jsplumb-connector {
+        z-index: -1;
+    }
+
+    .jsplumb-endpoint {
+        cursor: pointer;
+    }
+
+    .jsplumb-overlay {
+        z-index: 10;
+    }
+
+    .jsplumb-overlay.jsplumb-hover {
+    }
+
+    path {
+    }
+
+    .connect {
+    }
+
+    .newData {
+        &.disabled {
+            display: none;
+        }
+
+        pre {
+            background-color: rgba(255,255,255,0.4);
+            padding: 10px;
+            height: 500px;
+            overflow: auto;
+        }
+    }
+
+    .sidebar {
+        position: fixed;
+        top: $ly-header-height;
+        right: 0;
+        bottom: 0;
+        z-index: 98;
+        background-color: $white;
+        display: table;
+        height: 100%;
+        width: $ly-righ-sidebar-width;
+        box-shadow: 0 0 60px 1px rgba(40, 50, 58, 0.05);
+        @include transform(0.25s);
+
+
+        .right-toggle {
+            display: table-cell;
+            vertical-align: middle;
+            @include icomoon(\e902);
+            font-size: 20px;
+            color: $gray-light;
+            padding: 0 8px;
+
+            &.active {
+            }
+
+            &:hover {
+                color: $gray-darker;
+            }
+        }
+
+        .content {
+            display: none;
+            vertical-align: top;
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+            @include transform(0.25s);
+
+            h4 {
+                text-align: center;
+                padding: 30px 0 10px 0;
+                font-size: 18px;
+                color: $gray;
+                font-weight: 600;
+            }
+
+            .wrapper {
+                overflow: auto;
+                padding: 0 25px 0 10px;
+
+                &::-webkit-scrollbar {
+                    background-color: $white;
+                    width: 14px;
+                    height: 14px;
+                }
+
+                &::-webkit-scrollbar-corner {
+                    background-color: $white;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 14px;
+                    background-color: $border-dark;
+                    border: 4px solid $white;
+                }
+            }
+
+            .groups {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                & > li {
+                    display: block;
+                    border-bottom: 1px solid $border;
+                    padding-bottom: 10px;
+
+                    h5 {
+                        font-size: 14px;
+                        color: $gray-darkest;
+                        padding: 20px 0 20px 0;
+                        text-align: center;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .types {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+
+                        & > li {
+                        }
+                    }
+                }
+            }
+        }
+
+        &.active {
+            width: $ly-righ-sidebar-width--active !important;
+            box-shadow: 0 0 60px 3px rgba(40, 50, 58, 0.08);
+
+            .content {
+                display: table-cell;
+                width: $ly-righ-sidebar-width--active - $ly-righ-sidebar-width;
+                overflow: visible;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.jtk-surface-droppable-node {
+    position: relative;
+    display: block;
+    background-color: $white;
+    border: 1px solid $border;
+    border-top: 2px solid $gray;
+    width: 190px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.3;
+    color: $gray-darkest;
+    cursor: pointer;
+
+    &:hover {
+        border-left: 1px solid $border-dark;
+        border-bottom: 1px solid $border-dark;
+        border-right: 1px solid $border-dark;
+        box-shadow: 0 0 15px rgba(0,0,0,0.07);
+    }
+
+    &.load {
+        border-top-color: $green;
+    }
+
+    &.transform {
+        border-top-color: $purple;
+    }
+
+    &.fusion {
+        border-top-color: $red;
+    }
+
+    &.save {
+        border-top-color: $green;
+    }
+
+    &.split {
+        border-top-color: $yellow;
+    }
+
+    &.aggregate {
+        border-top-color: $blue;
+    }
+
+    &.mltrain {
+        border-top-color: $orange;
+    }
+
+    &.mlpredict {
+        border-top-color: $orange;
+    }
+}
+
+.jtk-dialog-underlay {
+    background-color: $gray-darker;
+    opacity: 0.7;
+}
+
+.jtk-dialog-overlay {
+    top: 50%;
+    margin-top: -150px;
+
+    .jtk-dialog-title {
+        margin: 0;
+        padding: 15px 15px 20px 15px;
+        font-size: 18px;
+        color: $gray-dark;
+        font-weight: 600;
+        font-family: $body-font-family;
+    }
+
+    .jtk-dialog-content {
+        input[type="text"] {
+            border: 1px solid $border;
+            background-color: $white !important;
+            font-size: 16px;
+            padding: 0 15px;
+            height: 50px;
+            font-family: $body-font-family;
+
+            &:focus {
+                border: 1px solid $border-dark;
+            }
+        }
+
+        span {
+            font-size: 16px;
+            color: $gray;
+            padding: 20px 40px 13px 40px;
+            display: block;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.3;
+        }
+    }
+
+    .jtk-dialog-buttons {
+        position: relative;
+        outline: none;
+        border: 0;
+        padding: 20px 15px 20px 0;
+        min-height: 80px;
+
+        .jtk-dialog-button {
+            float: right;
+            border: none !important;
+            outline: none !important;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 2px;
+            background: $green;
+            color: #fff;
+            line-height: 36px;
+            min-height: 36px;
+            margin: 6px;
+            padding: 0 25px;
+            font-weight: bold;
+            font-size: 14px;
+            min-width: 0;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.07);
+            font-family: $body-font-family;
+            @include transform(0.15s);
+
+            &:hover {
+                background-color: darken($green, 5%);
+            }
+
+            &.jtk-dialog-button-ok {
+                padding: 0 50px;
+            }
+
+            &.jtk-dialog-button-cancel {
+                font-weight: 500 !important;
+                box-shadow: none;
+                background-color: transparent !important;
+                color: $gray !important;
+                padding: 0 15px;
+
+                &:hover {
+                    background-color: transparent !important;
+                    color: $gray-darker !important;
+                }
+            }
+        }
+    }
+}

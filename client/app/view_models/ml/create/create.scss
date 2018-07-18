@@ -1,0 +1,80 @@
+﻿@import "../../../styles/_variables.scss";
+
+.ml .create {
+
+    .ml-create-header {
+        padding-top: 31px;
+        padding-bottom: 35px;
+
+        .back {
+            display: inline-block;
+            vertical-align: middle;
+            color: $gray-light;
+            font-size: 12px;
+            padding-right: 15px;
+
+            &:hover {
+                color: $gray-dark;
+            }
+        }
+
+        h1 {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .ml-create-type-list {
+        padding-bottom: 40px;
+        
+        ul {
+            margin:-1%;
+            padding:0;
+            list-style:none;
+            @include clearfix();
+
+            li {
+                display:inline-block;
+                margin:1%;
+                width:23%;
+                float:left;
+                background-color:$white;
+                text-align:center;
+                padding:40px 30px 0 30px;
+                cursor:pointer;
+                border-radius:2px;
+                @include transform(0.25s);
+
+                @media #{$md} {
+                    padding-left:20px;
+                    padding-right:20px;
+                }
+                @media #{$sm} {
+                    width:48%;
+                }
+
+                i {
+                    display:inline-block;
+                    font-size:75px;
+                    margin-bottom:40px;
+                }
+                h4 {
+                    font-size:16px;
+                    color:$gray-darkest;
+                    margin-bottom:15px;
+                }
+                p {
+                    font-size:13px;
+                    line-height:1.5;
+                    color:$gray-dark;
+                    min-height:140px;
+                }
+
+                &:hover {
+                    box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.08);
+                }
+            }
+        }
+    }
+
+}

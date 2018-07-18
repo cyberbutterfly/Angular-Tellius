@@ -1,0 +1,23 @@
+.jobs-indicator
+
+  .jobs-list-button(
+    title="Jobs Status"
+    ng-click="$ctrl.openList()"
+    ng-class="{'active': $ctrl.haveJobs(), 'pulse': $ctrl.haveNewUnseenJobs}")
+    i.icon-menu-2
+
+  .progress-button(
+    title="Jobs Status"
+    id="jobs-list"
+    ng-click="$ctrl.openList()"
+    ng-class="{'active': $ctrl.isRunning() }")
+    .uil-rolling-css
+      div
+        div
+        div
+
+  jobs-list.jobs-list(
+    ng-if="$ctrl.haveJobs()"
+    active-list="$ctrl.activeList"
+    click-outside="$ctrl.closeThis()"
+    outside-if-not="jobs-list")

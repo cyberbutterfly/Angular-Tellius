@@ -1,0 +1,32 @@
+div(ng-repeat="filter in $ctrl.filters")
+
+    div(layout="row")
+        div(flex="15", flex-md="20")
+            div.advance-switch.md-button-group.bg-green(ng-class="{'first': $first}")
+                md-button.gray.xsmall(ng-model="filter.operator", ng-repeat="operator in $ctrl.operators", value="{{operator}}", ng-click="filter.operator = operator", ng-class="{active:filter.operator == operator}") {{operator}}
+
+        div(flex="grow")
+            md-input-container
+                label Filter column
+                md-select(ng-model="filter.column", ng-change="$ctrl.onChangeSelect(filter)")
+                    md-option(ng-repeat="column in $ctrl.columns", value="{{column}}") {{column.name}}
+
+        div(flex="grow")
+            column-filter(
+              column-name="filter.name",
+              column-type="filter.type",
+              condition="filter.condition")
+
+        div(flex="5")
+            md-button.md-icon-button.ml20.mt25.mr0(ng-hide="$first", ng-click="$ctrl.removeCondition(filter)", aria-label="Remove")
+                md-icon.icon-close.fs10
+
+div.pl30
+    md-button(ng-click="$ctrl.addCondition()", class="md-fab small gray-dark", aria-label="Add")
+        md-icon.icon-plus
+
+        
+div(layout="row" ng-if="$ctrl.advancedCondition !== 'false'")
+  div(flex="grow")
+      md-input-container
+        span Condition: {{ $ctrl.advancedCondition }}

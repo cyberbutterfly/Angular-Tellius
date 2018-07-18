@@ -1,0 +1,77 @@
+form(novalidate).container
+
+    .wizard-boxed.big
+        .wizard-boxed-header
+            h1 Measures and Dimensions
+
+
+        .wizard-boxed-body
+            div(layout="row")
+                md-input-container(flex="45").help-tip
+                    label Primary Date Column
+                    md-select(ng-model='$ctrl.FormData.dateColumn')
+                        md-option(ng-repeat='column in $ctrl.columns', value="{{column}}") {{column}}
+                    help-tip(tooltip-position="right", tooltip="Primary Date column - Used for queries and Vizpad default datefield.")
+
+                md-input-container(flex="10")
+                md-input-container(flex="45")
+                    label Date Column Type
+                    md-select(ng-model='$ctrl.FormData.dateFormat')
+                        md-option(ng-repeat='column in $ctrl.dateFormats', value="{{column}}") {{column}}
+
+            div(layout="row" id="geoGroups" ng-repeat="group in $ctrl.FormData.geo")
+                md-input-container(flex="45").help-tip
+                    label Geospatial Grouping Name \#{{$ctrl.FormData.geo.indexOf(group)}}
+                    input(type="text" ng-model="$ctrl.FormData.geo[$index].groupName")
+                    help-tip(tooltip-position="right", tooltip="Geospatial Grouping Name - group (lat, long) pairs into psuedo variables.")
+                md-input-container(flex="10")
+                md-input-container(flex="15")
+                    label Latitude Column
+                    md-select(ng-model="$ctrl.FormData.geo[$index].latColumn")
+                        md-option(ng-repeat='column in $ctrl.columns', value="{{column}}") {{column}}
+                md-input-container(flex="5")
+                md-input-container(flex="15")
+                    label Longitude Column
+                    md-select(ng-model="$ctrl.FormData.geo[$index].longColumn")
+                        md-option(ng-repeat='column in $ctrl.columns', value="{{column}}") {{column}}
+                md-button.md-icon-button(aria-label='Add new grouping!' ng-click="$ctrl.removeGeoGrouping($index)")
+                    md-icon(md-svg-icon="close")
+                md-button.md-icon-button(aria-label='Remove grouping!' ng-click="$ctrl.addGeoGrouping()" ng-if="$last")
+                    md-icon(md-svg-icon="plus")
+                    //help-tip(tooltip-position="right", tooltip="Remove this grouping!" ng-click="$ctrl.removeGeoGrouping($index)")
+                    //help-tip(tooltip-position="right", tooltip="Add another grouping!" ng-click="$ctrl.addGeoGrouping()" ng-if="$last")
+
+            div(layout="row")
+                div(flex="45")
+                    .list-search-move.left
+                        div.search
+                            i.icon-search
+                            input(ng-model="$ctrl.searchDimensions", placeholder="Dimensions")
+                        ul.list
+                            li(ng-repeat="item in $ctrl.FormData.dimensions | orderBy | filter:$ctrl.searchDimensions", ng-click="$ctrl.moveToMesures(item)")
+                                span {{ item }}
+                                button
+                                    span Move
+                                    i.icon-right-4
+
+                div(flex="10")
+                div(flex="45")
+                    .list-search-move.right
+                        div.search
+                            i.icon-search
+                            input(ng-model="$ctrl.searchMeasures", placeholder="Measures")
+                        ul.list
+                            li(ng-repeat="item in $ctrl.FormData.measures | orderBy | filter:$ctrl.searchMeasures", ng-click="$ctrl.moveToDimensions(item)")
+                                span {{ item }}
+                                button
+                                    i.icon-left-4
+                                    span Move
+
+
+
+        .wizard-boxed-footer
+            md-button(type="reset", class="transparent") Cancel
+            md-button(type="submit", value="submit", ng-click="$ctrl.onSubmit()") Save
+
+        .wizard-boxed-errors(ng-show="$ctrl.errors.length")
+            span {{$ctrl.errors}}

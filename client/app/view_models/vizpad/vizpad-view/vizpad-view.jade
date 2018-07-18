@@ -1,0 +1,35 @@
+.vizpad-main-wrapper
+	.vizpad
+		.tophead    
+			span.head
+				h4.truncate.title-name(ui-sref="app.vizpad.list" ng-class="{active: vm.$state.current.url.includes('list')}") VizPads
+				h4.truncate.title-name(ui-sref="app.vizpad.vizlibrary" ng-class="{active: vm.$state.current.url.includes('vizlibrary')}") Viz Library
+			span.right.tophead-right
+				i.icon-search.vizpad-search-icon
+				md-input-container.search-box-wrapper
+					label Recently Added
+					input.search-vizpad-box(type='text' ng-model="vm.searchVizpad")
+				.add-vizpad-button  
+					md-button.md-fab.small.red.plus-btn(aria-label='Use Android', ng-click="vm.CreateVizpad($event)")
+						i.icon-plus
+						md-tooltip.req-tooltip(md-direction='top')
+							| Add Vizpad
+		.vizpad-list
+			.vizpad-item(ng-repeat="vizpads in vm.vizpadList | filter:{title : vm.searchVizpad}")
+				.vizpad-display
+					img.viz-img(ng-if="vizpads.imgData" src='{{vizpads.imgData}}')
+					img.temp-viz-img(ng-if="!vizpads.imgData" src='assets/Default-viz.png')
+					.vizpad-overlay
+						i.icon-close.delete-vizpad(ng-click="vm.removeVizPad(vizpads, $index)")
+						md-button.view-button(aria-label='Use Android', ng-click="vm.showChartView($event, $index)") View
+				.vizpad-title 
+					div {{vizpads.title}}
+					img.user-img(src='assets/user.png')
+					.active-time Last active {{vm.lastActiveTime[$index]}}
+		.content(ng-show="vm.vizpadList.length == 0 && vm.showCreateFirst")
+			.create
+				img(src='assets/create.png')
+				.center
+					| Create your first Vizpad! 
+					br
+					md-button.create-button(ng-click='vm.CreateVizpad($event)') Create

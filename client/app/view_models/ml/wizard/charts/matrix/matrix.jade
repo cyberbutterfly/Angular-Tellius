@@ -1,0 +1,19 @@
+.confusion-matrix
+    h3 Confusion Matrix
+    table
+        tr
+            td  
+            td.label(colspan="2") Predicted
+        tr
+            td
+            td.label Positive
+            td.label Negative
+        tr
+            td.label Actual True
+            td.value {{$ctrl.matrix[0]}}
+            td.value {{$ctrl.matrix[1]}}
+        tr
+            td.label Actual False
+            td.value {{$ctrl.matrix[2]}}
+            td.value {{$ctrl.matrix[3]}}
+        

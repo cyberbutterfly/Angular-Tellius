@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        title Tellius
+        meta(name="viewport", content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no")
+        meta(name="mobile-web-app-capable", content="yes")
+        meta(name="apple-mobile-web-app-capable", content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style", content="black")
+        meta(name="description", content="Tellius")
+        link(rel="icon", href="data:;base64,iVBORw0KGgo=")
+        base(href="/")
+
+        link(href='/assets/icons/flaticons/all.css', rel='stylesheet')
+        link(href='/assets/icons/style.css', rel='stylesheet')
+        link(rel='stylesheet', href='https://i.icomoon.io/public/73ca5425db/Tellius-Dashboard/style.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
+        link(rel='stylesheet', href='/assets/jsplumbtoolkit/css/jsPlumbToolkit-defaults.css')
+
+
+    if htmlWebpackPlugin.options.strict
+      body(
+        ng-app="Tellius",
+        ng-cloak="",
+        ng-strict-di)
+        app
+            | Loading...
+
+        script(src="/assets/jsplumbtoolkit/lib/jsPlumb-2.1.0.js")
+        script(src="/assets/jsplumbtoolkit/js/jsPlumbToolkit-1.0.21.js")
+        script(src="vendor.js")
+        script(src="app.js")
+        script(src="/assets/jsplumbtoolkit/js/jsPlumbToolkit-angular-1.0.21.js")
+    else
+      body(
+        ng-app="Tellius",
+        ng-cloak="")
+        app
+            | Loading...
+
+        script(src="/assets/jsplumbtoolkit/lib/jsPlumb-2.1.0.js")
+        script(src="/assets/jsplumbtoolkit/js/jsPlumbToolkit-1.0.21.js")
+        script(src="vendor.js")
+        script(src="app.js")
+        script(src="/assets/jsplumbtoolkit/js/jsPlumbToolkit-angular-1.0.21.js")

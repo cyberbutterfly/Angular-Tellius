@@ -1,0 +1,21 @@
+.header(layout="row")
+    div(flex="")
+        .title Advanced Filters
+
+.content
+    form(name="AdvancedFiltersForm" 
+    novalidate
+    ng-keydown="$ctrl.enterSubmit($event)")
+
+        advanced-filters(advanced-condition="$ctrl.advancedCondition")
+
+        .footer
+            md-button(type="reset" class="transparent"
+            ng-click="$ctrl.closeDialog()") Cancel
+            md-button(type="submit" value="submit"
+                ng-click="$ctrl.onSubmit()") Filter
+
+        .errors(ng-show='$ctrl.errors.length')
+            span {{ $ctrl.errors }}
+        .errors
+            span(ng-show="AdvancedFiltersForm.$submitted && !$ctrl.advancedCondition") Select a filter

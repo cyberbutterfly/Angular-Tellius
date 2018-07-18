@@ -1,0 +1,44 @@
+div(layout="row")
+    div(flex="" ng-if="$ctrl.isNumber()")
+      md-input-container
+        md-button.md-fab.small.gray-dark(
+          ng-click='$ctrl.toggleMathActions($event)',
+          aria-label='Math functions')
+            md-icon.icon-function
+    div(flex="")
+        md-input-container
+            label Filter Action
+            md-select(
+              ng-change="$ctrl.onChange()",
+              ng-model="$ctrl.selectedAction",
+              ng-model-options="{trackBy: '$value.name'}")
+                md-option(ng-value="{{action}}", ng-repeat="action in $ctrl.actions track by action.name") {{action.name}}
+
+    div(flex="")
+        div(layout="row")
+            md-input-container(class="md-block", flex="", ng-repeat="item in $ctrl.actionParamsCount track by $index")
+                label {{ $ctrl.selectedAction.name }} Value
+                input(ng-change="$ctrl.onChange()", ng-model="$ctrl.actionParams[$index]", required="required")
+    
+div(ng-if="$ctrl.isShowMath()")
+    br
+    div(layout="row")
+        div(flex="")
+            md-input-container
+                label Math Parameter
+                md-select(ng-change="$ctrl.onChange()", ng-model="$ctrl.selectedMathAction")
+                    md-option(value="{{action.name}}", ng-repeat="action in $ctrl.mathActions") {{action.name}}
+
+        div(flex="")
+            div(layout="row")
+                md-input-container(class="md-block", flex="", ng-repeat="item in $ctrl.mathParamsCount track by $index")
+                    label {{ $ctrl.selectedMathAction }} Value
+                    input(ng-change="$ctrl.onChange()", ng-model="$ctrl.mathActionParams[$index]", required="required")
+
+div(
+  layout="row",
+  ng-if="$ctrl.isShowCondition()"
+)
+    div(flex="")
+      md-input-container
+        div condition: {{$ctrl.condition}}

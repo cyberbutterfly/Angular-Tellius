@@ -1,0 +1,8 @@
+.permissions
+  .groups-content-header
+    .left
+      h3 User privileges
+    .right
+  
+  .checkbox-list(ng-repeat="permission in $ctrl.permissionsList")
+    md-checkbox(ng-model="permission.enabled" aria-label="") {{permission.name}}

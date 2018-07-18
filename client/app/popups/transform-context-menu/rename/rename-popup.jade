@@ -1,0 +1,19 @@
+.header(layout="row")
+    div(flex="")
+        .title Rename Column
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+
+        md-input-container(class="md-block" flex-gt-sm="")
+            label Column name
+            input(id="column-name"
+                  ng-model="vm.columnName"
+                  required="required")
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit") Rename
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

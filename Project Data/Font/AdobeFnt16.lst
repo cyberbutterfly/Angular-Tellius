@@ -1,0 +1,78 @@
+%!Adobe-FontList 1.16
+%Locale:0x41a
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MaisonNeue-Bold
+FamilyName:Maison Neue
+StyleName:Bold
+FullName:Maison Neue Bold
+MenuName:Maison Neue Bold
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\User\Dropbox (Sweet&Simple)\Projekti\InDinero\New Handover\Font\MaisonNeue-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:77620
+FileModTime:1440484730
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Maison Neue Bold
+NameArray:0,Mac,4,Maison Neue Bold
+NameArray:0,Win,1,Maison Neue Bold
+NameArray:0,Win,16,Maison Neue
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MaisonNeue-Book
+FamilyName:Maison Neue
+StyleName:Book
+FullName:Maison Neue Book
+MenuName:Maison Neue Book
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\User\Dropbox (Sweet&Simple)\Projekti\InDinero\New Handover\Font\MaisonNeue-Book.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:75592
+FileModTime:1440484730
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Maison Neue Book
+NameArray:0,Mac,4,Maison Neue Book
+NameArray:0,Win,1,Maison Neue Book
+NameArray:0,Win,16,Maison Neue
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MaisonNeue-Light
+FamilyName:Maison Neue
+StyleName:Light
+FullName:Maison Neue Light
+MenuName:Maison Neue Light
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\User\Dropbox (Sweet&Simple)\Projekti\InDinero\New Handover\Font\MaisonNeue-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:75224
+FileModTime:1440484730
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,18,Maison Neue Light
+NameArray:0,Mac,4,Maison Neue Light
+NameArray:0,Win,1,Maison Neue Light
+NameArray:0,Win,16,Maison Neue
+%EndFont
+

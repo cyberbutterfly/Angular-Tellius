@@ -1,0 +1,84 @@
+﻿@import "../../styles/_variables.scss";
+
+.column-context-menu {
+    font-size: 14px;
+
+    section {
+        padding: 10px 20px 5px 15px;
+        border-bottom: 1px solid $border;
+
+        .title {
+            padding-bottom: 6px;
+            cursor: default;
+
+            i {
+                display: inline-block;
+                vertical-align: middle;
+                width: 25px;
+                color: $gray-light;
+                font-size: 16px;
+            }
+
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                font-weight: bold;
+                color: $gray-darkest;
+            }
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                padding-left: 25px;
+
+                span {
+                    display: block;
+                    color: $gray-darkest;
+                    line-height: 24px;
+                    cursor: pointer;
+
+                    &.group-name {
+                        cursor: default;
+
+                        &:hover {
+                            color: $gray-darkest;
+                            text-decoration: none;
+                        }
+                    }
+
+                    &:hover {
+                        color: $black;
+                        text-decoration: underline;
+                    }
+                }
+
+                & > ul {
+                    li {
+                        padding-left: 15px;
+
+                        span {
+                            color: $gray-dark;
+                            line-height: 22px;
+
+                            &:hover {
+                                color: $gray-darkest;
+                            }
+                        }
+                    }
+                }
+
+                &.group {
+                    padding-bottom: 2px;
+                }
+            }
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

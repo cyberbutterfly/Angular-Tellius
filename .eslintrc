@@ -1,0 +1,29 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+  },
+  "rules": {
+    "no-new": [1],
+    "no-trailing-spaces": [0],
+    "prefer-const": [0],
+    "indent": [0],
+    "strict": [0],
+    "no-loop-func": [0],
+    "no-param-reassign": [0],
+    "no-multi-spaces": [0],
+    "spaced-comment": [0],
+    "no-console": [0],
+  },
+  "globals": {
+    "sinon": true,
+    "expect": true,
+    "inject": true
+  }
+}

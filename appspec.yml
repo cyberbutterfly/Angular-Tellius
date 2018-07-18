@@ -1,0 +1,21 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /var/angular_app
+permissions:
+  - object: /var/angular_app
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+     - directory
+hooks:
+  ApplicationStop:
+    - location: stop_server.sh
+      timeout: 60
+      runas: root
+  ApplicationStart:
+    - location: start_server.sh
+      runas: root
+

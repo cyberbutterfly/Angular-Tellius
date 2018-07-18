@@ -1,0 +1,9 @@
+.header(layout="row")
+  div(flex="")
+      .title Are you sure?
+
+.content
+  form(ng-submit="$ctrl.onSubmit()" novalidate)
+    md-input-container(class="md-block" flex-gt-sm="")
+      md-button(type="reset" class="transparent" ng-click="closeThisDialog()") Cancel
+      md-button(type="submit" ng-click="confirmDialog()") {{label}}

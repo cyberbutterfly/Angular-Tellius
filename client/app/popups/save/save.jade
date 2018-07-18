@@ -1,0 +1,19 @@
+.header(layout="row")
+    div(flex="")
+        .title Save Dataset
+
+.content
+    form(ng-submit="$ctrl.onSubmit()" novalidate)
+
+        md-input-container(class="md-block" flex-gt-sm="")
+            label Dataset name
+            input(id="column-name"
+                  ng-model="$ctrl.FormData.datasetName"
+                  required="required")
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit") Save
+
+        .errors(ng-show='$ctrl.errors.length')
+            span {{ $ctrl.errors }}

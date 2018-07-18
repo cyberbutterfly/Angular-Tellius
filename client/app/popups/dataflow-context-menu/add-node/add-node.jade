@@ -1,0 +1,27 @@
+.header(layout="row")
+	div(flex="")
+		.title Add New Action
+
+.content
+	form(ng-submit="vm.onSubmit()" novalidate)
+
+		md-input-container(class="md-block" flex-gt-sm)
+			label Action Type
+			md-select(ng-model="vm.formData.type")
+				md-option(ng-repeat="item in vm.nodeTypes" value="{{item.type}}") {{item.label}}
+		
+		md-input-container(class="md-block" flex-gt-sm)
+			label Parent Action
+			md-select(ng-model="vm.formData.parent")
+				md-option(ng-repeat="item in vm.parents" value="{{item.data.id}}") {{item.data.text}}
+
+		md-input-container(class="md-block" flex-gt-sm="")
+			label Description
+			input(ng-model="vm.formData.text", required="required")
+		
+		.footer
+			md-button(type="reset" class="transparent") Cancel
+			md-button(type="submit") Add Action
+
+		.errors(ng-show='vm.errors')
+			span {{ vm.errors }}

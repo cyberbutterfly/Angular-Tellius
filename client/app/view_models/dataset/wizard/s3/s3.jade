@@ -1,0 +1,49 @@
+form(novalidate).container
+
+    .dataset-wizard-header
+        a.back(ui-sref='app.dataset.create')
+            i.icon-left-4
+        img(src="assets/img/dataset/s3.png")
+        h1 Amazon S3
+
+    .dataset-wizard-body
+        .dataset-wizard-body-left
+            md-input-container
+                label AWS access key
+                input(id="key"
+                      ng-model="$ctrl.FormData.accessKeyId"
+                      required="required")
+        
+            md-input-container
+                label AWS secret key
+                input(id="secret"
+                      ng-model="$ctrl.FormData.secretAccessKey"
+                      required="required")
+
+            md-input-container
+                label S3 bucket
+                input(id="bucket"
+                      ng-model="$ctrl.FormData.bucket"
+                      required="required")
+
+            md-input-container
+                label AWS region
+                md-select(id="region", ng-model="$ctrl.FormData.region", required="required")
+                    md-option(ng-repeat="region in $ctrl.Regions", value="{{region}}") {{region}}
+       
+            md-input-container
+                md-button(type="submit", ng-click="$ctrl.browseBucket()") Browse bucket
+
+        .dataset-wizard-body-right(ng-if="$ctrl.bucketFiles.length")
+            .files-list
+                .title Select a file:
+                ul
+                    li(ng-repeat="file in $ctrl.bucketFiles")
+                        i.icon-file
+                        span(ng-bind="file.Key" ng-click="$ctrl.selectFile(file)")
+
+    .dataset-wizard-footer
+
+    .dataset-wizard-errors(ng-if="$ctrl.errors.length")
+        span(ng-bind="$ctrl.errors")
+    

@@ -1,0 +1,93 @@
+﻿@import "../../styles/_variables.scss";
+
+.login {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .wrapper {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        margin-left: -300px;
+        height: 600px;
+        margin-top: -300px;
+    }
+
+    .top {
+        text-align: center;
+        color: $white;
+        padding-bottom: 30px;
+
+        i {
+            font-size: 22px;
+        }
+
+        img {
+            max-height: 50px;
+        }
+    }
+
+    .box {
+        background-color: $white;
+        border-radius: 5px;
+        padding: 60px 60px 50px 60px;
+
+        h2 {
+            padding-left: 5px;
+            font-size: 28px;
+            color: $gray-darkest;
+            padding-bottom: 30px;
+        }
+
+        md-checkbox {
+            margin-left: 4px;
+
+            .md-icon {
+                border-color: $border-dark;
+            }
+        }
+
+        a {
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .md-button {
+            margin-right: 0;
+        }
+    }
+
+    .bottom {
+        padding-top: 30px;
+        text-align: center;
+        color: $white;
+        font-size: 16px;
+        opacity: 0.75;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        a {
+            padding-left: 4px;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

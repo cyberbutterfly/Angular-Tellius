@@ -1,0 +1,95 @@
+﻿@import "../../../styles/_variables.scss";
+
+.transform .transform-list {
+    width:100%;
+    background-color:$white;
+    box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.03);
+    border-radius:3px;
+    overflow:hidden;
+    margin-bottom:45px;
+
+    thead {
+        background-color:$back-gray-light;
+        tr {
+            th {
+                text-align:left;
+                border-bottom:1px solid $border;
+                height:55px;
+                padding:0 10px;
+                vertical-align:middle;
+                .md-button {
+                    padding-left:0!important;
+                    margin-left:0!important;
+                    text-transform:capitalize!important;
+                    font-size:13px!important;
+                    color:$gray-light!important;
+                }
+                i {
+                    font-size:12px;
+                }
+                &:nth-child(1) {
+                    text-align:center;
+                }
+                &.filter {
+                    .md-button {
+                        color:$blue!important;
+                    }
+                    i {
+                        color:$blue!important;
+                    }
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                font-size:14px;
+                color:$gray-darker;
+                padding:2px 10px;
+                border-bottom:1px solid $border;
+            }
+        }
+    }
+    tr {
+        td {
+            &:nth-child(1) {
+                width:50px;
+                text-align:center;
+            }
+            &:nth-child(2) {
+            }
+            &:nth-child(3) {
+                width:160px;
+            }
+            &:nth-child(4) {
+                width:220px;
+                & > span {
+                    display:inline-block;
+                    vertical-align:middle;
+                    min-width:50px;
+                }
+                md-progress-linear {
+                    display:inline-block;
+                    vertical-align:middle;
+                    width:120px;
+                }
+            }
+        }
+    }
+
+    md-checkbox {
+        display:inline-block;
+        .md-container {
+            .md-icon {
+                border-color:$border;
+            }
+        }
+    }
+    md-checkbox.md-default-theme.md-checked, 
+    md-checkbox.md-checked .md-ink-ripple {
+        .md-icon {
+            background-color:$blue;
+        }
+    }
+}

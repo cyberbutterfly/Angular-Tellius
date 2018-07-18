@@ -1,0 +1,24 @@
+.modules
+  .groups-content-header
+    .left
+      h3 Accessible Modules
+    .right
+  
+  ul.options-list
+    li(ng-repeat="module in $ctrl.modules")
+      .left
+        h4(ng-if="module.helpTip != ''", tooltip-position="right", tooltip="{{module.helpTip}}") {{module.name}}
+        h4(ng-if="module.helpTip == ''") {{module.name}}
+        h5 {{module.description}}
+        .links(toggle-active-src='{{module.name}}')
+          a.links-list-opener
+            span View links
+            i.icon-down
+          .links-list
+            .link(ng-repeat="link in module.urls")
+              span {{link}}
+      .right
+        input.toggle-switch(type="checkbox", ng-model="module.selected")
+  
+  md-button(ng-click="updateModuleAccesses()")
+    span Save

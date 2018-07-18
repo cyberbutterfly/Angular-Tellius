@@ -1,0 +1,28 @@
+.vizpad-main-wrapper
+	.material
+		.header
+			h5 Share VizPad
+		.shareContent
+			md-input-container.shareInput
+				i.icon-search
+				label Search People
+				input(ng-model='shared.person')
+			md-list.list(ng-cloak='')
+				md-list-item(ng-repeat='user in selected | filter:{username:shared.person, email:shared.person}' ng-class="{'is-checked' : selected[$index].value == true}")
+					img(src='../../../assets/user.png', alt='')
+					span.name  {{user.username}}
+					span.email {{user.email}}
+					md-select(placeholder='Can View', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.access', md-on-open='' style="margin: 0;")
+						md-option(ng-model='user.access',value='view' , ng-click="") Can View
+						md-option(ng-model='user.access',value='edit' , ng-click="") Can Edit
+					md-checkbox.md-primary.share-checkbox(ng-model='selected[$index].value')
+					md-divider
+			hr.dialogLine
+			md-input-container.share-url-Input
+				md-button.transparent.copy(aria-label='Use Android' ng-click="copyToClipboard('.link-input')") Copy
+				label Share URL
+				input.link-input(ng-model='link')
+			
+			.buttones.right
+				md-button.transparent(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='shareViz($event);hide();') Save

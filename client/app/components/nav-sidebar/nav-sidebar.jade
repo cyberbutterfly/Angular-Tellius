@@ -1,0 +1,51 @@
+nav.ly-nav-sidebar(toggle-active-dest='ly-nav-sidebar')
+    ul
+        li
+            a.active(ui-sref='app.dashboard', ui-sref-active="active")
+                i.flaticon.solid.house-1(title='Home')
+                span Home
+        li
+            a(ui-sref='app.dataset', ui-sref-active="active")
+                i.flaticon.stroke.server-1(title='Dataset')
+                span Dataset
+        li
+            a(ui-sref='app.transform', ui-sref-active="active")
+                i.flaticon.stroke.command-1(title='Transform')
+                span Transform
+        li
+            a(ui-sref='app.vizpad.list', ng-class="{active: vm.$location.path().indexOf('viz-pad') > -1}")
+                i.flaticon.solid.graph-1(title='VizPad')
+                span VizPad
+        li
+            a(ui-sref='app.ml', ui-sref-active="active")
+                i.flaticon.stroke.network-1(title='ML Models')
+                span ML Models
+        li
+            a(ui-sref='app.analytics', ui-sref-active="active")
+                i.flaticon.stroke.activity-1(title='Predictive Analytics')
+                span Predictive Analytics
+        li
+            a(ui-sref='app.maps', ui-sref-active="active")
+                i.flaticon.solid.location-pin-3(title='Maps')
+                span Maps
+        li
+            a(ui-sref='app.explore', ui-sref-active="active")
+                i.flaticon.stroke.zoom-2(title='Explore')
+                span Explore
+        li
+            a(ui-sref='app.myapps', ui-sref-active="active")
+                i.flaticon.solid.add-window-1(title='My Apps')
+                span My Apps
+        li.divider
+        li
+            a(ui-sref='app.dataflow', ui-sref-active="active")
+                i.flaticon.stroke.shuffle-1
+                span Data Flow
+        li
+            a(ui-sref='app.settings', ui-sref-active="active")
+                i.flaticon.stroke.settings-2
+                span Settings
+        li
+            a(ui-sref='app.jobs', ui-sref-active="active")
+                i.flaticon.solid.suitcase-1
+                span Jobs

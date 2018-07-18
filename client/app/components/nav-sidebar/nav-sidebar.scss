@@ -1,0 +1,79 @@
+@import "../../styles/_variables.scss";
+
+.ly-nav-sidebar {
+    position: fixed;
+    top: $ly-header-height;
+    left: 0;
+    bottom: 0;
+    z-index: 30;
+    background-color: $gray-darkest;
+    width: $ly-left-sidebar-width;
+    box-shadow: 0 0 60px 1px rgba(40, 50, 58, 0.1);
+    @include transform(0.25s);
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            a {
+                display: block;
+                color: $gray-lighter;
+                white-space: nowrap;
+                height: 44px;
+                padding: 14px 0;
+                cursor:pointer;
+                @include transform(0.1s);
+
+                i {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 16px;
+                    width: 60px;
+                    text-align: center;
+                }
+
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 0;
+                    opacity: 0;
+                    cursor:pointer;
+                    @include transform(0.3s);
+                }
+
+                &.active, &.active:hover {
+                    background-color: $blue;
+                    color: $white;
+                }
+
+                &:hover {
+                    background-color: darken($gray-darker, 4%);
+                    color: lighten($gray-lighter, 10%);
+                }
+            }
+
+            &.divider {
+                height: 22px;
+                margin-top: 22px;
+                border-top: 1px solid $gray-dark;
+            }
+        }
+    }
+
+    &.active {
+        width: $ly-left-sidebar-width--active !important;
+        box-shadow: 0 0 60px 3px rgba(40, 50, 58, 0.15);
+
+        ul li a {
+            span {
+                overflow: visible;
+                width: auto;
+                opacity: 1;
+            }
+        }
+    }
+}

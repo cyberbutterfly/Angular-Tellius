@@ -1,0 +1,5 @@
+.components-applied-viz-filter-wrapper
+	.filter-box(ng-repeat="filters in vm.vizFiltersArr")
+		i.icon-filter.applied-icons
+		div.filter-title {{filters}}
+		i.icon-close.applied-icons(ng-click="vm.removeFilter($event, $index, filters)")

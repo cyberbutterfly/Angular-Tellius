@@ -1,0 +1,36 @@
+.vizpad-main-wrapper
+	.vizpad
+		.tophead
+			span.head
+				img.back-button(src='assets/backButton.png' ng-click="vm.select($event)" ng-if="vm.$state.current.url.includes('view')")
+				h4.truncate.title-name(ui-sref="app.vizpad.list" ng-if="vm.$state.current.url.includes('viz-library')" ng-class="{active: vm.$state.current.url.includes('list')}") VizPads
+				h4.truncate.title-name(ui-sref="app.vizpad.vizlibrary" ng-if="vm.$state.current.url.includes('viz-library')" ng-class="{active: vm.$state.current.url.includes('viz-library')}") Viz Library
+				h4.truncate.title-name(ng-if="vm.$state.current.url.includes('vizpad')") Viz Library
+			span.right.tophead-right
+				i.icon-search.vizpad-search-icon
+				md-input-container.search-box-wrapper
+					label Recently Added
+					input.search-vizpad-box(type='text' ng-model="vm.searchViz")
+				.add-vizpad-button  
+					md-button.md-fab.md-mini.red.plus-btn(aria-label='Use Android', ng-click="vm.showCreateViz($event)" ng-if="vm.$state.current.url.includes('viz-library')")
+						i.icon-plus
+		.vizpad-list
+			.vizpad-item(ng-repeat="viz in vm.vizLibrary | filter:{title : vm.searchViz}")
+				.vizpad-display
+					img.viz-img(ng-if="viz.imgData" src='{{viz.imgData.data}}')
+					img.temp-viz-img(ng-if="!viz.imgData" src='assets/Default-viz.png')
+					.vizpad-overlay
+						i.icon-close.delete-vizpad(ng-click="vm.removeViz(viz, $index)" ng-show="vm.$state.current.name === 'app.vizpad.vizlibrary'")
+						md-button.view-button(aria-label='Use Android' ng-click="vm.loadFromExistingViz($event, $index, viz);" ng-show="vm.$state.current.name === 'app.vizpad.chartview'") Select
+						md-button.view-button(aria-label='Use Android' ng-click="vm.showVizView($event, $index, viz);" ng-show="vm.$state.current.name === 'app.vizpad.vizlibrary'") View
+				.vizpad-title 
+					div {{viz.title}}
+					img.user-img(src='assets/user.png')
+					.active-time Last active {{vm.lastActiveTime[$index]}}
+		.content(ng-if="vm.vizLibrary.length == 0")
+			.create
+				img(src='assets/create.png')
+				.center
+					| Create your first Viz! 
+					br
+					md-button.create-button(ng-click='vm.showCreateViz($event)') Create

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>jsPlumb Toolkit Jump Page</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style type="text/css">
+        a, a:visited {
+            color:#629F8D;
+            text-decoration:none;
+        }
+
+        a:hover {
+            text-decoration:underline;
+        }
+
+        pre {
+            outline: 1px solid #CCC;
+            padding: 15px 5px 1px 10px;
+            margin: 20px;
+            background-color: #deded2;
+            color: #343434;
+        }
+    </style>
+
+</head>
+
+<body>
+<h1>jsPlumbToolkit</h1>
+
+<p>
+    Welcome to the Toolkit edition of jsPlumb. If you're not already doing this, the best thing to do is to
+    host this entire directory structure on a webserver somewhere.
+</p>
+
+<h2>Getting Started</h2>
+If you have Grunt installed you can get started straight away with a copy of an existing demo, or with
+an almost empty app you can use as a template.
+
+<h3>Cloning an existing demo</h3>
+        <pre>
+grunt clone --app=database-visualizer --o=&lt;your output directory&gt;
+        </pre>
+
+Valid values for `-app` are:
+
+<ul>
+    <li>database-visualiser</li>
+    <li>flowchart-builder</li>
+    <li>absolute</li>
+    <li>circular</li>
+    <li>hierarchy</li>
+    <li>paths</li>
+    <li>hello-world</li>
+    <li>imageWidget</li>
+    <li>multiple</li>
+    <li>skeleton</li>
+    <li>spring</li>
+</ul>
+
+<h3>Creating a new skeleton app</h3>
+        <pre>
+grunt create --o=&lt;your output directory&gt;
+        </pre>
+
+<h3>Creating a new app manually</h3>
+See instructions <a href="doc/getting-started.html">here</a>.
+
+<h3>Ingesting an existing jsPlumb instance</h3>
+If you have an existing jsPlumb instance and you want to try the simplest upgrade path, this is for you.
+
+See instructions <a href="doc/getting-started.html#ingest">here</a>.
+
+<a name="demos"></a>
+<h2>Demonstrations</h2>
+<ul>
+    <li><a href="demo/hierarchy/index.html">Hierarchy Layout</a></li>
+    <li><a href="demo/circular/index.html">Circle Layout</a></li>
+    <li><a href="demo/spring/index.html">Spring Layout</a></li>
+    <li><a href="demo/absolute/index.html">Absolute Layout</a></li>
+    <li><a href="demo/multiple/index.html">Multiple Renderers</a></li>
+    <li><a href="demo/paths/index.html">Path Traversal</a></li>
+    <li><a href="demo/imageWidget/index.html">Image Widget</a></li>
+    <li><a href="demo/database-visualizer/index.html">Database Visualizer</a></li>
+    <li><a href="demo/flowchart-builder/index.html">Flowchart Builder</a></li>
+    <li><a href="demo/angular/index.html">Angular Integration</a></li>
+    <li><a href="demo/hello-world/index.html">Hello World</a></li>
+</ul>
+
+<h2>Documentation</h2>
+<ul>
+    <li><a href="doc/home.html">Toolkit Edition Documentation</a></li>
+    <li><a href="apidocs/index.html">API Documentation</a></li>
+</ul>
+
+</body>
+
+</html>

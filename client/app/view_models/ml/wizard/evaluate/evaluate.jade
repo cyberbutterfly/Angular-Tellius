@@ -1,0 +1,35 @@
+.evaluate
+
+    div(layout="row", layout-align="start center")
+      div(flex)
+        md-input-container
+          label Select models
+          md-chips(
+          ng-model="$ctrl.FormData.selectedModels",
+          ng-class="{'has-items': $ctrl.FormData.selectedModels.length > 0}"
+          md-item-text = "$chip.modelname", 
+          md-autocomplete-snap, 
+          md-require-match="true", 
+          class="md-block", 
+          flex-gt-sm)
+              md-chip-template
+                span(ng-bind="$chip.modelname")
+              md-autocomplete(
+              placeholder="Select models"
+              md-selected-item="$ctrl.FormData.selectedModelsSelectedItem", 
+              md-search-text="$ctrl.FormData.selectedModelsSearchText", 
+              md-items="column in $ctrl.modelList | exclude:$ctrl.FormData.selectedModels", 
+              md-item-text="column.modelname")
+                  span(md-highlight-text="$ctrl.FormData.selectedModelsSearchText") {{ column.modelname }}
+
+    evaluate-regression(
+      ng-if="$ctrl.options.modelType === 'regression'",
+      measures-data="$ctrl.measuresData")
+    evaluate-classification(
+      ng-if="$ctrl.options.modelType === 'classification'",
+      measures-data="$ctrl.measuresData")
+
+    div(layout="row", layout-align="start center")
+        div(flex).text-right
+            md-button.small.wide(ng-click="$ctrl.prev()") Previous
+            md-button.small.wide(ng-click="$ctrl.next()") Next

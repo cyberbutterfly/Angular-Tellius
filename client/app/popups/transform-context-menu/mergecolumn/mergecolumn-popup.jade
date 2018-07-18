@@ -1,0 +1,29 @@
+.header(layout="row")
+    div(flex="")
+        .title Merge Columns
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+
+        div(layout-gt-sm="row")
+            md-input-container(class="md-block" flex-gt-sm)
+                label Column #1
+                input(value="{{ vm.columnName }}", readonly)
+            
+            md-input-container(class="md-block" flex-gt-sm)
+                label Column #2
+                md-select(id="mergeColumn" ng-change="vm.onChange()" ng-model="vm.mergeColumn")
+                    md-option(ng-repeat="item in vm.datasetColumns" value="{{item}}") {{item}}
+        
+        div(layout="row")
+            md-input-container(class="md-block" flex-gt-sm)
+                label New Column Name
+                input(id="mergedcolumnname"
+                      ng-model="vm.mergedcolumnname")
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit" value="submit") Merge
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

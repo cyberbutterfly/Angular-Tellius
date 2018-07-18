@@ -1,0 +1,60 @@
+.header(layout="row")
+    div(flex="")
+        .title Add Column
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+
+        md-input-container(class="md-block" flex-gt-sm="")
+            label Column name
+            input(id="column-name"
+                  ng-model="vm.formData.columnName"
+                  required="required")
+
+        ng-tabs(options="vm.tabsOptions")
+            
+            ng-pane(title="Indicator")
+                md-input-container(class="md-block" flex-gt-sm="")
+                    label Indicator
+                    input(id="indicator"
+                          ng-model="vm.formData.indicator"
+                          required="required")
+
+            ng-pane(title="Fixed value")
+                md-input-container(class="md-block" flex-gt-sm="")
+                    label Value
+                    input(id="fixedstring"
+                          ng-model="vm.formData.fixedstring"
+                          required="required")
+
+            ng-pane(title="Signature")
+                md-input-container(class="md-block" flex-gt-sm="")
+                    label Signature
+                    input(id="signature"
+                          ng-model="vm.formData.signature"
+                          required="required")
+
+            ng-pane(title="Subset")
+                md-input-container
+                    label Select column
+                    md-select(id="selectColumn" ng-model="vm.formData.subsetColumn")
+                        md-option(ng-repeat="item in vm.columns" value="{{item}}") {{item}}
+
+                md-input-container
+                    label Subset
+                    md-select(id="subsetType" ng-model="vm.formData.subsetType")
+                        md-option(ng-repeat="item in vm.subsetFunctions" value="{{item}}") {{item}}
+                      
+                md-input-container(class="md-block" flex-gt-sm="" ng-if="vm.isStringFunction()")
+                    label String position
+                    input(id="stringPosition"
+                          type="number"
+                          ng-model="vm.formData.stringPosition"
+                          required="required")
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit") Add column
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

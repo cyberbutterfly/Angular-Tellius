@@ -1,0 +1,14 @@
+.header(layout="row")
+    div(flex="")
+        .title Replace empty cels with value
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+        md-input-container(class="md-block" flex-gt-sm)
+            label Value
+            input(id="fixedValue"
+                  ng-model="vm.FormData.value")
+
+    .footer
+        md-button(type="reset" class="transparent") Cancel
+        md-button(type="submit" value="submit") Replace

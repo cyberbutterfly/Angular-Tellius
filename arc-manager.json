@@ -1,0 +1,13 @@
+{
+  "ids": {
+    "ManagerHost": 4,
+    "LoadBalancer": 1
+  },
+  "models": {
+    "ManagerHost": {
+      "317688b4-9d49-48a5-aeb6-6c57aeb40faa": "{\"id\":\"317688b4-9d49-48a5-aeb6-6c57aeb40faa\",\"host\":\"127.0.0.1\",\"port\":8701,\"actions\":[\"delete\",\"edit\"],\"protocol\":\"http\",\"created\":1456400233717,\"error\":{\"message\":\"connect ECONNREFUSED 127.0.0.1:8701\"},\"errorType\":\"connection\",\"app\":null,\"processes\":null,\"$$hashKey\":\"object:87\",\"isHostProblem\":true}",
+      "417e4fde-e501-4b38-aecf-4cf1799e3c45": "{\"id\":\"417e4fde-e501-4b38-aecf-4cf1799e3c45\",\"host\":\"ec2-52-90-31-103.compute-1.amazonaws.com\",\"port\":8701,\"actions\":[\"delete\",\"edit\"],\"protocol\":\"http\",\"created\":1456517920351,\"error\":{\"message\":\"connect ETIMEDOUT 52.90.31.103:8701\"},\"errorType\":\"unknown\",\"app\":null,\"processes\":null,\"$$hashKey\":\"object:127\",\"isHostProblem\":true}"
+    },
+    "LoadBalancer": {}
+  }
+}

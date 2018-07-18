@@ -1,0 +1,29 @@
+.header(layout="row")
+  div(flex="")
+    .title Add Datasets
+
+.content
+  form(ng-submit="$ctrl.submitSelectedDatasets({'selectedDatasets': $ctrl.selectedDatasets})" novalidate)
+
+    .search-datasets
+      i.icon-search
+      input(ng-model="$ctrl.searchDatasets", placeholder="Search Dataset ...")
+    .list-datasets-wrapper.big
+      table.list-datasets
+        tbody
+          tr(ng-repeat="dataset in $ctrl.candidateDatasets | filter:$ctrl.searchDatasets",
+             ng-click="$ctrl.selectDataset(dataset)",
+             ng-class="{'active': dataset.selected == true}")
+            td
+              .dataset-avatar
+                .img(ng-if="dataset.datasetDescription.sourceType",style="background-image:url(assets/img/dataset/{{dataset.sourceType}}.png);")
+            td
+              .name {{dataset.name}}
+            td
+              md-checkbox(ng-model="dataset.selected", aria-label="Select")
+    .footer
+      md-button(type="reset", class="transparent") Cancel
+      md-button(type="submit") Add Datasets
+
+  .errors(ng-show='$ctrl.errors.length')
+    span {{ $ctrl.errors }}

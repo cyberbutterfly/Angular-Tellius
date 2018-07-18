@@ -1,0 +1,25 @@
+table.transform-list
+    thead
+        tr
+            th 
+                md-checkbox(aria-label="Select All")
+            th(ng-class="{'filter': $ctrl.predicate === 'name'}")
+                md-button(class="transparent xsmall", ng-click="$ctrl.order('name')") Name
+                i.icon-up(ng-show="$ctrl.predicate === 'name'", ng-class="{'sort-reverse': $ctrl.reverse}")
+            th(ng-class="{'filter': $ctrl.predicate === 'dataType'}") 
+                md-button(class="transparent xsmall", ng-click="$ctrl.order('dataType')") Type
+                i.icon-up(ng-show="$ctrl.predicate === 'dataType'", ng-class="{'sort-reverse': $ctrl.reverse}")
+            th(ng-class="{'filter': $ctrl.predicate === 'valid'}") 
+                md-button(class="transparent xsmall", ng-click="$ctrl.order('valid')") Valid %
+                i.icon-up(ng-show="$ctrl.predicate === 'valid'", ng-class="{'sort-reverse': $ctrl.reverse}")
+    tbody
+        tr(ng-repeat="item in $ctrl.data")
+            td
+                md-checkbox(aria-label="Select", )
+            td
+                span {{ item.name }}
+            td
+                span {{ item.dataType }}
+            td
+                span 100%
+                typestats-indicator(typestats-data="item.typeStats")

@@ -1,0 +1,76 @@
+form(novalidate)
+
+  h3.mb10.ml3 RandomForestClassifier
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Target Variable:
+        input(ng-model="$ctrl.targetVariable", readonly="readonly")
+    div(flex="40")
+      .helpbox Name of the column which has to be considered as a label in model creation.
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Model name:
+        input(ng-model="$ctrl.FormData.modelname", required="required")
+    div(flex="40")
+      .helpbox Name of the new model that we are creating.
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Max depth:
+        input(ng-model="$ctrl.FormData.maxdepth")
+    div(flex="40")
+      .helpbox Maximum depth of the tree. (>=0) E.G., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Num trees:
+        input(ng-model="$ctrl.FormData.numtrees")
+    div(flex="40")
+      .helpbox Number of trees to train (>= 1)
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Max bins:
+        input(ng-model="$ctrl.FormData.maxbins")
+    div(flex="40")
+      .helpbox Max number of bins for discretizing continous features. Must be >=2 and >= number of categories for any categorical feature.
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p subsamplingRate:
+        input(ng-model="$ctrl.FormData.subsamplingRate")
+    div(flex="40")
+      .helpbox Max number of bins for discretizing continous features. Must be >=2 and >= number of categories for any categorical feature.
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p Impurity:
+        md-select(ng-model="$ctrl.FormData.impurity")
+          md-option(ng-repeat="i in $ctrl.inpurityOptions", value="{{i}}") {{i}}
+    div(flex="40")
+      .helpbox Criterion used for information gain calculation (case-sensitive). Supported options: variance, gini
+
+
+  div(layout="row", layout-align="start center")
+    div(flex="60")
+      md-input-container.il(flex)
+        label.w35p featureSubsetStrategy:
+        md-select(ng-model="$ctrl.FormData.featureSubsetStrategy")
+          md-option(ng-repeat="i in $ctrl.featureSubsetStrategyOptions", value="{{i}}") {{i}}
+    div(flex="40")
+      .helpbox Criterion used for information gain calculation (case-sensitive). Supported options: variance, gini
+
+  div(layout="row", layout-align="start center", ng-show='$ctrl.errors.length').mb30
+    div(flex)
+      span.red {{ $ctrl.errors }}
+
+  hr

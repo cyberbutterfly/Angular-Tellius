@@ -1,0 +1,31 @@
+.header(layout="row")
+    div(flex="")
+        .title Find and Replace
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+        div(layout-gt-sm="row")
+            md-input-container(class="md-block" flex-gt-sm)
+                label Find
+                input(id="find"
+                      ng-model="vm.FormData.find"
+                      required="required")
+            
+            md-input-container(class="md-block" flex-gt-sm)
+                label Replace with
+                input(id="replace"
+                      ng-model="vm.FormData.replace"
+                      required="required")
+
+        h5.gray-dark In selected columns :
+        md-list.h24 
+            md-list-item(ng-repeat="key in vm.columns")
+                md-checkbox(checklist-model='vm.FormData.columnnames' checklist-value='key')
+                p.value {{ key }}
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit" value="submit") Replace
+
+        .errors(ng-show='vm.errors.length')
+            span {{ vm.errors }}

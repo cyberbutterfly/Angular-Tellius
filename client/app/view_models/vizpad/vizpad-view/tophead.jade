@@ -1,0 +1,51 @@
+.vizpad-main-wrapper
+	.tophead
+		span.head
+			i.mdi.mdi-chevron-left
+			h4.truncate VizPad Name
+			span.tooltip--triangle(data-tooltip='VizPad Name')
+		span.right.tophead-right
+			md-input-container.date-picker
+				i.mdi.mdi-calendar
+				label Timeline
+				md-select.calendar-dropdown(ng-model='ctrl.userState', md-container-class="date-picker-dropdown")
+					md-option
+						| Today
+					md-option
+						| Yesterday
+					md-option
+						| Last 5 Days
+					md-option
+						| Last 7 Days
+					md-option
+						| This Month
+					md-option
+						| Last 30 Days
+					md-option
+						| Last 3 Months
+					md-option
+						| Last 6 Months
+					md-option
+						| All
+					md-option(ng-click='showCustom($event)')
+						| Custom Range
+					md-option(ng-click='showDate($event)')
+						| Custom Date         
+
+			md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click='showShare($event)')        
+				i.mdi.mdi-share
+			md-button.md-fab.md-mini.white(aria-label='Use Android', ng-click='vm.showFilter($event)')        
+				i.mdi.mdi-filter
+			.plus-button  
+				md-button.md-fab.md-mini.red(aria-label='Use Android', ng-click="showSubnav('plus')")
+					i.mdi.mdi-plus
+				div.plus-menu(ng-class="{'active' : showFilter=='plus'}")
+					.border-line
+					.dialogcontent
+						md-button(aria-label='Use Android') 
+							i.mdi.mdi-plus  New Viz
+						md-button(aria-label='Use Android') 
+							i.mdi.mdi-upload  Load Existing Viz
+			span.line
+			md-button Save
+			img.vizuser(src='assets/user.png')

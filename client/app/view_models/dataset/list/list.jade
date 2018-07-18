@@ -1,0 +1,113 @@
+.list.container
+    .header.header-tabs
+        .left
+            .tabs
+                h4(
+                  ng-click="$ctrl.setActive('datasources')"
+                  ng-class="{'active': $ctrl.isActive('datasources')}"
+                  ) Data Sources
+                h4(
+                  ng-click="$ctrl.setActive('in-memory')"
+                  ng-class="{'active': $ctrl.isActive('in-memory')}"
+                  ) Saved Datasets
+        .right
+            .search
+                i.icon-search
+                input(ng-model="$ctrl.search")
+            .controls
+                md-button.md-fab(aria-label="Create dataset", ui-sref="app.dataset.create")
+                    md-icon.icon-plus
+                    md-tooltip(md-direction="top") Create dataset
+
+      .div(ng-if="$ctrl.isActive('in-memory')")
+        .header
+            .left
+                h1 Saved Datasets
+                    span {{ $ctrl.savedDatasets.length }}
+        table.tellius-table
+            thead
+                tr
+                    //th
+                        span UUID
+                    th(ng-class="{'filter': $ctrl.predicate === 'sourceType'}")
+                        md-button(class="transparent xsmall", ng-click="$ctrl.order('sourceType')") Type
+                        i.icon-up(ng-show="$ctrl.predicate === 'sourceType'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'datasetName'}")
+                        md-button(class="transparent xsmall", ng-click="$ctrl.order('datasetName')") Dataset name
+                        i.icon-up(ng-show="$ctrl.predicate === 'name'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'createdAt'}")
+                        md-button(class="transparent xsmall", ng-click="$ctrl.order('createdAt')") Date created
+                        i.icon-up(ng-show="$ctrl.predicate === 'createdAt'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th
+
+            tbody
+                tr(ng-repeat="item in $ctrl.savedDatasets | filter:$ctrl.search")
+                    //td
+                      span {{ item.id | limitTo: 12 : -12 }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                        img(src="assets/database-icon.png")
+                    td(ng-click="$ctrl.selectDataset(item)")
+                        span {{ item.datasetName }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                        span {{ item.createdAt | date:'medium'}}
+                    td
+                        // md-button.md-icon-button(aria-label="Edit", ng-click="$ctrl.edit(item)")
+                            md-icon.icon-edit
+                            md-tooltip(md-direction="top") Edit
+                        md-button.md-icon-button(aria-label="Delete", ng-click="$ctrl.delete(item)")
+                            md-icon.icon-delete
+                            md-tooltip(md-direction="top") Delete
+
+      .div(ng-if="$ctrl.isActive('datasources')")
+        .header
+            .left
+                h1 Data Sources
+                    span {{ $ctrl.unsavedDatasets.length }}
+        table.tellius-table
+            thead
+                tr
+                    //th
+                        span UUID
+                    th(ng-class="{'filter': $ctrl.predicate === 'sourceType'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('sourceType')") Type
+                      i.icon-up(ng-show="$ctrl.predicate === 'sourceType'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'name'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('datasetName')") Dataset name
+                      i.icon-up(ng-show="$ctrl.predicate === 'datasetName'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'createdAt'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('createdAt')") Date created
+                      i.icon-up(ng-show="$ctrl.predicate === 'createdAt'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'size'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('size')") File size
+                      i.icon-up(ng-show="$ctrl.predicate === 'size'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'jobs'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('jobs')") Jobs
+                      i.icon-up(ng-show="$ctrl.predicate === 'jobs'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th(ng-class="{'filter': $ctrl.predicate === 'schedule'}")
+                      md-button(class="transparent xsmall", ng-click="$ctrl.order('schedule')") Schedule
+                      i.icon-up(ng-show="$ctrl.predicate === 'schedule'", ng-class="{'sort-reverse': $ctrl.reverse}")
+                    th
+
+                tbody
+                  tr(ng-repeat="item in $ctrl.unsavedDatasets | filter:$ctrl.search")
+                    //td
+                      span {{ item.id | limitTo: 12 : -12 }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      img(src="assets/img/dataset/{{ item.sourceType }}.png")
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      span {{ item.datasetName }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      span {{ item.createdAt | date:'medium'}}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      span {{ item.size | size }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      span(ng-if="item.jobs.length") {{ item.jobs }}
+                    td(ng-click="$ctrl.selectDataset(item)")
+                      span {{ item.schedule }}
+                    td
+                      md-button.md-icon-button(aria-label="Edit", ng-click="$ctrl.edit(item)")
+                        md-icon.icon-edit
+                        md-tooltip(md-direction="top") Edit
+                      md-button.md-icon-button(aria-label="Delete", ng-click="$ctrl.delete(item)")
+                        md-icon.icon-delete
+                        md-tooltip(md-direction="top") Delete

@@ -1,0 +1,9 @@
+
+div.filter-menu(ng-class="{'active' : vm.active}")
+  .dialogcontent
+    h4.filter-menu-title LEGEND
+    div(flex='50', ng-repeat='legend in vm.viz.allLegends')
+      md-checkbox(ng-checked='vm.exists(legend, vm.selected)', ng-click='vm.toggle(legend, vm.selected)')
+        | {{ legend }} 
+        span(ng-if='vm.exists(legend, vm.selected)')
+        

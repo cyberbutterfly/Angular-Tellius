@@ -1,0 +1,102 @@
+﻿@import "../../../../styles/_variables.scss";
+
+.ml .wizard .use {
+
+
+    ul {
+        margin: -1%;
+        padding: 0;
+        list-style: none;
+        @include clearfix();
+
+        li {
+            width: 31.33%;
+            float: left;
+            margin: 1%;
+            background-color: $white;
+            box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.03);
+            border-radius: 2px;
+            overflow: hidden;
+            text-align: center;
+            padding: 40px 80px;
+            min-height: 330px;
+
+            @media #{$md} {
+                width: 48%;
+            }
+
+            @media #{$sm} {
+                width: 98%;
+            }
+
+            i {
+                font-size: 42px;
+            }
+
+            h4 {
+                margin: 25px 0 0 0;
+                font-size: 16px;
+                color: $gray-darkest;
+                line-height: 1.3;
+                height: 55px;
+            }
+
+            p {
+                font-size: 14px;
+                color: $gray-dark;
+                line-height: 1.4;
+                height: 70px;
+            }
+
+            md-button {
+            }
+
+            &.save {
+                h4 {
+                    padding-top: 15px;
+                }
+
+                i {
+                    color: $green;
+                }
+
+                .md-button {
+                    background-color: $green;
+                }
+            }
+
+            &.predict {
+                h4 {
+                    padding-top: 15px;
+                }
+
+                i {
+                    color: $blue !important;
+                    -webkit-text-fill-color: $blue;
+                }
+
+                .md-button {
+                    background-color: $blue;
+
+                    &:hover {
+                        background-color: darken($blue, 6%) !important;
+                    }
+                }
+            }
+
+            &.dataflow {
+                i {
+                    color: $red;
+                }
+
+                .md-button {
+                    background-color: $red;
+
+                    &:hover {
+                        background-color: lighten($red, 6%) !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+select(
+id="fileType"
+ng-change="$ctrl.onChange()"
+ng-model="$ctrl.FormData.fileType"
+ng-options="item.value as item.name for item in $ctrl.columnTypes")

@@ -1,0 +1,75 @@
+.create.container
+    .dataset-create-header
+        a.back(ui-sref='app.dataset.list')
+            i.icon-left-4
+        h1 New Dataset
+
+    .dataset-create-type-list
+        md-button.big-img.white(ui-sref="app.dataset.wizard.s3")
+            img(src="assets/img/dataset/s3.png")
+            span Amazon S3
+        md-button.big-img.white(ui-sref="app.dataset.wizard.mongodb")
+            img(src="assets/img/dataset/mongodb.png")
+            span MongoDB
+        md-button.big-img.white(ui-sref="app.dataset.wizard.cassandra")
+            img(src="assets/img/dataset/cassandra.png")
+            span Cassandra
+        md-button.big-img.white(ui-sref="app.dataset.wizard.oracle")
+            img(src="assets/img/dataset/oracle.png")
+            span Oracle    
+        md-button.big-img.white(ui-sref="app.dataset.wizard.hadoop")
+            img(src="assets/img/dataset/parquet.png")
+            span HDFS    
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/memsql.png")
+            span memSQL
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/twitter.png")
+            span Twitter
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/impala.png")
+            span Impala
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/mysql.png")
+            span MySQL
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/postgres.png")
+            span Postgres SQL
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/solr.png")
+            span Solr
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/elastic.png")
+            span Elastic Search
+        md-button.big-img.white(ui-sref="app.dataset.create").disabled
+            img(src="assets/img/dataset/redshift.png")
+            span Redshift
+
+
+    .dataset-create-manual-upload
+        .header
+            .left
+                span Or upload Manually:
+            .right
+                a.help(href="")
+                    i.icon-help
+        .drag-upload-box(ngf-drop, ngf-select, ngf-change="$ctrl.changeFiles($files)", ng-model="$ctrl.files", ngf-multiple="false", ngf-allow-dir="false")
+            i.icon-cloud-upload-1
+            h5 Drag & Drop a File
+            h6 csv, xml, json and parquet
+            md-button(ngf-change="$ctrl.changeFiles($files)", ng-model="$ctrl.files", ngf-select="upload($files)", ngf-allow-dir="true", ngf-multiple="true") Upload
+
+    .dataset-create-url-upload
+        .header
+            .left
+                span Upload using URL:
+            .right
+        form(ng-submit="$ctrl.uploadByUrl()")
+            input(type="text", ng-model="$ctrl.httpurl", required="required", placeholder="http://")
+            md-button.link(type="submit") Submit
+
+    .dataset-create-errors(ng-show="$ctrl.hasError") {{ $ctrl.error }}
+        div(ng-show="$ctrl.errors.length")
+            div {{ $ctrl.errors }}
+
+ui-view

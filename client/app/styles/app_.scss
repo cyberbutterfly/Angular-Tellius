@@ -1,0 +1,440 @@
+﻿@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+       url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+       url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.vizpad-main-wrapper {
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+}
+
+.content-holder {
+  background: #EBF0F3;
+  transition: all 0.3s cubic-bezier(0.27, 0.63, 0.5, 1.05);
+  min-height: 100vh; }
+
+.page-content {
+ padding: 30px;
+ padding-top: 85px;
+ padding-left: 25px;
+ margin-left: 70px;
+ /*margin-right: 280px;*/
+}
+
+md-chips.md-default-theme .md-chips, md-chips .md-chips {
+  box-shadow: none !important;
+}
+
+md-input-container.md-icon-float.md-input-focused label, md-input-container.md-icon-float.md-input-has-value label {
+    -webkit-transform: translate3d(0, 6px, 0) scale(0.9);
+    transform: translate3d(0, 6px, 0) scale(0.9);
+    transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+    transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+}
+* {
+  outline: 0;
+}
+/* Styles for extended layout */
+md-progress-circular, md-progress-circular .md-inner {
+  width: 100px !important;
+  height: 100px !important;
+  position: relative !important;
+}
+.hideTooltip md-tooltip:not(.req-tooltip) {
+  display: none;
+}
+
+/* Login page styles */
+.login-overlay {
+  position: relative;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 200px;
+  min-height: 100vh;
+  background: #EBF0F3;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.335, 1.05); }
+  .login-overlay:after {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300px;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    content: "";
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.14); }
+  .login-overlay .logo {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    color: white;
+    font-size: 27px;
+    letter-spacing: 1px;
+    top: 50px; }
+    .login-overlay .logo .smaller {
+      font-size: 16px;
+      font-weight: 100;
+      letter-spacing: 5px;
+      margin-left: -8px; }
+  .login-overlay .form-container {
+    position: relative;
+    z-index: 1;
+    top: 70px;
+    background: #ffffff;
+    width: 50%;
+    margin: 0 auto; }
+    .login-overlay .form-container .icon {
+      padding-top: 30px; }
+      .login-overlay .form-container .icon .mdi {
+        color: #00C497;
+        font-size: 110px; }
+      .login-overlay .form-container .icon .header {
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: 100;
+        text-transform: uppercase; }
+    .login-overlay .form-container .inputs {
+      margin-top: 10px; }
+      .login-overlay .form-container .inputs .md-textfield {
+        width: 75%;
+        padding: 0; }
+      .login-overlay .form-container .inputs .md-textfield md-input-container {
+        width: 100%;
+      }
+      .login-overlay .form-container .inputs .buttons {
+        width: 75%;
+        margin: 5px auto; }
+        .login-overlay .form-container .inputs .buttons md-checkbox {
+          text-align: initial;
+          float: left;
+          display: inline-block; }
+        .login-overlay .form-container .inputs .buttons .signup {
+          float: right;
+          margin-top: 15px; }
+          .login-overlay .form-container .inputs .buttons .signup a {
+            text-decoration: none;
+            color: #26C6DA; }
+        .login-overlay .form-container .inputs .buttons .link {
+          padding-top: 40px;
+          padding-bottom: 30px; }
+          .login-overlay .form-container .inputs .buttons .link .mdl-button {
+            background: #26C6DA;
+            color: white;
+            font-weight: 100;
+            width: 25%;
+            font-size: 15px; }
+
+
+h5.four {
+  font-size: 50px; }
+
+div.not-found {
+  font-size: 28px;
+  padding-bottom: 50px; }
+.loader {
+  top: 35%;
+  position: absolute;
+  left: 42%;
+}
+.login-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 30px;
+  background-color: white;
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.1); }
+
+@media screen and (max-width: 990px) {
+  .form-container {
+    width: 75% !important; } }
+@media screen and (max-width: 581px) {
+  .test .content-holder {
+    margin-right: 0px !important;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .logo {
+    top: 40px !important; }
+  .form-container {
+    top: 60px !important;
+    width: 90% !important; }
+}
+/* Extras */
+/* Shadow */
+.shadow {
+  box-shadow: 1px 1px 7px 0px rgba(145, 145, 145, 0.5); }
+
+.panel-header {
+  padding: 15px;
+  font-size: 16px;
+  background: #26C6DA;
+  color: #fff;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px; }
+  .panel-header .cog {
+    position: absolute;
+    top: 10px;
+    right: 10px; }
+
+.panel-body {
+  position: relative;
+  padding: 15px; }
+
+* a:hover {
+  text-decoration: none; }
+
+/* Arrows */
+.arrow-up {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #00D554; }
+
+.arrow-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #FF2800; }
+
+/* Relative and absolutr divs */
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+/* float left and right */
+.left {
+  float: left; }
+
+.right {
+  display: flex;
+  justify-content: flex-end;   }
+
+h5 {
+  font-weight: 400; }
+
+.zero-padding {
+  padding: 0; }
+
+.mt-15 {
+  margin-top: 15px; }
+
+md-toast.md-top {
+  position: fixed;
+  top: 78px; }
+
+md-menu-item > .md-button {
+  text-align: left; }
+
+/* Hidden in mobiles */
+@media screen and (max-width: 600px) {
+  .hidden-sm {
+    display: none !important; } }
+
+/* Text color */
+.text-primary {
+  color: #26C6DA !important; }
+
+#blue .mdi {
+  color: #2979ff; }
+
+#green .mdi {
+  color: #4CAF50; }
+
+#red .mdi {
+  color: #C54033; }
+
+#grey .mdi {
+  color: #26C6DA; }
+
+#purple .mdi {
+  color: #370252; }
+
+#cyan .mdi {
+  color: #009788; }
+
+md-input-container.md-icon-float > label {
+  margin-left: 0; }
+
+
+html {
+  color: rgba(0,0,0, 0.87);
+  font-size: 1em;
+  line-height: 1.4; }
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+audio,
+canvas,
+img,
+svg,
+video {
+  vertical-align: middle; }
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical; }
+
+
+/* styles for buttons */
+.primary {
+  background: #26C6DA !important;
+  color: #fff !important; }
+  .primary:hover {
+    background-color: #26C6DA !important; }
+
+.green {
+  background: #00D554 !important;
+  color: #fff !important; }
+  .green:hover {
+    background-color: #00D554 !important; }
+
+.primary-flat {
+  color: #26C6DA; }
+
+.green-flat {
+  color: #00D554; }
+
+.md-icon-button.green-flat .mdi {
+  color: #00D554; }
+
+.md-icon-button.primary-flat .mdi {
+  color: #26C6DA; }
+
+.md-icon-button {
+  line-height: 25px !important; }
+  .md-icon-button .mdi {
+    font-size: 18px; }
+
+.md-fab {
+  line-height: 34px !important; }
+  .md-fab .mdi {
+    font-size: 19px;
+    margin: 8px -4px;}
+
+/* Styles for home page */
+.chart-container {
+  padding: 15px; }
+
+.linechart {
+  margin: 20px; }
+
+
+/* styles for components */
+div.table-container {
+  padding-left: 4%;
+  padding-right: 4%; }
+  div.table-container th:first-child {
+    text-align: left; }
+
+@media screen and (max-width: 1100px) {
+  .first {
+    display: block !important;
+    margin-bottom: 20px;
+    width: 100% !important; } }
+
+.tooltips .mdi {
+  font-size: 30px;
+  color: #515153; }
+
+@media (max-width: 839px) {
+  div.table-container {
+    padding-left: 3%;
+    padding-right: 3%; } }
+
+.md-toast-open-top .md-button.md-fab-top-left, .md-toast-open-top .md-button.md-fab-top-right {
+  transform: none; }
+
+.md-button.md-fab.md-fab-top-left {
+  top: 40px;
+  left: 160px;
+  z-index: 3; }
+
+}

@@ -1,0 +1,116 @@
+﻿@import "../../../styles/_variables.scss";
+
+.ml .wizard {
+
+    .wizard-header-top {
+        display:table;
+        width:100%;
+        padding-top: 19px;
+        padding-bottom: 6px;
+
+        .left{
+            display:table-cell;
+            vertical-align:middle;
+            height:52px;
+
+            .back {
+                display: inline-block;
+                vertical-align: middle;
+                color: $gray-light;
+                font-size: 12px;
+                padding-right: 15px;
+
+                &:hover {
+                    color: $gray-dark;
+                }
+            }
+
+            h1 {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .right {
+            display:table-cell;
+            vertical-align:middle;
+            text-align:right;
+        }
+    }
+
+    .wizard-header-bottom {
+        position:relative;
+        ul {
+            margin:0;
+            padding:0;
+            list-style:none;
+            border-bottom:1px solid $border;
+
+            li {
+                display:inline-block;
+                margin-right:20px;
+
+                &:last-child {
+                    margin-right:0;
+                }
+                a {
+                    display:block;
+                    margin-bottom:-1px;
+                    padding:15px 0;
+                    border-bottom:2px solid transparent;
+                    font-size:13px;
+                    font-weight:bold;
+                    text-transform:uppercase;
+                    color:$gray-light;
+                    padding-right:20px;
+
+                    span {
+                        display:inline-block;
+                        vertical-align:middle;
+                    }
+
+                    .no {
+                        display:inline-block;
+                        height:22px;
+                        width:22px;
+                        margin-right:10px;
+                        border-radius:50%;
+                        line-height:20px;
+                        text-align:center;
+                        border:1px solid $gray-lighter;
+                        font-size:12px;
+                    }
+
+                    &.active {
+                        color:$blue;
+                        border-bottom:2px solid $blue;
+                        .no {
+                            border-color:$blue;
+                        }
+                    }
+
+                    &:hover {
+                        color:$gray;
+                        border-bottom:2px solid $border-dark;
+                    }
+                }
+            }
+        }
+        &:after {
+            display:block;
+            content:"";
+            width:100%;
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index:99999999;
+        }
+
+    }
+
+    .wizard-content {
+        padding:30px 0;
+
+    }
+}

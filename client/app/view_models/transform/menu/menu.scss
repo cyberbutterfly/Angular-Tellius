@@ -1,0 +1,63 @@
+@import "../../../styles/_variables.scss";
+
+.transform .transform-header {
+    img {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 15px;
+        height: 30px;
+        width: 30px;
+    }
+
+    h1 {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 28px;
+    }
+}
+
+.transform .transform-menu {
+    display: table;
+    width: 100%;
+    margin-bottom: 15px;
+
+    .transform-menu-info {
+        display: table-cell;
+        vertical-align: bottom;
+        text-align: left;
+        padding-bottom:1px;
+
+
+        @media #{$sm} {
+            display:none;
+        }
+
+        .metadata {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 25px;
+            color: $gray-dark;
+
+            .title {
+                font-size: 14px;
+            }
+
+            .value {
+                font-size: 20px;
+                text-transform: uppercase;
+                padding-left:4px;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .transform-menu-functions {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
+        font-size:0;
+    }
+}

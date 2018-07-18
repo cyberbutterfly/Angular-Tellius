@@ -1,0 +1,70 @@
+.column-context-menu
+
+    section(ng-show="vm.isEmpty()")
+        .title
+            i.icon-menu
+            span Empty cell
+        ul
+            li(ng-click="vm.fixedValuePopup()")
+                span Replace empty cells with value
+
+            li(ng-click="vm.handleNull('zero')")
+                span Replace empty cells with 0
+
+            li(ng-click="vm.handleNull('mean')")
+                span Replace empty cells with mean
+
+            li(ng-click="vm.handleNull('ignore')")
+                span Remove rows with empty cells
+
+    section
+        .title
+            i.icon-menu
+            span Column: {{ vm.columnName }}
+        ul
+            li(ng-click='vm.addColumnPopup()')
+                span Add column
+
+            li(ng-click='vm.renamePopup()')
+                span Rename column
+
+            li(ng-click="vm.splitColumnPopup()")
+                span Split column
+
+            li(ng-click='vm.mergePopup()')
+                span Merge columns
+
+            li.group
+                span.group-name Move column
+                ul
+                    li(ng-click="vm.moveBeforePreviousColumn()")
+                        span Before previous column
+
+                    li(ng-click="vm.moveAfterNextColumn()")
+                        span After next column
+
+                    li(ng-click="vm.moveColumnPopup('before')")
+                        span Before column...
+
+                    li(ng-click="vm.moveColumnPopup('after')")
+                        span After column...
+            
+            li(ng-click='vm.findReplacePopup()')
+                span Find and replace
+            
+            li(ng-click='vm.setTargetVariable()')
+                span Set as Target variable
+
+            li(ng-click="vm.splitRowsPopup()")
+                span Split rows
+
+            li(ng-click='vm.delete()')
+                span Delete column
+
+    section
+        .title
+            i.icon-filter
+            span Filter
+        ul
+            li(ng-click="vm.filterPopup()")
+                span Filter column

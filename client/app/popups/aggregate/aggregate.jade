@@ -1,0 +1,69 @@
+.header(layout="row")
+    div(flex="")
+        .title Aggregate Columns
+
+.content
+
+    form(ng-submit="vm.onSubmit()")
+
+        ul.tabs.in-ng-dialog
+            li(ng-class="{'active':vm.isStandard()}")
+                button(ng-click="vm.changeType('standard')")
+                    | Standard
+            li(ng-class="{'active':vm.isTimeSeries()}")
+                button(ng-click="vm.changeType('time-series')")
+                    | Time-series
+            li.right-datepicker(ng-if="vm.isTimeSeries()")
+                md-datepicker(ng-model="vm.FormData.dateselector", md-placeholder="Enter date")
+      
+
+        md-input-container
+            label Group by
+            md-chips(ng-model="vm.FormData.groupBy", 
+                     ng-class="{'has-items': vm.FormData.groupBy.length > 0}"
+                     md-item-text = "$chip", 
+                     md-autocomplete-snap, 
+                     md-require-match="true", 
+                     class="md-block", 
+                     flex-gt-sm)
+                md-autocomplete(md-selected-item="vm.groupBySelectedItem", 
+                                md-search-text="vm.groupBySearchText", 
+                                md-items="column in vm.columns", 
+                                md-item-text="column", 
+                                placeholder="Group by columns")
+                    span(md-highlight-text="vm.groupBySearchText") {{ column }}
+
+        div(layout-gt-sm="row")
+            md-input-container(, class="md-block", flex-gt-sm)
+                label Aggregation Type
+                md-select(id="aggregationType", ng-model="vm.FormData.aggregationTypes")
+                    md-option(ng-repeat="type in vm.aggregationTypes", value="{{type.type}}") {{type.name}}
+
+            md-chips(ng-model="vm.FormData.aggregationColumns", 
+                     ng-class="{'has-items': vm.FormData.aggregationColumns.length > 0}"
+                     md-item-text = "$chip", 
+                     md-autocomplete-snap, 
+                     md-require-match="true", 
+                     class="md-block", 
+                     flex-gt-sm)
+                md-autocomplete(md-selected-item="vm.aggregationColumnsSelectedItem", 
+                                md-search-text="vm.aggregationColumnsSearchText", 
+                                md-items="column in vm.columns", 
+                                md-item-text="column", 
+                                placeholder="Aggregated columns")
+                    span(md-highlight-text="vm.aggregationColumnsSearchText") {{ column }}
+
+        md-button(class="small i-left white shadow mt40 ml-2", toggle-active-src="advance-filters") 
+            i.icon-filter.fs12
+            span Advanced Filters
+
+        .toggle-active.pt10(toggle-active-dest="advance-filters")
+            advanced-filters(advanced-condition="vm.FormData.condition")
+
+        .footer.pt0
+            md-button(type="reset" class="transparent",
+            ng-click="vm.closeThisDialog") Cancel
+            md-button(type="submit" value="submit") Save
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

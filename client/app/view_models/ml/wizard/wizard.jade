@@ -1,0 +1,31 @@
+.wizard.container
+    .wizard-header-top
+        .left
+            a.back(ui-sref='app.ml.create')
+                i.icon-left-4
+            i.icon-prediction
+            h1 New Model: Prediction
+
+        .right
+
+    .wizard-header-bottom
+        ul
+            li
+                a(ui-sref="app.ml.wizard.transformation", ui-sref-active="active") 
+                    span.no 1
+                    span Feature Transform
+            li
+                a(ui-sref="app.ml.wizard.selection", ui-sref-active="active") 
+                    span.no 2
+                    span Model Selection
+            li
+                a(ui-sref="app.ml.wizard.evaluate", ui-sref-active="active") 
+                    span.no 3
+                    span Evaluate Model
+            li
+                a(ui-sref="app.ml.wizard.use", ui-sref-active="active")
+                    span.no 4
+                    span Use
+
+    .wizard-content
+        ui-view

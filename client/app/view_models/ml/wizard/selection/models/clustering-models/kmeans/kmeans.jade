@@ -1,0 +1,65 @@
+form(ng-submit="$ctrl.onSubmit()" novalidate)
+    
+    h3.mb10.ml3 K Means Regression
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Target Variable:
+                input(ng-model="$ctrl.targetVariable", readonly="readonly")
+        div(flex="40")
+            .helpbox Name of the column which has to be considered as a label in model creation.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Model name:
+                input(ng-model="$ctrl.FormData.modelname", required="required")
+        div(flex="40")
+            .helpbox Name of the new model that we are creating.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Max Num of iteration:
+                input(ng-model="$ctrl.FormData.maxiteration")
+        div(flex="40")
+            .helpbox Max Number of iterations that has to be done.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Num of clusters:
+                input(ng-model="$ctrl.FormData.numclusters")
+        div(flex="40")
+            .helpbox Number of clusters to create.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Initialization Mode:
+                input(ng-model="$ctrl.FormData.initializationmode")
+        div(flex="40")
+            .helpbox Initialization algorithm.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Initialization Steps:
+                input(ng-model="$ctrl.FormData.initializationsteps")
+        div(flex="40")
+            .helpbox Number of steps for K means.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Toi:
+                input(ng-model="$ctrl.FormData.toi")
+        div(flex="40")
+            .helpbox The convergence tolerance for iterative algorithms.
+     
+    div(layout="row", layout-align="start center", ng-show='$ctrl.errors.length').mb30
+        div(flex)
+            span.red {{ $ctrl.errors }}
+
+    hr

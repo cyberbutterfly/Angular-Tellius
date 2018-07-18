@@ -1,0 +1,17 @@
+div(layout="row", layout-align="center start").mb20
+  div(flex)
+
+    table.tellius-table
+      thead
+        tr
+          th
+            span Model name
+          th(ng-repeat="columnName in $ctrl.columns")
+            span(ng-bind="columnName")
+
+      tbody
+        tr(ng-repeat="(key, value) in $ctrl.measuresData")
+          td
+            span(ng-bind="key")
+          td(ng-repeat="measure in value")
+            span(ng-bind="measure")

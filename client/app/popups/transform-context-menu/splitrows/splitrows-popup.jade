@@ -1,0 +1,20 @@
+.header(layout="row")
+    div(flex="")
+        .title Split Rows
+
+.content
+    form(ng-submit="vm.onSubmit()" novalidate)
+
+        md-input-container(class="md-block" flex-gt-sm="")
+            label Delimiter
+            input(id="column-name" 
+                  ng-trim="false" 
+                  ng-model="vm.delimiter" 
+                  required="required")
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit" value="submit") Split
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

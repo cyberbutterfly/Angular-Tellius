@@ -1,0 +1,13 @@
+.vizpad-main-wrapper
+	.material
+		.header
+			h5 Select Date
+		.dialogcontent
+			.flex
+				.relative
+					md-datepicker(ng-model='customDateFrom', md-placeholder='FROM')
+				.relative
+					md-datepicker(ng-model='customDateTo', md-placeholder='TO')
+			.buttones.right
+				md-button.flat(aria-label='Use Android', ng-click='hide()') Clear
+				md-button(aria-label='Use Android', ng-click='applyDateFilter();hide()') Save

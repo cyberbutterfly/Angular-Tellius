@@ -1,0 +1,22 @@
+.login(style="background-image: url('/assets/img/login_back.jpg')")
+    .wrapper
+        .top
+            img(src='/assets/img/logo.png')
+        form.box(ng-submit='$ctrl.login()')
+            h2 Sign in
+            md-input-container
+                label Username
+                input(ng-model='$ctrl.userName', required)
+            md-input-container
+                label Password
+                input(ng-model='$ctrl.password', required, type='password')
+            div(layout="row", layout-align="end center")
+                div(flex="50")
+                    md-checkbox(ng-model='data.cb1', aria-label='Remember Me') Remember Me
+                div(flex="50").text-right
+                    a(ui-sref="app.forgotpassword") Forgot Password?
+            div.text-right.pt20
+                md-button.blue.pl60.pr60(type='submit', ng-disabled='userName.$invalid || password.$invalid') Login 
+        .bottom
+            span Don’t have an acount yet? 
+            a(ui-sref="app.createaccount") Create Account

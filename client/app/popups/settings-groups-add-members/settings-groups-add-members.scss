@@ -1,0 +1,152 @@
+@import "../../styles/_variables.scss";
+
+.search-members {
+  position: relative;
+
+  i {
+    font-size: 16px;
+    color: $gray-light;
+    position: absolute;
+    top: 12px;
+    left: 0px;
+  }
+
+  input {
+    font-size: 14px;
+    color: $gray-darker;
+    border: none;
+    height: 40px;
+    background-color: transparent;
+    padding-left: 30px;
+    outline: none !important;
+    width: 100%;
+    border-bottom: 1px solid $border;
+    @include transform(0.15s);
+
+    &:focus {
+
+      @include transform(0.2s);
+    }
+  }
+}
+
+.list-members-wrapper {
+  max-height: 190px;
+  overflow: auto;
+  margin: 20px 0 20px 0;
+
+  &.big {
+    max-height: 280px;
+  }
+
+  &::-webkit-scrollbar {
+    background-color: $white;
+    width: 14px;
+    height: 14px;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: $white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $border-dark;
+    border: 5px solid $white;
+  }
+}
+
+.list-members {
+  width: 100%;
+
+  tbody {
+    tr {
+      outline: none !important;
+      cursor: pointer;
+
+      &:first-child {
+        td {
+          border: none;
+        }
+      }
+
+      td {
+        border-top: 1px solid $border;
+        padding: 15px 0;
+        color: $gray-darker;
+        outline: none !important;
+        @include transform(0.15s);
+
+        &:nth-child(2) {
+          width: 100%;
+        }
+
+
+        md-checkbox {
+          padding-left: 0;
+          margin-right: 15px;
+
+          .md-icon {
+            border-color: rgba(0,0,0,0.25) !important;
+          }
+        }
+
+        .member-avatar {
+          margin: 0 15px 0 15px;
+
+          .img {
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+
+          .initials {
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            background-color: $gray-lighter;
+            color: $white;
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+
+        .name {
+          display: block;
+          font-size: 16px;
+        }
+
+        .email {
+          display: block;
+          font-size: 13px;
+          color: $gray-light;
+          padding-top: 3px;
+        }
+      }
+
+      &.active {
+        td {
+          color: $blue;
+
+          .email {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.invite-via-email {
+  padding-top: 20px;
+  border-top: 1px dashed $border;
+
+  h4 {
+    padding: 0 0 10px 5px;
+  }
+}

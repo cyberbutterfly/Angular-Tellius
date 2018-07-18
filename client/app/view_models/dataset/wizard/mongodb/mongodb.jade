@@ -1,0 +1,53 @@
+form(ng-submit="$ctrl.onSubmit()").container
+
+    .wizard-boxed
+        .wizard-boxed-header
+            img(src="assets/img/dataset/mongodb.png")
+            h1 MongoDB
+
+        .wizard-boxed-body
+            div(layout="row")
+                md-input-container(flex="70")
+                    label Host
+                    input(id="host"
+                          ng-model="$ctrl.FormData.host"
+                          required="required")
+                md-input-container(flex="30")
+                    label Port
+                    input(id="port"
+                          ng-model="$ctrl.FormData.port"
+                          required="required")
+            
+            div(layout="row")
+                md-input-container(flex)
+                    label Database
+                    input(id="database"
+                          ng-model="$ctrl.FormData.database"
+                          required="required")
+            
+            div(layout="row")
+                md-input-container(flex)
+                    label Username
+                    input(id="username"
+                          ng-model="$ctrl.FormData.username"
+                          required="required")
+                md-input-container(flex)
+                    label Password
+                    input(id="password"
+                          type="password"
+                          ng-model="$ctrl.FormData.password"
+                          required="required")
+            
+            div(layout="row")
+                md-input-container(flex)
+                    label Collection
+                    input(id="collection"
+                          ng-model="$ctrl.FormData.collection"
+                          required="required")
+
+        .wizard-boxed-footer
+            md-button(type="reset", class="transparent", ui-sref='app.dataset.create') Cancel
+            md-button(type="submit" value="submit") Load
+
+        .wizard-boxed-errors(ng-show="$ctrl.errors.length")
+            span {{$ctrl.errors}}

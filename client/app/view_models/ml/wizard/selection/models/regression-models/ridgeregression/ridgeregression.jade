@@ -1,0 +1,49 @@
+form(ng-submit="$ctrl.onSubmit()" novalidate)
+
+    h3.mt20.mb10.ml3 Linear regression with Regularization
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Target Variable:
+                input(ng-model="$ctrl.targetVariable", readonly="readonly")
+        div(flex="40")
+            .helpbox Name of the column which has to be considered as a label in model creation.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Model name:
+                input(ng-model="$ctrl.FormData.modelname", required="required")
+        div(flex="40")
+            .helpbox Name of the new model that we are creating.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Num of iteration:
+                input(ng-model="$ctrl.FormData.numofiteration")
+        div(flex="40")
+            .helpbox Number of iterations tha has to be done.
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p Reg param:
+                input(ng-model="$ctrl.FormData.regparam")
+        div(flex="40")
+            .helpbox Regulation parameter (>=0)
+
+    div(layout="row", layout-align="start center")
+        div(flex="60")
+            md-input-container.il(flex)
+                label.w35p ElasticNet param:
+                input(ng-model="$ctrl.FormData.elasticnetparam")
+        div(flex="40")
+            .helpbox The ElasticNet Mixing parameter, in range [0, 1]. For alpha = 0, penalty is a L2 penalty. For alpha = 1, it is an L1 penalty.
+     
+    div(layout="row", layout-align="start center", ng-show='$ctrl.errors.length').mb30
+        div(flex)
+            span.red {{ $ctrl.errors }}
+
+    hr

@@ -1,0 +1,43 @@
+form(novalidate).container
+
+    .dataset-schema-header
+        a.back(ui-sref='app.dataset.create')
+            i.icon-left-4
+        img(src="assets/img/dataset/default.png")
+        h1 Schema
+
+    .dataset-schema-body
+        .dataset-schema-body-left
+            treecontrol(class="tree-light",
+                        tree-model='$ctrl.schema',
+                        options='$ctrl.treeOptions')
+                        | {{node.name}}
+
+        .dataset-schema-body-right
+            div(layout="row")    
+              div(ng-click="$ctrl.toggleAdvancedOptions()")
+                | Advanced options    
+              
+            .dataset-schema-body-right-container(ng-show="$ctrl.isAdvancedOptions")
+                div(layout="row")    
+                    md-input-container(flex)
+                        label Select a key column
+                        md-select(ng-model='$ctrl.FormData.keycolumn')
+                            md-option(ng-repeat='column in $ctrl.columns | exclude:[$ctrl.FormData.valuecolumn,$ctrl.FormData.groupingcolumn]:"path"', value="{{column.path}}") {{column.path}}
+                
+                    md-input-container(flex)
+                        label Select a value column
+                        md-select(ng-model='$ctrl.FormData.valuecolumn')
+                            md-option(ng-repeat='column in $ctrl.columns| exclude:[$ctrl.FormData.keycolumn,$ctrl.FormData.groupingcolumn]:"path"', value='{{column.path}}') {{column.path}}
+
+                div(layout="row")
+                    md-input-container(flex)
+                        label Select a grouping column
+                        md-select(ng-model='$ctrl.FormData.groupingcolumn')
+                            md-option(ng-repeat='column in $ctrl.columns| exclude:[$ctrl.FormData.keycolumn,$ctrl.FormData.valuecolumn]:"path"', value='{{column.path}}') {{column.path}}
+                
+    .dataset-schema-footer
+        md-button(type="reset", class="transparent") Cancel
+        md-button(type="submit" value="submit"
+        ng-click="$ctrl.onSubmit()") Next
+        

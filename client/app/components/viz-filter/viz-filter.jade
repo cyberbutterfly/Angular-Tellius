@@ -1,0 +1,17 @@
+div.filter-menu(ng-class="{'active' : vm.active}")
+  .dialogcontent
+    h4.filter-menu-title FILTER
+    md-autocomplete.input-box.filter-input-boxes(md-floating-label='Filter column'  md-search-text="searchTextFilter" md-items='item in vm.xColumns | filter: searchTextFilter', md-item-text='item', md-min-length='0'  md-selected-item-change="vm.filterChanged(searchTextFilter)" ng-model='vm.searchTextFilter' md-no-cache="false")
+      md-item-template
+        span(md-highlight-text='vm.searchTextFilter', md-highlight-flags='^i') {{item}}
+    .filter-select-wrapper
+      md-select.filter-select.filter-input-boxes(ng-model='vm.filterOperator', md-container-class="filter-dropdown", placeholder="Operator" ng-change="vm.addFilterValueColumn()")
+        md-option(ng-repeat="operator in vm.vizPadOperators" value = '{{operator.value}}')
+          | {{operator.name}}    
+      md-input-container.filter-input.filter-input-boxes
+        input(ng-model='vm.filterValue')
+      md-input-container.filter-input.filter-input-boxes(ng-if="vm.showSecondFilter")
+        input(ng-model='vm.secondFilterValue')
+    .buttones.right
+      md-button.transparent(aria-label='Use Android', ng-click='vm.clear()') Clear
+      md-button(aria-label='Use Android', ng-click='vm.hide();vm.addFilter()') Apply

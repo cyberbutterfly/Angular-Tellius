@@ -1,0 +1,266 @@
+div.filter-menu(ng-class="{'active' : vm.active}")
+  .dialogcontent
+    h4.filter-menu-title SETTINGS
+    .options(ng-if="vm.viz.type != 'radialProgress' && vm.viz.type != 'bubble'")
+      .relative(ng-if="vm.showSimpleCount")
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event);')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('median')")
+                p Median
+        span.axis-resolutions(ng-if="vm.showSimpleCount && vm.showYAxisResolution") ({{vm.yAxisResolution}})
+        md-autocomplete.input-box(ng-if="vm.showSimpleCount"  md-floating-label='Dimensions' md-selected-item="vm.viz.yAxis.column" md-search-text="vm.searchTextSimpleCount" md-items="item in vm.xColumns | filter:searchTextSimpleCount" md-min-length="0" md-item-text="item", md-autofocus="true" md-selected-item-change="vm.simpleCountAggregation()")
+          md-item-template
+            span(md-highlight-text='vm.searchText', md-highlight-flags='^i') {{item}}
+        
+        md-input-container.md-block(ng-if="vm.showSimpleCount" flex-gt-sm='')
+          label Label
+          input(ng-model='vm.viz.simpleCountLabel')
+
+      .relative(ng-if="!vm.isPolarChart && !vm.showSimpleCount")
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='vm.showXcolumnTimeAggregation ? $mdOpenMenu($event) : 0;')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeXAxisResolution('Hourly')")
+                p Hourly
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeXAxisResolution('Daily')")
+                p Daily
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeXAxisResolution('Weekly')")
+                p Weekly
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeXAxisResolution('Monthly')")
+                p Monthly
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeXAxisResolution('Yearly')")
+                p Yearly
+        span.axis-resolutions(ng-if="vm.showXAxisResolution" ) ({{vm.xAxisResolution}})
+        md-autocomplete.input-box(ng-if="!vm.isPolarChart && !vm.showSimpleCount"  md-floating-label='Dimensions (x-axis)' md-selected-item="vm.viz.xAxis.column" md-search-text="vm.searchTextX" md-items="item in vm.xColumns | filter: vm.searchTextX" md-min-length="0" md-item-text="item",md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchTextX', md-highlight-flags='^i') {{item}}
+      .relative(ng-if="!vm.isPolarChart && !vm.showSimpleCount")
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Median')")
+                p Median
+        span.axis-resolutions.y-axis(ng-if="vm.yAxisResolution && !vm.showSimpleCount" ) ({{vm.viz.yAxis.aggregation}})
+        md-autocomplete.input-box(ng-if="(!vm.isPolarChart || vm.viz.type=='heatmap' || !vm.showSimpleCount)"  md-floating-label='Measures (y-axis)' md-selected-item="vm.viz.yAxis.column" md-search-text="vm.searchTextY" md-selected-item-change="vm.changeAxes()"  md-items="item in vm.yColumns | filter: vm.searchTextY" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchTextY', md-highlight-flags='^i') {{item}}
+      
+      .relative(ng-if="!vm.isPolarChart && !vm.showSimpleCount && vm.viz.type=='multipleLine'")
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Median')")
+                p Median
+        span.axis-resolutions.y-axis(ng-if="vm.viz.lineThirdMeasure.aggregation && !vm.showSimpleCount" ) ({{vm.viz.lineThirdMeasure.aggregation}})
+        md-autocomplete.input-box(ng-if="(!vm.isPolarChart || vm.viz.type=='heatmap' || !vm.showSimpleCount)"  md-floating-label='Second Measure' md-selected-item="vm.lineThirdMeasure" md-search-text="vm.searchThirdMeasureName" md-selected-item-change="vm.drawMultipleLine()"  md-items="item in vm.yColumns | filter: vm.searchThirdMeasureName" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchThirdMeasureName', md-highlight-flags='^i') {{item}}
+          
+      .relative(ng-if="vm.isPolarChart")
+        md-autocomplete.input-box(ng-if="vm.isPolarChart", md-floating-label='Measure 1' md-selected-item="vm.viz.polarArea[0]" md-search-text="vm.searchFirstPolarMeasure" md-items="item in vm.yColumns | filter: vm.searchFirstPolarMeasure" md-min-length="0" md-item-text="item", )
+          md-item-template
+            span(md-highlight-text='vm.searchFirstPolarMeasure', md-highlight-flags='^i') {{item}}
+
+      
+      .relative(ng-if="vm.isPolarChart && vm.yAxis")
+        md-autocomplete.input-box(ng-if="vm.isPolarChart", md-floating-label='Measure 2' md-selected-item="vm.viz.polarArea[1]" md-search-text="vm.searchSecondPolarMeasure" md-items="item in vm.yColumns | filter: vm.searchSecondPolarMeasure" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchSecondPolarMeasure', md-highlight-flags='^i') {{item}}
+
+      
+      .relative(ng-if="vm.isPolarChart && vm.viz.polarArea[1]")
+        md-autocomplete.input-box(ng-if="vm.isPolarChart", md-floating-label='Measure 3' md-selected-item="vm.viz.polarArea[2]" md-search-text="vm.searchThirdPolarMeasure" md-items="item in vm.yColumns | filter: vm.searchThirdPolarMeasure" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchThirdPolarMeasure', md-highlight-flags='^i') {{item}}
+      
+      .relative(ng-if="vm.viz.type == 'heatmap'")
+        md-autocomplete.input-box(ng-if="vm.viz.type == 'heatmap'", md-floating-label='Dimension' md-selected-item="vm.viz.color" md-search-text="vm.searchHeatmapDimension" md-selected-item-change="vm.addHeatmapDimension()" md-items="item in vm.xColumns | filter: vm.searchHeatmapDimension" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.thirdMeasure', md-highlight-flags='^i') {{item}}
+
+      .relative(ng-if="vm.showStacked && (vm.viz.type == 'barsHorizontalStacked' || vm.viz.type == 'stackedArea' || vm.viz.type == 'barsVerticalStacked' || vm.viz.type == 'bar' || vm.viz.type == 'column' || vm.viz.type == 'area' || vm.viz.type == 'combineBarStacked' )")
+        md-autocomplete.input-box(md-floating-label='Stack by' md-selected-item="vm.viz.color" md-search-text="vm.searchStackBy"  md-items="item in vm.xColumns | filter: vm.searchStackBy" md-min-length="0" md-selected-item-change="vm.stackBy()" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.thirdMeasure', md-highlight-flags='^i') {{item}}
+      .relative(ng-if="vm.viz.type == 'combineBarChart' || vm.viz.type == 'combineColChart' || vm.viz.type == 'combineBarStacked'")
+        md-autocomplete.input-box(md-search-text="vm.newYColumn" md-items='item in vm.yColumns | filter: vm.newYColumn', md-item-text='item', md-min-length='0',md-selected-item="vm.selectedYColumn", md-floating-label='Combine With (y-axis)' md-selected-item-change="vm.compareWith()")
+          md-item-template
+            span(md-highlight-text='vm.newYColumn', md-highlight-flags='^i') {{item}}
+      div
+        label.setting-label.color-palette-label Viz Colors
+        .relative.color-palette
+          md-select.color-palette-select.color-palett.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.graphColors1', md-on-open='')
+            md-option(selected="{{palettes.id == vm.viz.colorPaletteDataColors.id ? 'selected' : '' }}" ,value='{{palettes}}' ng-repeat="palettes in vm.colorPalette", ng-click="vm.colorPaletteSelected(palettes, $index)")
+              span.color-palette-box
+                span.single-color-box(ng-repeat="colors in palettes.colors", style="background: {{colors}};" ng-show="$index < 5")
+      div
+        label.setting-label.color-palette-label Theme
+        .relative.color-palette
+          md-select.color-palette-select.theme-select.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.themeColors1', md-on-open='')
+            md-option(ng-model='user.themeColors1',value='Dark' , ng-click="vm.themeColorPaletteSelected($event,  'dark')") Dark
+            md-option(ng-model='user.themeColors1',value='Sand' , ng-click="vm.themeColorPaletteSelected($event,  'sand')") Sand
+            md-option(ng-model='user.themeColors1',value='Default' , ng-click="vm.themeColorPaletteSelected($event,  'default')" selected="true") Default
+    .options(ng-if="vm.viz.type == 'bubble'")
+      .relative(ng-if="vm.viz.type == 'bubble'")
+        md-autocomplete.input-box(md-floating-label='Label(Dimension)' md-selected-item="vm.viz.label" md-search-text="vm.searchLabel"  md-items="item in vm.xColumns | filter: vm.searchLabel" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchLabel', md-highlight-flags='^i') {{item}}
+
+      .relative
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Median')")
+                p Median
+        span.axis-resolutions(ng-if="vm.viz.yAxis.aggregation != ''" ) ({{vm.viz.yAxis.aggregation}})
+        md-autocomplete.input-box(md-floating-label='Measures (y-axis)' md-autofocus="true" md-selected-item="vm.viz.yAxis.column" md-search-text="vm.searchTextY" md-items="item in vm.yColumns | filter: vm.searchTextY" md-min-length="0" md-item-text="item",  placeholder='')
+          md-item-template
+            span(md-highlight-text='vm.searchTextY', md-highlight-flags='^i') {{item}}
+        
+      .relative(ng-if="vm.viz.type == 'bubble'")
+        md-autocomplete.input-box(md-floating-label='Measure(Radius)' md-selected-item="vm.viz.radius" md-search-text="vm.searchThirdMeasure"  md-items="item in vm.yColumns | filter: vm.searchThirdMeasure" md-selected-item-change="vm.addFourthMeasure()" md-min-length="0" md-item-text="item", md-no-cache="false")
+          md-item-template
+            span(md-highlight-text='vm.searchThirdMeasure', md-highlight-flags='^i') {{item}}
+      
+      .relative
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Median')")
+                p Median
+        span.axis-resolutions(ng-if="vm.viz.yAxis.aggregation != ''" ) ({{vm.viz.yAxis.aggregation}})
+        md-autocomplete.input-box(md-floating-label='Measure (x-axis)' md-autofocus="true" md-selected-item="vm.viz.bubbleAxis" md-search-text="vm.searchBubbleAxisText" md-items="item in vm.yColumns | filter: vm.searchBubbleAxisText" md-min-length="0" md-item-text="item",  placeholder='')
+          md-item-template
+            span(md-highlight-text='vm.searchTextX', md-highlight-flags='^i') {{item}}
+
+        div
+          label.setting-label.color-palette-label Viz Colors
+          .relative.color-palette
+            md-select.color-palette-select.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.graphColors2', md-on-open='')
+              md-option(ng-model='user.graphColors2', selected="{{palettes.id == vm.viz.colorPaletteDataColors.id ? 'selected' : '' }}" value='{{palettes}}' ng-repeat="palettes in vm.colorPalette", ng-click="vm.colorPaletteSelected(palettes, $index)")
+                span.color-palette-box
+                  span.single-color-box(ng-repeat="colors in palettes.colors", style="background: {{colors}};" ng-show="$index < 5") 
+        div
+          label.setting-label.color-palette-label Theme
+          .relative.color-palette
+            md-select.color-palette-select.theme-select.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.themeColors2', md-on-open='')
+              md-option(ng-model='user.themeColors2',value='Default' , ng-click="vm.themeColorPaletteSelected($event,  'default')") Default
+              md-option(ng-model='user.themeColors2',value='Dark' , ng-click="vm.themeColorPaletteSelected($event,  'dark')") Dark
+              md-option(ng-model='user.themeColors2',value='Sand' , ng-click="vm.themeColorPaletteSelected($event,  'sand')") Sand
+
+    .options(ng-if="vm.viz.type == 'radialProgress'")
+      .relative
+        md-menu.absolute.menu-setting(md-position-mode='target-right target')
+          md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+            i.icon-settings
+          md-menu-content(width='2')
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Sum')")
+                p Sum
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Avg')")
+                p Avg
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Min')")
+                p Min
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Max')")
+                p Max
+            md-menu-item
+              md-button.transparent(ng-click="vm.changeYAxisResolution('Median')")
+                p Median
+        span.axis-resolutions(ng-if="vm.viz.yAxis.aggregation != ''" ) ({{vm.viz.yAxis.aggregation}})
+        md-autocomplete.input-box(md-floating-label='Measures' md-autofocus="true" md-selected-item="vm.viz.yAxis.column" md-search-text="vm.searchTextX" md-items="item in vm.yColumns | filter: vm.searchTextX" md-min-length="0" md-item-text="item",  placeholder='')
+          md-item-template
+            span(md-highlight-text='vm.searchText', md-highlight-flags='^i') {{item}}
+        div
+          label.setting-label.color-palette-label Viz Colors
+          .relative.color-palette
+            md-select.color-palette-select.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.graphColors2', md-on-open='')
+              md-option(ng-model='user.graphColors2', selected="{{palettes.id == vm.viz.colorPaletteDataColors.id ? 'selected' : '' }}" value='{{palettes}}' ng-repeat="palettes in vm.colorPalette", ng-click="vm.colorPaletteSelected(palettes, $index)")
+                span.color-palette-box
+                  span.single-color-box(ng-repeat="colors in palettes.colors", style="background: {{colors}};" ng-show="$index < 5") 
+        div
+          label.setting-label.color-palette-label Theme
+          .relative.color-palette
+            md-select.color-palette-select.theme-select.min-width-200(placeholder='Color Palette', md-container-class='modalSelect hovered vizpad-dialog-wrapper', ng-model='user.themeColors2', md-on-open='')
+              md-option(ng-model='user.themeColors2',value='Default' , ng-click="vm.themeColorPaletteSelected($event,  'default')") Default
+              md-option(ng-model='user.themeColors2',value='Dark' , ng-click="vm.themeColorPaletteSelected($event,  'dark')") Dark
+              md-option(ng-model='user.themeColors2',value='Sand' , ng-click="vm.themeColorPaletteSelected($event,  'sand')") Sand

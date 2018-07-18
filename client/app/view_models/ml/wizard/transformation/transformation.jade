@@ -1,0 +1,96 @@
+.transformation
+    form(novalidate)
+
+        div(layout="row")
+            md-input-container.il(flex)
+                label Target variable:
+                md-select(type="string", ng-model="$ctrl.options.targetVariable", ng-change="$ctrl.onChangeTargetVariable()")
+                    md-option(ng-repeat="c in $ctrl.columnsInfo", value="{{c.name}}") {{c.name}}
+       
+            md-input-container.il(flex)
+                label Number of desired features:
+                input(type="number"
+                        ng-model="$ctrl.FormData.features"
+                        required="required")
+    
+        div(layout="row").mt10
+            div(flex)
+                h3.ml3 Data Sampling
+            div(flex)
+                h3.ml3 Categorical variable
+
+        div(layout="row")
+            md-input-container.il(flex)
+                label Sampling ratio:
+                    small (Training vs test sample)
+                input(ng-model="$ctrl.FormData.ratio")
+
+            md-input-container.il(flex)
+                label Maxcategories:
+                input(ng-model="$ctrl.FormData.maxcategories")
+                help-tip(tooltip-position="left", tooltip="Threshold for the number of values  a categorical feature can take. If a feature is found to have > maxCategories values, then it is declared continuous")
+
+
+        table.feature-table
+            thead
+                tr
+                    th 
+                        input(type="checkbox", ng-click="$ctrl.checkAll()")
+                    th Feature name
+                    th Data type
+                    th handle null
+                    th Feature type
+                    th Feature transformation
+            tbody
+                tr(ng-repeat="column in $ctrl.columnsInfo")
+                    td
+                        input(
+                          type="checkbox", 
+                          id="{{column.name}}",
+                          checklist-model='$ctrl.FormData.selectedColumns',
+                          checklist-value='column',
+                          ng-disabled="$ctrl.isTargetValue(column.name)")
+                    td
+                        label(
+                          for="{{column.name}}",
+                          ng-bind="column.name")
+                    td
+                        span(ng-bind="column.dataType")
+                    td
+                        select(
+                          ng-init="$ctrl.setNullHandler(column)",
+                          ng-model="column.handleNull",
+                          ng-options="t.name for t in $ctrl.NULL_TYPES")
+                    td 
+                        select(
+                          ng-init="column.type = $ctrl.getColumnCategory(column.name)",
+                          ng-model="column.type",
+                          ng-options="o as o for o in $ctrl.columnTypes")
+                    td
+                        div.ibm
+                            select(
+                              ng-init="column.feature = $ctrl.TRANSFORM_TYPES[$ctrl.getColumnCategory(column.name)][0]",
+                              ng-model="column.feature",
+                              ng-change="$ctrl.onChangeTransformType(column)",
+                              ng-options="t.name for t in $ctrl.TRANSFORM_TYPES[$ctrl.getColumnCategory(column.name)]")
+                        div.ibm
+                            ml-feature-column-options(
+                              column="column",
+                              on-change="$ctrl.setColumnOptions(column, option)")
+                        
+        div(ng-show="$ctrl.errors.length")
+            div.mb5(
+            layout="row",
+            ng-repeat="error in $ctrl.errors")
+                span.red Error: {{error.field}} Description: {{error.description}}            
+
+        div(layout="row").mt30.text-right
+            div(flex)
+                md-button(
+                  type="submit",
+                  value="Train model",
+                  ng-click="$ctrl.prev()") Previous
+                md-button(
+                  type="submit", 
+                  value="Train model",
+                  ng-click="$ctrl.onSubmit()") Next

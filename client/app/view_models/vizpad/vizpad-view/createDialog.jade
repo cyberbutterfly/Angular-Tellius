@@ -1,0 +1,42 @@
+.vizpad-main-wrapper
+	md-tabs.material.create-dialog.chop-tab(md-dynamic-height='true', md-border-bottom='true', md-center-tabs='true')
+		md-tab
+			md-tab-label Create Viz
+			md-tab-body.md-padding
+					md-input-container.input-container
+						label Viz Name 
+						input(ng-model='newVizName' md-autofocus='true' ng-change="titleChange(newVizName)")
+					viz-type(active="active", change-graph="false" create-new="true" viz="items.newVizObj")
+					md-autocomplete.input-box(md-floating-label='Dimensions (x-axis)', md-selected-item='newVizXColumn', md-selected-item-change="xAxisChanged(newVizXColumn)" md-search-text='vizPadSearchTextX', md-items='item in xColumns | filter: vizPadSearchTextX', md-min-length='0',md-no-cache="false", md-item-text='item')
+						md-item-template
+							span(md-highlight-text='vm.vizPadSearchText', md-highlight-flags='^i') {{item}}
+					.relative.input-box
+						md-menu.absolute.menu-setting(md-position-mode='target-right target')
+							md-button.md-icon-button(aria-label='Open demo menu', ng-click='$mdOpenMenu($event)')
+								i.icon-settings
+							md-menu-content(width='2')
+								md-menu-item
+									md-button.transparent
+										p Hourly
+								md-menu-item
+									md-button.transparent
+										p Daily
+								md-menu-item
+									md-button.transparent
+										p Weekly
+								md-menu-item
+									md-button.transparent
+										p Monthly
+								md-menu-item
+									md-button.transparent
+										p Yearly
+						md-autocomplete.input-box(md-floating-label='Measures (Y-axis)', md-selected-item='newVizYColumn', md-selected-item-change="yAxisChanged(newVizYColumn)" md-search-text='vizPadSearchTextY', md-items='item in yColumns | filter: vizPadSearchTextY', md-min-length='0', md-item-text='item')
+							md-item-template
+								span(md-highlight-text='vm.vizPadSearchText', md-highlight-flags='^i') {{item}}
+					.buttones.right
+						md-button.transparent(aria-label='Use Android', ng-click='hide()') Clear
+						md-button(aria-label='Use Android', ng-click='hide();addViz()') Create
+		md-tab(ng-if="vizPadObj.vizs.length == 0 || showLibraryTab")
+			md-tab-label Viz Library
+			md-tab-body.md-padding
+				viz-list(viz-pad-obj="vizPadObj" select="hide();")

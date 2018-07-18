@@ -1,0 +1,14 @@
+.ml-feature-column-options
+    div(ng-if="$ctrl.isMinmaxScalar()")
+        div.ibm
+            input(type="text", placeholder="Min", ng-model="$ctrl.min", ng-change="$ctrl.setOption('min', $ctrl.min)")
+        div.ibm
+            input(type="text", placeholder="Max", ng-model="$ctrl.max", ng-change="$ctrl.setOption('max', $ctrl.max)")
+    
+    div(ng-if="$ctrl.isStandardScalar()")
+        div.ibm
+            input(id="withmean", type="checkbox", ng-model="$ctrl.withmean", ng-change="$ctrl.setOption('withmean', $ctrl.withmean)")
+            label(for="withmean") With mean
+        div.ibm
+            input(id="withstd", type="checkbox", ng-model="$ctrl.withstd", ng-change="$ctrl.setOption('withstd', $ctrl.withstd)")
+            label(for="withstd") With std

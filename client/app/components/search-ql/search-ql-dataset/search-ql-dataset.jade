@@ -1,0 +1,28 @@
+.selected
+    a(href='', toggle-active-src='dataset-list' toggle-close-item="true")
+        img(src='../assets/img/dataset/{{ $ctrl.selectedDataset.sourceType }}.png')
+        span {{$ctrl.selectedDataset.datasetName}}
+        i.caret
+.dataset-list.outside-click-close(toggle-active-dest='dataset-list')
+    .header
+        img(src='../assets/img/dataset/{{ $ctrl.selectedDataset.sourceType }}.png')
+        span Dataset
+        i.icon-right
+        input(type='text' ng-model="$ctrl.selectedDataset.datasetName")
+    .body(style="max-height: 300px;overflow: auto;")
+        ul.dataset-list-item
+            li.dataset-list-item(ng-click="$ctrl.selectAll()")
+                a(href='')
+                    img(src='../assets/img/dataset/default.png')
+                    span All datasets
+            li.dataset-list-item(
+              ng-repeat="dataset in $ctrl.datasets | orderBy:'datasetName'",
+              ng-click="$ctrl.selectDataset(dataset)")
+                a(href='')
+                    img(src='../assets/img/dataset/{{ dataset.sourceType }}.png')
+                    span {{dataset.datasetName}}
+
+    .footer
+        a(ui-sref="app.dataset.create")
+            i.icon-plus
+            span Add New Dataset

@@ -1,0 +1,18 @@
+.header(layout="row")
+    div(flex="")
+        .title Move Column
+
+.content
+    form(ng-submit="vm.onSubmit()")
+
+        md-input-container(class="md-block" flex-gt-sm)
+            label Select column
+            md-select(id="selectColumn" ng-model="vm.FormData.selectedColumn")
+                md-option(ng-repeat="item in vm.cols" value="{{item}}") {{item}}
+
+        .footer
+            md-button(type="reset" class="transparent") Cancel
+            md-button(type="submit" value="submit") Move
+
+        .errors(ng-show='vm.errors')
+            span {{ vm.errors }}

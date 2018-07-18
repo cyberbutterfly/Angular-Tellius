@@ -1,0 +1,52 @@
+.vizpad-main-wrapper
+	.vizpad.viz-view
+		.tophead
+			span.head
+				img.back-button.viz-back-button(src='assets/backButton.png' ui-sref="app.vizpad.vizlibrary" )
+				h4.truncate(ng-class="{ active: focus}" ng-focus="focus=true;blur=false;" ng-blur="blur=true;focus=false;" spellcheck="false" ng-keyup="vm.vizTitleChanged($event)" contenteditable="true") {{vm.viz.title}}
+			span.right.tophead-right
+				md-button(ng-click='vm.updateViz()') Save
+		.chartcontainer(id="viz-wrapper{{vm.viz.id}}" ng-class="{'show' :(vm.showDropdown=='viztype'||vm.showDropdown=='legends'||vm.showDropdown=='filter'||vm.showDropdown=='settings') , 'dark-theme' : vm.viz.colorPaletteThemeColors == 'dark', 'light-theme' : vm.viz.colorPaletteThemeColors == 'sand', 'default-theme' : vm.viz.colorPaletteThemeColors != 'dark' && vm.viz.colorPaletteThemeColors != 'sand'}")
+			div.loader-outer(ng-show='vm.loading')
+				div.loading-spinner.loader(layout='row', layout-sm='column', layout-align='space-around', ng-show='vm.loading')
+					md-progress-circular(md-mode='indeterminate', md-diameter='100')
+			.fake-overlay(ng-click="vm.showSubnav('0')" ng-if="vm.showDropdown=='viztype'||vm.showDropdown=='legends'||vm.showDropdown=='filter'||vm.showDropdown=='settings'")
+			div.right.right-icons
+				span.borderedButton(ng-click="vm.toggleState('viztype')" ng-class="{'active' : vm.showDropdown=='viztype'}")
+					md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+						md-icon(md-svg-icon="chart-line")
+						md-tooltip.req-tooltip(md-direction='top')
+							| Viz type
+				viz-type(viz="vm.viz" active="vm.state.viztype" change-graph="true" states="vm.state")
+
+				span.borderedButton(ng-click="vm.toggleState('legends')" ng-class="{'active' : vm.showDropdown=='legends'}" ng-show="vm.viz.allLegends.length > 0")
+					md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+						i.icon-menu
+						md-tooltip.req-tooltip(md-direction='top')
+							| Legends
+				viz-legend(viz="vm.viz" active="vm.state.legends" ng-if="vm.viz.allLegends.length > 0") 
+  
+				span.borderedButton(ng-click="vm.toggleState('filter')" ng-class="{'active' : vm.showDropdown=='filter'}")
+					md-button.md-icon-button.right-button(aria-label='Open phone interactions menu',)
+						i.icon-filter
+						md-tooltip.req-tooltip(md-direction='top')
+							| Filters
+				viz-filter(viz="vm.viz" active="vm.state.filter" filters="vm.vizFilters")
+
+				span.borderedButton(ng-click="vm.toggleState('settings')" ng-class="{'active' : vm.showDropdown=='settings'}")
+					md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+						img.setting-option(src='assets/setting-option.png' ng-class="{'active' : vm.showDropdown=='settings'}" ng-if="vm.viz.colorPaletteThemeColors != 'dark'")
+						img.setting-option(src='assets/setting-dark-theme.png' ng-class="{'active' : vm.showDropdown=='settings'}" ng-if="vm.viz.colorPaletteThemeColors == 'dark'")
+						md-tooltip.req-tooltip(md-direction='top')
+							| Viz Settings
+				viz-settings(viz="vm.viz" active="vm.state.settings")
+
+				md-button.md-icon-button.right-button(aria-label='Open phone interactions menu', ng-click="vm.toggleState('download')")
+					i.icon-download-1
+					md-tooltip.req-tooltip(md-direction='top')
+						| Download
+			div.graph-div(id='viz{{vm.viz.id}}')     
+			
+			div.simple-count-div(ng-if="vm.showSimpleCount")
+				div.simple-count-value {{vm.simpleCountValue}}
+				div.simple-count-label {{vm.simpleCountLabel ? vm.simpleCountLabel: vm.viz.xAxis.column }}

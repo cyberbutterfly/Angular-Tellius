@@ -1,0 +1,17 @@
+div(layout="row", layout-align="center start").mb20.white-bg.shadow1
+    div(flex)
+        div.mt40.mb30.pl40
+            span.fs18.gray-darkest ROC
+            span.fs14.gray-light.pl5 Precison/Recall Lift
+        roc-chart(roc-data="$ctrl.measuresData")
+
+div(flex ng-repeat="(key, value) in $ctrl.measuresData").mb40
+  div(flex).mb20
+    h2(ng-bind="key")
+  div(layout="row", layout-md="column", layout-align="center start")  
+    div(flex="50", flex-md="100").pr10.sm-pr0.sm-pb20
+        div.white-bg.shadow1.p40
+            matrix-chart(matrix-data="value")    
+    div(flex="50", flex-md="100").pl10.sm-pl0
+        div.white-bg.shadow1.p40
+            measures-chart(measures-data="value") 

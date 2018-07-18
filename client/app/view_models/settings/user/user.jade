@@ -1,0 +1,45 @@
+.user
+  .header
+    h3 My Profile
+
+  form.content(ng-submit="$ctrl.saveUserDetails()")
+    .content.name
+      .left
+        .avatar
+          .title Avatar
+          .upload
+            .img(ng-src="{{$ctrl.FormData.avatarUrl}}")
+            .text
+              a(href, ng-click="$ctrl.openAvatarUploadModal()") Upload
+              span your profile picture.
+              br
+              span You can use jpg, png or tiff files.
+      .right
+        md-input-container(flex)
+          label First Name
+          input(type="text", ng-model="$ctrl.FormData.firstName")
+        md-input-container(flex)
+          label Last Name
+          input(type="text", ng-model="$ctrl.FormData.lastName")
+        md-input-container(flex)
+          label Email Address
+          input(type="text", ng-model="$ctrl.FormData.email")
+
+    .content.password-title
+      i.flaticon.solid.lock-2
+      span Password
+
+    .content.password
+      .left
+        md-input-container(flex)
+          label New Password
+          input(type="password", ng-model="$ctrl.FormData.newPassword")
+
+      .right
+        md-input-container(flex)
+          label Confirm New Password
+          input(type="password", ng-model="$ctrl.FormData.confirmNewPassword")
+
+    .footer
+      md-button(type="reset", class="transparent") Cancel
+      md-button(type="submit", value="submit") Save

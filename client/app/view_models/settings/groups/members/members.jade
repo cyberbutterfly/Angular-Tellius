@@ -1,0 +1,31 @@
+.members
+  .groups-content-header
+    .left
+      h3 Members
+        span {{$ctrl.members.length}}
+    .right
+      .search-groups-content-table
+        i.icon-search
+        input(ng-model="$ctrl.searchMembers")
+      md-button.md-fab(ng-click='$ctrl.addMembers()', aria-label='Add Members')
+        md-icon.icon-plus
+        md-tooltip(md-direction='top') Add Members
+
+  table.groups-content-table
+    thead
+      tr
+        th Member
+        th Email
+        th Date Added
+        th 
+    tbody
+      tr(ng-repeat="member in $ctrl.members | filter:$ctrl.searchMembers")
+        td
+          .member-avatar
+            .img(ng-if="member.avatar",style="background-image:url('{{member.avatar}}');")
+            .initials(ng-if="!member.avatar", random-bg-color) {{member.firstName.substring(0,1)}}{{member.lastName.substring(0,1)}}
+          .name {{member.firstName}} {{member.lastName}}
+        td {{member.email}}
+        td {{member.createdAt | date:'medium'}}
+        td 
+          a.flaticon.stroke.minus-2(ng-click="$ctrl.removeMember(member)", title="Remove Member")

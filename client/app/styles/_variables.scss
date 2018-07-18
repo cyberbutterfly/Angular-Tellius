@@ -1,0 +1,143 @@
+﻿/*#region Media queries */
+
+@media (min-width: 1366px) {}
+
+@media (min-width: 1280px) and (max-width: 1365px) {}
+
+@media (min-width: 1024x) and (max-width: 1279px) {}
+
+@media (max-width: 1023px) {}
+
+$xl: '(min-width: 1366px)';
+$lg: '(min-width: 1280px) and (max-width: 1365px)';
+$md: '(min-width: 1024px) and (max-width: 1279px)';
+$sm: '(max-width: 1023px)';
+
+@media #{$xl} {
+}
+@media #{$lg} {
+}
+@media #{$md} {
+}
+@media #{$sm} {
+}
+
+/*#endregion */
+
+/*#region Colors */
+
+$white: #fff;
+$black: #000;
+
+$gray-darkest: #263238;
+$gray-darker: #37474f;
+$gray-dark: #546e7a;
+$gray: #78909c;
+$gray-light: #90a4ae;
+$gray-lighter: #b0bec5;
+$gray-lightest: #dfe7ec;
+
+$back-gray-dark: #e7eef3;
+$back-gray: #eff4f7;
+$back-gray-light: #f9f9f9;
+
+$red: #f65161;
+$green: #36c398;
+$blue: #26c6da;
+$blue-dark: #28aad5;
+$purple: #5c6bc0;
+$yellow: #fdd835;
+$orange: #ffa726;
+
+$border-dark: #c9d3d7;
+$border: #dbe5ea;
+
+
+/*#endregion */
+
+/*#region Initial */
+
+$body-bg: $back-gray !default;
+$body-color: $gray !default;
+$body-font-family: 'Proxima Nova Rg', sans-serif;
+
+$link-color:            $blue !default;
+$link-decoration:       none !default;
+$link-hover-color:      darken($link-color, 8%) !default;
+$link-hover-decoration: none !default;
+
+$font-size-root: 14px !default;
+
+$font-size-h1: 28px !default;
+$font-size-h2: 24px !default;
+$font-size-h3: 18px !default;
+$font-size-h4: 16px !default;
+$font-size-h5: $font-size-root;
+$font-size-h6: 13px !default;
+
+$line-height: 1 !default;
+$line-height-text: 1.4 !default;
+
+$border-color: $border !default;
+$border-width: 1px !default;
+
+$grid-columns: 12;
+$grid-gutter-width: 30px;
+
+/*#endregion */
+
+/*#region Layout */
+
+$ly-header-height:70px;
+$ly-left-sidebar-width:60px;
+$ly-left-sidebar-width--active:250px;
+$ly-righ-sidebar-width:20px;
+$ly-righ-sidebar-width--active:250px;
+
+/*#endregion */
+
+/*#region Mixins */
+
+@mixin transform($time) {
+    -moz-transition: all $time ease;
+    -o-transition: all $time ease;
+    -webkit-transition: all $time ease;
+    transition: all $time ease;
+}
+
+@mixin rotate($deg) {
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    -webkit-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin icomoon($code) {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &:before {
+        content: "'" + $code + "'";
+    }
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+/*#endregion */

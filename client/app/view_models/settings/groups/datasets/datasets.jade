@@ -1,0 +1,32 @@
+.datasets
+  .groups-content-header
+    .left
+      h3 Datasets
+        span {{$ctrl.selectedGroupDetails.datasetAccesses.length}}
+    .right
+      .search-groups-content-table
+        i.icon-search
+        input(ng-model="$ctrl.searchDatasets")
+      md-button.md-fab(ng-click="$ctrl.addDatasets()", aria-label="Add Datasets")
+        md-icon.icon-plus
+        md-tooltip(md-direction="top") Add Datasets
+
+  table.groups-content-table
+    thead
+      tr
+        th Dataset
+        th Date Added
+        th Access Privileges
+        th 
+    tbody
+      tr(ng-repeat="dataset in $ctrl.selectedGroupDetails.datasetAccesses | filter:$ctrl.searchDatasets")
+        td
+          .dataset-icon
+            img(src="assets/img/dataset/{{ dataset.sourceType }}.png")
+          .name {{dataset.datasetName}}
+        td {{dataset.createdAt}}
+        td
+          md-checkbox(ng-model="dataset.view", aria-label="View") View
+          md-checkbox(ng-model="dataset.edit", aria-label="Edit") Edit
+        td 
+          a.flaticon.stroke.minus-2(ng-click="$ctrl.removeDataset(dataset)", title="Remove Dataset")

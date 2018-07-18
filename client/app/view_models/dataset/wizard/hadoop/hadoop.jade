@@ -1,0 +1,21 @@
+form(ng-submit="$ctrl.onSubmit()").container
+
+    .wizard-boxed
+        .wizard-boxed-header
+            img(src="assets/img/dataset/parquet.png")
+            h1 Hadoop
+
+        .wizard-boxed-body  
+            div(layout="row")
+                md-input-container(flex)
+                    label Path
+                    input(id="database"
+                          ng-model="$ctrl.FormData.path"
+                          required="required")
+
+        .wizard-boxed-footer
+            md-button(type="reset", class="transparent", ui-sref='app.dataset.create') Cancel
+            md-button(type="submit" value="submit") Load
+
+        .wizard-boxed-errors(ng-show="$ctrl.errors.length")
+            span {{$ctrl.errors}}

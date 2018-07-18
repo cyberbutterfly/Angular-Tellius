@@ -1,0 +1,31 @@
+@import "../../../styles/_variables.scss";
+
+.transform .transform-footer {
+    background-color:$white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+    position:fixed;
+    bottom:0;
+    left:60px;
+    right:0;
+    height:40px;
+    text-align:right;
+    padding-right:40px;
+
+    .md-button {
+        margin:5px 6px;
+        min-height:30px;
+        height:30px;
+        line-height:30px;
+        font-size:13px;
+        padding:0 20px;
+        background-color:$gray;
+        i {
+            font-size:9px;
+        }
+        &.active {
+            background: darken($green, 7%) !important;
+        }
+    }
+
+}
+

@@ -1,0 +1,21 @@
+h1 
+.header(layout="row")
+    div(flex="")
+        .title Select date type
+
+.content
+  form(novalidate)
+    md-input-container(class="md-block" flex-gt-sm="")
+        label Date format
+        select(
+        id="dateformat"
+        ng-model="$ctrl.FormData.dateFormat"
+        ng-options="item as item for item in $ctrl.dateFormats")
+
+    .footer
+      md-button(type="reset", class="transparent" 
+      ng-click="$ctrl.cancel()") Cancel
+      md-button(type="submit"
+      ng-click="$ctrl.save()") Save
+    .errors(ng-show='$ctrl.errors.length')
+        span {{ $ctrl.errors }}

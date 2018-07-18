@@ -1,0 +1,52 @@
+.transform-header
+        img(src='../assets/img/dataset/{{$ctrl.rootDataset.sourceType}}.png')
+        h1(ng-bind="$ctrl.rootDataset.datasetName")
+
+.transform-menu
+
+    .transform-menu-info
+
+        .metadata(ng-if="$ctrl.metadata.noOfColumns")
+            span.title Columns
+            span.value(ng-bind="$ctrl.metadata.noOfColumns")
+        .metadata(ng-if="$ctrl.metadata.noOfRows")
+            span.title Rows
+            span.value(ng-bind="$ctrl.metadata.noOfRows")
+        .metadata(ng-if="$ctrl.metadata.size")
+            span.title Size
+            span.value(ng-bind="$ctrl.metadata.size")
+
+    .transform-menu-functions
+
+        section.md-button-group(ng-init="tvt = 'grid'")
+            md-button.md-fab.small.white(ui-sref='app.transform.grid', aria-label='Grid view', ng-click="tvt = 'grid'", ng-class="{active:tvt == 'grid'}")
+                md-icon.icon-menu-list-4
+            md-button.md-fab.small.white(ui-sref='app.transform.list', aria-label='List view', ng-click="tvt = 'list'", ng-class="{active:tvt == 'list'}")
+                md-icon.icon-menu-2
+
+        span.spacer.xsmall
+
+        section.md-button-group
+            md-button.md-fab.small.white(ng-click='$ctrl.undo()', ng-disabled='$ctrl.isUndoDisabled()', aria-label='Undo')
+                md-icon.icon-undo
+            md-button.md-fab.small.white(ng-click='$ctrl.redo()', ng-disabled='$ctrl.isRedoDisabled()', aria-label='Redo')
+                md-icon.icon-redo
+
+        md-button.md-fab.small.white(aria-label='Functions')
+            md-icon.icon-function
+            md-tooltip(md-direction='top') Functions
+
+        md-button.md-fab.small.white(ng-click='$ctrl.aggregatePopup()', aria-label='Aggregate')
+            md-icon.icon-sum
+            md-tooltip(md-direction='top') Aggregate
+
+        md-button.md-fab.small.white(
+          ng-click='$ctrl.advancedFiltersPopup()',
+          ng-class="{'active': $ctrl.FilterService.hasAdvancedState({})}",
+          aria-label='Advanced Filters')
+            md-icon.icon-filter
+            md-tooltip(md-direction='top') Advanced Filters
+
+        md-button.md-fab.small(ng-click='$ctrl.dataFusionPopup()', aria-label='Data Fusion')
+            md-icon.icon-plus
+            md-tooltip(md-direction='top') Data Fusion

@@ -1,0 +1,391 @@
+@import "../../styles/_variables.scss";
+
+$uil-rolling-size: 28px;
+
+.jobs-indicator {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  height:28px;
+  width:28px;
+  margin-right:14px;
+
+  .progress-button {
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+    cursor: pointer;
+    outline: none !important;
+    z-index:2;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .jobs-list-button {
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    width:28px;
+    height:28px;
+    line-height:28px;
+    font-size:9px;
+    border-radius: 50%;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color:$gray;
+    outline: none !important;
+    cursor:pointer;
+
+    &:hover {
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      color:$gray-light;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    &.pulse {
+      animation: pulse-anim 2.7s linear infinite;
+    }
+  }
+
+}
+
+@-webkit-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes uil-rolling-anim {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-anim {
+  0% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  50% {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  100% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.uil-rolling-css {
+  width: $uil-rolling-size;
+  height: $uil-rolling-size;
+}
+
+.uil-rolling-css > div {
+  width: $uil-rolling-size;
+  height: $uil-rolling-size;
+  position: relative;
+  -ms-animation: uil-rolling-anim 1.7s linear infinite;
+  -moz-animation: uil-rolling-anim 1.7s linear infinite;
+  -webkit-animation: uil-rolling-anim 1.7s linear infinite;
+  -o-animation: uil-rolling-anim 1.7s linear infinite;
+  animation: uil-rolling-anim 1.7s linear infinite;
+}
+
+.uil-rolling-css > div div {
+  position: absolute;
+  width: $uil-rolling-size;
+  height: $uil-rolling-size / 2;
+  border-radius: 1000px 1000px 0 0;
+  border-color: $green;
+  border-style: solid;
+  border-width: 2px;
+  border-bottom-width: 0;
+}
+
+.uil-rolling-css > div div:nth-of-type(2) {
+  transform: translate(0, $uil-rolling-size / 4) rotate(120deg) translate(0, ($uil-rolling-size / 4) * -1);
+}
+
+.jobs-list {
+  position: absolute;
+  top: 44px;
+  right: -30px;
+
+  .jobs-list-wrapper {
+    background-color: $white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+
+    &:after {
+      bottom: 100%;
+      right: 34px;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(255, 255, 255, 0);
+      border-bottom-color: #ffffff;
+      border-width: 10px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: block;
+        padding: 14px 34px;
+        border-bottom: 1px solid $border;
+        outline: none !important;
+        cursor: pointer;
+        
+
+        &.RUNNING {
+          .name {
+            color:$gray-lighter;
+          }
+        }
+        &.SUCCESS {
+          .name {
+            color: $gray-darker;
+          }
+        }
+        &.FAILURE {
+          .name {
+            color:$red;
+          }
+        }
+
+        .info {
+          display:flex;
+          color:$gray-light;
+          font-size:12px;
+
+          .timetaken {
+            padding-top:6px;
+            padding-right:20px;
+          }
+          .starttime {
+            padding-top:6px;
+            text-align:right;
+          }
+        }
+                
+        &_last-child {
+          border: none;
+        }
+
+        &:hover {
+          background-color:rgba(0,0,0,0.02);
+        }
+      }
+    }
+  }
+}

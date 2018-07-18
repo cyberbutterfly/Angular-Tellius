@@ -1,0 +1,30 @@
+.app
+  .app-list
+    .header
+      h2 Sections
+    ul.list
+      li(ng-repeat="app in $ctrl.appList",
+         ng-class="{'active': $ctrl.selectedAppId === app.id}")
+        .name(ng-click="$ctrl.selectApp(app)")
+          span {{app.name}}
+  .app-content
+    .app-header
+      h2 {{$ctrl.selectedAppName}}
+    .content
+      md-input-container(flex)
+        label Select Default Database
+        md-select(ng-model="$ctrl.selectedDatabase")
+          md-option(ng-repeat="database in $ctrl.databasesList") {{database.name}}
+      md-chips(ng-model="$ctrl.FormData.aggregationColumns", 
+               ng-class="{'has-items': $ctrl.FormData.aggregationColumns.length > 0}"
+               md-item-text = "$chip", 
+               md-autocomplete-snap, 
+               md-require-match="true", 
+               class="md-block", 
+               flex-gt-sm)
+        md-autocomplete(md-selected-item="$ctrl.aggregationColumnsSelectedItem", 
+                       md-search-text="$ctrl.aggregationColumnsSearchText", 
+                       md-items="column in $ctrl.columns", 
+                       md-item-text="column", 
+                       placeholder="Selected Columns")
+          span(md-highlight-text="$ctrl.aggregationColumnsSearchText") {{ column }}

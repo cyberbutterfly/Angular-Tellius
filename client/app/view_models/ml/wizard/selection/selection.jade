@@ -1,0 +1,41 @@
+.selection
+    div(layout="row" ng-hide="$ctrl.isLoading()").mt20
+        div(flex).pr40
+            h3.ml3 Select Model:
+            div.ml3.fs12.wsnw.pt3 You can select multiple models.
+        div(flex="grow")
+            div.check-button(ng-repeat="model in $ctrl.categories")
+                input(id="{{ model.name}}", type="checkbox", checklist-model='$ctrl.selectedModels', checklist-value='model.name')
+                label(for="{{ model.name}}") {{ model.prettyName }}
+
+    .models.mt40.mb30(ng-hide="$ctrl.isLoading()")
+        regression-models(
+          target-variable="$ctrl.options.targetVariable"
+          selected-models="$ctrl.selectedModels"
+          ng-if="$ctrl.isRegression()")
+  
+        classification-models(
+          target-variable="$ctrl.options.targetVariable"
+          selected-models="$ctrl.selectedModels" 
+          ng-if="$ctrl.isClassification()")
+  
+        clustering-models(
+          target-variable="$ctrl.options.targetVariable"
+          selected-models="$ctrl.selectedModels" 
+          ng-if="$ctrl.isClustering()")
+
+    
+    div(ng-show="$ctrl.errors.length")
+        div.mb5(layout="row", ng-repeat="error in $ctrl.errors")
+            span.red Error: {{error.field}} Description: {{error.description}}            
+
+    div(layout="row" ng-hide="$ctrl.isLoading()").mt30.text-right
+        div(flex)
+            md-button(ng-click="$ctrl.prev()") Previous
+            md-button(ng-click="$ctrl.onSubmit()") Next
+
+    div.model-loader(ng-show="$ctrl.isLoading()")
+        i.icon-settings
+        h2 Your model is being prepared!
+        p This might take from 10 to 60 seconds.
+        md-progress-linear(value="75", md-mode="determinate")

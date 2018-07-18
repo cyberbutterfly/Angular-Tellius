@@ -1,0 +1,6 @@
+.components-tabs-wrapper
+  .ng-tab
+      ul.ng-tabs-nav
+          li.ng-tabs-nav-item(ng-repeat='pane in vm.panes', ng-class='{ "{{vm.navActiveClass}}":pane.vm.selected}')
+              a(href='', ng-click='vm.select(pane)') {{pane.vm.title}}
+      .tab-content(ng-transclude='')

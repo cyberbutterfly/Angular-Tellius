@@ -1,0 +1,45 @@
+.column-header(context-menu, 
+               context-menu-options="vm.contextMenuOptions", 
+               ng-class="{'selected-stats':vm.selectedStatsColumn == vm.columnName, 'selected':vm.isSelectedColumn({columnName: vm.columnName})}")
+    .top
+        .left
+            md-button.md-icon-button.small.grid-stats-select(ng-show="vm.isNumberType({columnType: vm.fileType})", ng-click="vm.statsColumn({columnName: vm.columnName, columnType: vm.fileType})", aria-label="Statistics")
+                md-icon.icon-signal-bars-1
+                md-tooltip(md-direction="top") Statistics
+            md-button.md-icon-button.small(ng-click="vm.filterPopup()", aria-label="Filter")
+                md-icon.icon-filter(ng-class="{'active': vm.FilterService.hasState({columnName: vm.columnName})}")
+                md-tooltip(md-direction="top") Filter
+            
+        .center
+            md-button.md-icon-button.small.grid-column-select(ng-click="vm.toggleColumn({columnName: vm.columnName})", aria-label="Select column")
+                md-icon.icon-checkmark-3
+                md-tooltip(md-direction="top") Select column
+        .right
+            md-button.md-icon-button.small(ng-click="vm.sort(true)", aria-label="Sort ASC")
+                md-icon.icon-down-4
+                md-tooltip(md-direction="top") Sort ASC
+            md-button.md-icon-button.small(ng-click="vm.sort(false)", aria-label="Sort DESC")
+                md-icon.icon-up-4
+                md-tooltip(md-direction="top") Sort DESC
+
+    .bottom
+        form.grid-column-name(ng-submit="vm.renameColumnName()")
+            span(
+            contenteditable="true"
+            ng-keydown="vm.onKeydown($event)"
+            ng-model="vm.columnName") {{ vm.columnName }}     
+            
+        .column-type-group    
+          grid-column-type.grid-column-type.group-item(
+          file-type="vm.fileType"
+          column-name="vm.columnName"
+          )
+        
+          md-button.group-item.handle-columns.md-icon-button.small.grid-stats-select(
+            ng-show="vm.isHandleNull()",
+            ng-click="vm.handleColumnsPopup()",
+            aria-label="handle null")
+              md-icon.icon-info-2
+              md-tooltip(md-direction="top") Handle columns   
+
+        typestats-indicator(typestats-data="vm.colDef.typeStats")

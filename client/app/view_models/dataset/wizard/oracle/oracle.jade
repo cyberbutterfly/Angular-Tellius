@@ -1,0 +1,38 @@
+form(ng-submit="$ctrl.onSubmit()" novalidate).container
+
+    .wizard-boxed
+        .wizard-boxed-header
+            img(src="assets/img/dataset/oracle.png")
+            h1 Oracle
+            
+        .wizard-boxed-body
+            md-input-container
+                label Host
+                input(id="table"
+                      ng-model="$ctrl.FormData.url"
+                      required="required")
+            md-input-container
+                label Database table 
+                input(id="dbtable"
+                      ng-model="$ctrl.FormData.dbtable"
+                      required="required")
+                      
+            md-input-container
+                label User
+                input(id="user"
+                      ng-model="$ctrl.FormData.user"
+                      required="required")
+                      
+            md-input-container
+                label Password
+                input(id="password"
+                      type="password"
+                      ng-model="$ctrl.FormData.password"
+                      required="required")
+                                
+        .wizard-boxed-footer
+            md-button(type="reset", class="transparent", ui-sref='app.dataset.create') Cancel
+            md-button(type="submit" value="submit") Next
+
+        .wizard-boxed-errors(ng-show="$ctrl.errors.length")
+            span {{$ctrl.errors}}

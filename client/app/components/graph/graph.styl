@@ -1,0 +1,143 @@
+.components-graph-wrapper,.vizpad-main-wrapper
+	.right-icons
+		opacity 0
+		margin-top 15px
+		position absolute
+		top:0px
+		right 15px
+		z-index 9
+		margin-right 15px
+		transition opacity 0.2s linear
+		&:active, &:focus
+			opacity 1
+		md-autocomplete[md-floating-label] md-input-container
+			padding-bottom 15px !important
+		.compare-btn
+			font-size 12px
+			text-transform capitalize
+			width 100px
+			padding 0px
+			margin 0px 5px
+			line-height 25px
+			height 25px
+			min-height 25px
+		.borderedButton
+			height 35px
+			border-bottom 0px
+			&.active
+				border-bottom 2px solid #26c7db !important
+		.right-button
+			width 22px !important
+			height 22px !important
+			min-height 10px !important
+			margin 0 !important
+			padding 0 !important
+			color rgba(0,0,0,.9)
+			&:hover, &:active, &:focus
+				i,md-icon
+					color #26c7db
+			i
+				font-size 13px !important
+			.chart-type-line
+				margin-bottom 4px
+			.setting-option
+				position absolute
+				top 4px
+				left 2px
+				&:hover, &.active
+					left -19px
+
+	.warning-msg-div
+		padding 15px 25px
+		z-index 9
+		position absolute
+		color #8a6d3b
+		background-color #fcf8e3
+		border 1px solid #faebcc
+		margin 10px
+		.warning-close-btn
+			background transparent
+			border none
+			margin-left 20px
+
+	rect.background
+		fill #FFFFFF
+		fill-opacity 0.01
+	g.component
+		fill: #e1e1e1
+		text.label
+			fill black
+			font-size 20px
+	path.arc
+		stroke-weight 0.1
+		fill #4e8fff
+	text.label
+			font-family Myriad, 'Maison Neue', Arial
+			text-anchor middle
+
+	.loader-container
+		width 100%
+	.loader-outer
+		position absolute
+		z-index 1
+		top 50px
+		right 0
+		left 0
+		bottom 0
+		background rgba(255,255,255,0.7)
+		transition opacity 450ms
+		margin 0 15px 15px 15px
+		.exclamation-div
+			text-align center
+			.overlay-dummy
+				position absolute
+				left 0
+				top 0
+				right 0
+				bottom 0
+				background rgba(0,0,0,0.3)
+				z-index 10
+		.axes-msg
+			padding-top 15px
+			text-align center
+			font-size 15px
+			color #78909c
+		.error-msg-graph
+			padding-top 60px
+			text-align center
+			font-size 30px
+			color red
+	.drill-trend-container
+		min-height 480px
+		min-width 857px
+
+	.graph-div
+		display flex
+		justify-content center
+		margin 50px 15px
+	.simple-count-div
+		background: white
+		.simple-count-label
+			font-size: 30px
+			border-bottom: 1px solid
+			padding: 0 10px 10px
+		.simple-count-value
+			font-size 30px
+			padding-top: 20px
+			text-align: center
+
+
+	md-progress-circular
+	 .md-spinner-wrapper
+			margin-left -17px
+			margin-top -17px
+
+	.fake-overlay
+		position absolute
+		top 0
+		bottom 0
+		right 0
+		left 0
+		z-index 1
+		&:focus
+			outline 0 !important

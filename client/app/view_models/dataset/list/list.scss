@@ -1,0 +1,110 @@
+﻿@import "../../../styles/_variables.scss";
+
+.dataset .list {
+    .header {
+        display: table;
+        width: 100%;
+        margin-bottom: 20px;
+
+        &.header-tabs {
+          border-bottom: 1px solid #dbe5ea;
+        }
+
+        .left {
+            display: table-cell;
+            vertical-align: bottom;
+            text-align: left;
+            padding-bottom: 3px;
+
+            h1 {
+                font-size: 18px;
+                white-space: nowrap;
+
+                span {
+                    color: $gray-light;
+                    padding-left: 5px;
+                }
+            }
+
+            .tabs {
+              position: relative;
+              top: 3px;
+              margin-bottom: 0;
+              box-shadow: none;
+
+              h4 {
+                  display: inline-block;
+                  margin-left: 24px;
+                  margin-bottom: 0;
+                  text-align: center;
+                  padding-left: 8px;
+                  padding-right: 8px;
+                  padding-bottom: 13px;
+                  font-size: 20px;
+                  cursor: pointer;
+                  margin: 0;
+                  font-weight: 400;
+                  color: #263238;
+                  line-height: 1;
+
+                &:focus {
+                  outline: none;
+                }
+
+                &.active {
+                    border-bottom: 2px solid #26c6da;
+                }
+              }
+            }
+
+        }
+
+        .right {
+            display: table-cell;
+            vertical-align: bottom;
+            text-align: right;
+
+            .search {
+                position: relative;
+                display: inline-block;
+                vertical-align: bottom;
+                padding-bottom: 8px;
+                padding-right: 20px;
+
+                i {
+                    position: absolute;
+                    bottom: 23px;
+                    left: 0;
+                    font-size: 16px;
+                    color: $gray-light;
+                }
+
+                input {
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: 1px solid $border;
+                    height: 40px;
+                    font-size: 16px;
+                    color: $gray-darker;
+                    outline: none;
+                    padding-left: 28px;
+                    width: 150px;
+                    @include transform(0.3s);
+
+                    &:focus {
+                        width: 300px;
+
+                        @media #{$sm} {
+                            width: 200px;
+                        }
+                    }
+                }
+            }
+
+            .controls {
+                display: inline-block;
+                vertical-align: bottom;
+            }
+        }
+    }
+}

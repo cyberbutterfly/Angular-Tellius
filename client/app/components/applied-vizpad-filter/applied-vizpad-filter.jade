@@ -1,0 +1,7 @@
+.components-applied-viz-filter-wrapper
+	.filter-box(ng-repeat="filters in vm.vizpadFiltersArr")
+		i.icon-filter.applied-icons
+		div.filter-title {{filters}}
+		md-tooltip.req-tooltip(md-direction='top')
+			| {{filters}}
+		i.icon-close.applied-icons(ng-click="vm.removeFilter($event, $index, filters)")

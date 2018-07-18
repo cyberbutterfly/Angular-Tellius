@@ -1,0 +1,92 @@
+div.warning-msg-div(ng-show='vm.showWarningMsg')
+	span.warning-msg-span Warning! This is a warning message, but will not stop execution.
+	button.warning-close-btn(ng-click="vm.closeWarning()") X
+div.loader-outer(ng-show='vm.showErrorMsg')
+	div.exclamation-div
+		span.exclamation-span
+			md-icon(md-svg-icon="exclamation")
+	div.error-msg-graph Some Error Occured
+div.loader-outer.axes-outer(ng-show='vm.showAxesMsg')
+	div.exclamation-div
+		img.dummygraph(src="assets/temp-graph.png" ng-attr-style="{{ vm.dummyImgSize.height ? 'height: ' +vm.dummyImgSize.height+'px; width: '+vm.dummyImgSize.width+'px;' : 'width: 100%'}}")
+		//- div.overlay-dummy
+	div.axes-msg Please select Dimension and Measure from the Settings menu
+.components-graph-wrapper
+	div.loader-outer(ng-show='vm.viz.loading')
+		div.loading-spinner.loader(layout='row', layout-sm='column', layout-align='space-around', ng-show='vm.viz.loading')
+			md-progress-circular(md-mode='indeterminate', md-diameter='100')
+	.fake-overlay(ng-click="vm.showSubnav('0')" ng-if="vm.showDropdown=='viztype'||vm.showDropdown=='legends'||vm.showDropdown=='filter'||vm.showDropdown=='settings'||vm.showDropdown=='compare'")
+	div.right.right-icons
+		span.borderedButton(ng-click="vm.toggleState('viztype')" ng-class="{'active' : vm.showDropdown=='viztype'}")
+			md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+				md-icon.chart-options-icon.chart-type-line(md-svg-icon="chart-line")
+				md-tooltip.req-tooltip(md-direction='top')
+					| Viz type
+		viz-type(viz="vm.viz" active="vm.state.viztype" change-graph="true" states="vm.state")
+
+		span.borderedButton(ng-click="vm.toggleState('legends')" ng-class="{'active' : vm.showDropdown=='legends'}" ng-show="vm.viz.allLegends.length > 0")
+			md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+				i.chart-options-icon.icon-menu
+				md-tooltip.req-tooltip(md-direction='top')
+					| Legends
+		viz-legend(viz="vm.viz" active="vm.state.legends" ng-show="vm.viz.allLegends.length > 0")
+
+		span.borderedButton(ng-click="vm.toggleState('filter')" ng-class="{'active' : vm.showDropdown=='filter'}")
+			md-button.md-icon-button.right-button(aria-label='Open phone interactions menu',)
+				i.chart-options-icon.icon-filter
+				md-tooltip.req-tooltip(md-direction='top')
+					| Filters
+		viz-filter(viz="vm.viz" active="vm.state.filter" filters="vm.vizFilters")
+
+		span.borderedButton(ng-click="vm.toggleState('settings')" ng-class="{'active' : vm.showDropdown=='settings'}")
+			md-button.md-icon-button.right-button(aria-label='Open phone interactions menu')
+				img.chart-options-icon.setting-option(src='assets/setting-option.png' ng-class="{'active' : vm.showDropdown=='settings'}" ng-if="vm.viz.colorPaletteThemeColors != 'dark'")
+				img.chart-options-icon.setting-option(src='assets/setting-dark-theme.png' ng-class="{'active' : vm.showDropdown=='settings'}" ng-if="vm.viz.colorPaletteThemeColors == 'dark'")
+				md-tooltip.req-tooltip(md-direction='top')
+					| Viz Settings
+		viz-settings(viz="vm.viz" active="vm.state.settings")
+
+		md-button.md-icon-button.right-button(aria-label='Open phone interactions menu', ng-click="vm.toggleState('download')")
+			i.chart-options-icon.icon-download-1
+			md-tooltip.req-tooltip(md-direction='top')
+				| Download
+		span.borderedButton(ng-click="vm.toggleState('maximize');vm.enlargeViz();" ng-class="{'active' : vm.showDropdown=='maximize'}" ng-if='!vm.viz.enlargeView')
+			md-button.md-icon-button.right-button.icon-maximize-btn(aria-label='Open phone interactions menu' )
+				i.chart-options-icon.icon-maximize
+				md-tooltip.req-tooltip(md-direction='top')
+					| Maximize
+		span.borderedButton(ng-click="vm.toggleState('maximize');vm.enlargeViz();" ng-class="{'active' : vm.showDropdown=='maximize'}" ng-if='vm.viz.enlargeView')
+			md-button.md-icon-button.right-button.icon-minimize-btn(aria-label='Open phone interactions menu')
+				i.chart-options-icon.icon-minimize
+				md-tooltip.req-tooltip(md-direction='top')
+					| Minimize
+	//- div.graph-div( id='viz{{vm.viz.id}}' ng-show="!vm.showTable")
+	draw-graph(viz="vm.viz" highcharts-obj="vm.highChartConfigObj")
+	div.graph-div.table-div(id='viz{{vm.viz.id}}' ng-if="vm.showTable")
+		md-content(laout='column', flex='')
+			md-card
+				md-data-table-container
+					table(md-table='', ng-model='selected', md-progress='promise')
+						thead(md-head='', md-order='vm.query.order')
+							tr(md-row='')
+								th(md-column='', md-order-by='name' ng-repeat='h in vm.headers track by $index')
+									span {{ h }}
+						tbody(md-body='')
+							tr(md-row='', ng-repeat='c in vm.content track by $index')
+								td(md-cell='') {{c.x}}
+								td(md-cell='') {{c.y}}
+							//- | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit
+				//- md-table-pagination(md-page='vm.query.page', md-limit="vm.query.limit" md-total='{{vm.content.length}}', md-page-select='vm.options.pageSelector', md-boundary-links='vm.options.boundaryLinks', md-on-paginate='vm.logPagination')
+
+	div.simple-count-div(ng-if="vm.showSimpleCount")
+		div.simple-count-label {{vm.simpleCountLabel ? vm.simpleCountLabel: vm.viz.xAxis.column }}
+		div.simple-count-value {{vm.simpleCountValue}}
+      
+
+	//- .pop-up(ng-class="{active : vm.clickedInside}")
+	//- 	button.md-fab.md-mini.graph-options.option-1.md-button(type='button', ng-click='vm.popUp($event,"drill", vm.viz)', aria-label='Use Android')
+	//- 		i.icon-search.ng-scope
+	//- 	button.md-fab.md-mini.graph-options.option-2.md-button(type='button', ng-click='vm.popUp($event,"trend", vm.viz)', aria-label='Use Android')
+	//- 		md-icon.chart-line(md-svg-icon="chart-line")
+	//- 	button.md-fab.md-mini.graph-options.option-3.md-button(type='button', ng-click='vm.popUp($event,"filter", vm.viz)', aria-label='Use Android')
+	//- 		i.icon-filter.ng-scope

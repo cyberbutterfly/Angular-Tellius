@@ -1,0 +1,9 @@
+.search-ql(ng-class="{'active-search': $ctrl.isActiveSearch }")
+    search-ql-dataset(
+      datasets="$ctrl.datasets"
+      on-change-dataset="$ctrl.onChangeDataset(dataset)").dataset
+    search-ql-search(
+    is-active="$ctrl.toggleActiveSearch(status)").search
+    .mode
+        a(href='', toggle-active-src='intelliquery-mode', title='Toggle mode Studio/Explorer')
+            i.icon-switch-mode

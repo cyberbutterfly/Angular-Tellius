@@ -1,0 +1,3 @@
+.vizpad-main-wrapper
+	.chartcontainer.default-theme(id="chart{{vm.vizObj.id}}" ng-class="{'show' :(vm.showDropdown=='viztype'||vm.showDropdown=='legends'||vm.showDropdown=='filter'||vm.showDropdown=='settings') && vm.chartContainer}" ng-click="vm.chartContainer = true")
+		graph.loader-container(file='vm.filePath' vizpad='vm.vizPadObj', viz="vm.vizObj" ng-if="vm.callGraph" from-directive='true')

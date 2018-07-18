@@ -1,0 +1,229 @@
+﻿@import "../../../styles/_variables.scss";
+
+.analytics .list {
+
+    .header {
+        display: table;
+        width: 100%;
+        margin-bottom: 25px;
+        margin-top:5px;
+
+        .left {
+            display: table-cell;
+            vertical-align: bottom;
+            text-align: left;
+            padding-bottom: 10px;
+
+            h1 {
+                font-size: 28px;
+                white-space: nowrap;
+
+                span {
+                    color: $gray-light;
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        .right {
+            display: table-cell;
+            vertical-align: bottom;
+            text-align: right;
+
+            .search {
+                position: relative;
+                display: inline-block;
+                vertical-align: bottom;
+                padding-bottom: 8px;
+                padding-right: 20px;
+
+                i {
+                    position: absolute;
+                    bottom: 23px;
+                    left: 0;
+                    font-size: 16px;
+                    color: $gray-light;
+                }
+
+                input {
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: 1px solid $border;
+                    height: 40px;
+                    font-size: 16px;
+                    color: $gray-darker;
+                    outline: none;
+                    padding-left: 28px;
+                    width: 150px;
+                    @include transform(0.3s);
+                    @media #{$sm} {
+                        width: 100px;
+                    }
+
+                    &:focus {
+                        width: 300px;
+
+                        @media #{$sm} {
+                            width: 150px;
+                        }
+                    }
+                }
+            }
+
+            .controls {
+                display: inline-block;
+                vertical-align: bottom;
+            }
+        }
+    }
+
+    .list {
+        padding-bottom:40px;
+
+        ul {
+            margin: -1%;
+            padding: 0;
+            list-style: none;
+            @include clearfix();
+
+            li {
+                display: inline-block;
+                width: 31.33%;
+                float: left;
+                margin: 1%;
+                background-color: $white;
+                box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.03);
+                border-radius: 2px;
+
+                @media #{$sm} {
+                    width: 48%;
+                }
+
+                .delete-model {
+                    border-radius: 50%;
+                    opacity: 0;
+                    position: relative;
+                    font-size: 10px !important;
+                    padding: 7px;
+                    top: -10px;
+                    left: -10px;
+                    right: initial;
+                    background: #fff;
+                    cursor: pointer;
+                    color: rgba(37,44,58,0.8);
+                    box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.08);
+                }
+
+                .head {
+                    position: relative;
+                    height: 150px;
+                    text-align: center;
+
+                    i {
+                        display: inline-block;
+                        font-size: 75px;
+                        line-height: 150px;
+                    }
+
+                    .controls {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: rgba(0,0,0,0.6);
+                        @include transform(0.25s);
+                        opacity: 0;
+
+                        .explore {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            color: $white !important;
+                            md-icon {
+                                width:17px!important;
+                                height:17px!important;
+                            }
+                        }
+
+                        .use {
+                            margin-top: 52px;
+                        }
+                    }
+
+                    &:hover {
+                        .controls {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .description {
+                    position: relative;
+                    padding: 15px 30px;
+                    height: 115px;
+
+                    @media #{$md} {
+                        height: 120px;
+                    }
+
+                    .name {
+                        font-size: 16px;
+                        color: $gray-darker;
+                        line-height: 1.2;
+                        padding-bottom: 5px;
+                        max-height: 41px;
+                        overflow: hidden;
+                        -ms-text-overflow: ellipsis;
+                        -o-text-overflow: ellipsis;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        cursor: pointer;
+                        @include transform(0.15s);
+
+                        &:hover {
+                            color: $blue-dark;
+                        }
+                    }
+
+                    .date {
+                        font-size: 12px;
+                        color: $gray-light;
+                    }
+
+                    .type {
+                        position: absolute;
+                        left: 30px;
+                        bottom: 20px;
+                        font-size: 12px;
+                        color: $gray-light;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+
+                    .user {
+                        display: block;
+                        position: absolute;
+                        right: 30px;
+                        bottom: 20px;
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 50%;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+
+                &:hover {
+
+                  .delete-model {
+                    opacity: 1;
+                  }
+                }
+            }
+        }
+    }
+}

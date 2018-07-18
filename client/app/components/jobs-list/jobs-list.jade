@@ -1,0 +1,9 @@
+.jobs-list-wrapper(ng-show="$ctrl.isOpen()")
+  ul
+    li(ng-repeat="job in $ctrl.jobs"
+       ng-class="job.status"
+       ng-click="$ctrl.selectItem(job)")
+      .name {{job.name}}
+      .info
+        .timetaken(ng-if="job.timetaken") Time taken : {{job.timetaken}}
+        .starttime(ng-if="job.starttime") Started at : {{job.starttime | date:'yyyy-MM-dd HH:mm:ss a'}}

@@ -1,0 +1,89 @@
+.dataflow
+    .header
+        .left
+            h1 Data Flow
+
+        .right
+            div(layout="row", layout-align="end center")
+                div(flex="grow")
+                md-input-container.il(flex="auto")
+                    label Current Pipeline
+                    md-select(ng-model='vm.selectedPipeline', ng-change="vm.onChangePipeline()", aria-label="Pipeline")
+                        md-option(ng-repeat='p in vm.pipelines', value="{{p.uuid}}") {{p.name}}
+                div(flex="auto").wsnw.pl30
+                    md-button.md-fab.small.white.ml30(ng-click='vm.saveDataFlow()', aria-label='Save')
+                        md-icon.icon-save2
+                        md-tooltip(md-direction='top') Save
+                    md-button.md-fab.small.white(ng-click='vm.executeDataFlow()', aria-label='Execute')
+                        md-icon.icon-play-2
+                        md-tooltip(md-direction='top') Execute
+                    md-button.md-fab.small.blue(ng-click='vm.deleteItem()', aria-label='Delete')
+                      md-icon.icon-minus
+                      md-tooltip(md-direction='top') Delete
+                    md-button.md-fab.small(ng-click='vm.newDataFlow()', aria-label='Create')
+                        md-icon.icon-plus
+                        md-tooltip(md-direction='top') Create New
+
+
+    //jsPlumb Modals templates
+    script#dlgText.dlg(type='jtk', title='Enter Text')
+        input(type="text", size="50", jtk-focus, jtk-att="text", value="${text}")
+
+    script#dlgConfirm.dlg(type='jtk', title='Please Confirm')
+        span ${msg}
+
+    script#dlgMessage.dlg(type='jtk', title='Message', cancel='false')
+        span ${msg}
+
+    //jsPlumb Node template
+    script(type='text/ng-template', id='default_template.tpl')
+        div(class="node-box {{node.type}}")
+            div.top-wrapper
+                div.tasks(ng-if="node.tasks > 0") Tasks : {{node.tasks}}
+                div.controls
+                    md-button.md-icon-button(aria-label="Explore", ng-click="exploreNode(node)")
+                        md-icon.icon-search
+                        md-tooltip(md-direction="top") Explore
+                    md-button.md-icon-button(aria-label="Delete", ng-click="deleteNode(node)")
+                        md-icon.icon-close2
+                        md-tooltip(md-direction="top") Delete
+                div.text {{node.text}}
+                    md-button.md-icon-button(aria-label="Edit", ng-click="editNodeText(node)")
+                        md-icon.icon-edit2
+                        md-tooltip(md-direction="top") Edit name
+            .source-box Drag new connection's from this area
+        jtk-target(port-type="target")
+        jtk-source(port-type="source", filter=".source-box")
+
+
+
+    //jsPlumb Output
+    .jtk-canvas(resize-height='', ng-style='resizeWithOffset(170)')
+        jsplumb-toolkit(class="jsplumb-toolkit", init='vm.init', render-params='vm.renderParams', jtk-id='flowchartToolkit', surface-id='flowchartSurface')
+            .jtk-controls
+                md-button(class="md-fab small white zoom-to-fit", aria-label="Zoom To Fit", zoom-to-fit)
+                    md-icon.icon-resize(zoom-to-fit)
+                    md-tooltip(md-direction="top") Zoom To Fit
+                md-button(class="md-fab small white zoom-to-center", aria-label="Zoom To Center", zoom-to-center)
+                    md-icon.icon-resize(zoom-to-center)
+                    md-tooltip(md-direction="top") Zoom To Center
+                section.md-button-group
+                    md-button(class="md-fab small white", aria-label="Zoom Out", zoom-out)
+                        md-icon.icon-zoom-out(zoom-out)
+                        md-tooltip(md-direction="top") Zoom Out
+                    md-button(class="md-fab small white", aria-label="Zoom In", zoom-in)
+                        md-icon.icon-zoom-in(zoom-in)
+                        md-tooltip(md-direction="top") Zoom In
+
+
+    aside.sidebar(toggle-active-dest='dataflow-sidebar')
+        a.right-toggle(toggle-active-src='dataflow-sidebar', href='')
+        .content
+            .wrapper(resize-height='', ng-style='resizeWithOffset(70)')
+                h4 Dataflow Stages
+                ul.groups
+                    li(ng-repeat="group in vm.nodeTypesGroups")
+                        h5 {{ group.name }}
+                        div(class="node-palette", jsplumb-palette, selector="li", surface-id="flowchartSurface", type-extractor="vm.typeExtractor", generator="vm.dropDataGenerator")
+                            ul.types
+                                li(ng-repeat="node in vm.nodeTypes | filter:group.id:group", jtk-node-type="{{ node.type }}", jtk-node-name="{{ node.name }}", title="Drag to add new {{ node.name }} element", class="{{ node.type }}") {{ node.name }}

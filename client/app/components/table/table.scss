@@ -1,0 +1,122 @@
+@import "../../styles/_variables.scss";
+
+
+.tellius-table {
+  width: 100%;
+  background-color: $white;
+  box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.03);
+  margin-bottom: 30px;
+
+  thead {
+    tr {
+      th {
+        background-color: $back-gray-light;
+        text-align: center;
+        font-size: 13px;
+        font-weight: bold;
+        color: $gray-light;
+        padding: 15px;
+        border-bottom: 1px solid $border;
+
+        @media #{$sm} {
+          padding: 10px;
+        }
+
+        .md-button {
+          padding-left: 0 !important;
+          margin-left: 0 !important;
+          text-transform: capitalize !important;
+          font-size: 13px !important;
+          color: $gray-light !important;
+        }
+        i {
+          font-size: 12px;
+        }
+        &.filter {
+          .md-button {
+            color: $blue !important;
+          }
+          i {
+            color: $blue !important;
+          }
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(4),
+        &:nth-child(6) {
+          text-align: left;
+        }
+
+        &:first-child {
+          padding-left: 30px;
+          width: 1%;
+          white-space: nowrap;
+        }
+
+        &:last-child {
+          padding-right: 30px;
+          text-align: right;
+          width: 1%;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 15px;
+        border-bottom: 1px solid $border;
+        text-align: center;
+        font-size: 14px;
+        color: $gray;
+        outline: none;
+        cursor: pointer;
+        @include transform(0.15s);
+
+        @media #{$sm} {
+          padding: 10px;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(4),
+        &:nth-child(6) {
+          text-align: left;
+        }
+
+        &:first-child {
+          padding-left: 30px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          width: 1%;
+        }
+
+        &:last-child {
+          padding-right: 30px;
+          text-align: right;
+          cursor: default;
+          white-space: nowrap;
+          width: 1%;
+        }
+
+        &:nth-child(2) {
+          text-transform: capitalize;
+          color: $gray-darkest;
+        }
+
+        img {
+          height: 30px;
+        }
+      }
+
+      &:hover {
+        td {
+          background-color: $back-gray;
+          color: $gray-darkest;
+        }
+      }
+    }
+  }
+}

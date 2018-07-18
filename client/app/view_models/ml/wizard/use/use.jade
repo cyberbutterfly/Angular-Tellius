@@ -1,0 +1,31 @@
+.use
+    h1(ng-show="$ctrl.isSelected()") Selected model: {{$ctrl.selectedModelName}}
+    
+    form  
+      div(layout="row", layout-align="start center")
+        div(flex)
+          h4 Select a model:
+          md-input-container
+            md-radio-group(
+              ng-model="$ctrl.selectedModelName",
+              ng-change="$ctrl.onChange()")
+              md-radio-button(
+                value="{{model.modelname}}",
+                ng-repeat="model in $ctrl.models") {{model.modelname}}
+        
+    ul(ng-show="$ctrl.isSelected()")
+        li.save(ng-hide="true")
+            i(class="icon-save")
+            h4 Save this Model
+            p Saved model will be added to Predictive Analytics.
+            md-button Save
+        li.predict(ng-click="$ctrl.use()")
+            i(class="icon-regression")
+            h4 Predict New Dataset
+            p You can predict a new dataset with this tuned model.
+            md-button.save Predict
+        li.dataflow(ng-hide="true")
+            i(class="icon-dataflow")
+            h4 Add this Model to an Existing Data Flow
+            p Check an existing data flow with this model.
+            md-button.save Add to Dataflow

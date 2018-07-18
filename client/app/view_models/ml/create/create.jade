@@ -1,0 +1,22 @@
+.create.container
+    .ml-create-header
+        h1 Train New Models
+
+    .ml-create-type-list
+        ul
+            li(ng-click="$ctrl.selectType('regression')")
+                i(class="icon-regression")
+                h4 Regression
+                p Using historical data to build models and predict attributes for example traffic , home prices , inventory etc... 
+            li(ng-click="$ctrl.selectType('classification')")
+                i(class="icon-classification")
+                h4 Classification
+                p Using historical data / patterns to perform Classification. 
+            li(ng-click="$ctrl.selectType('clustering')")
+                i(class="icon-clustering")
+                h4 Clustering
+                p Categorization into multiple clusters of data and use clusters to detect unusual patterns or similar segments of data. 
+            li(ng-click="$ctrl.selectType('filtering')")
+                i(class="icon-filtering")
+                h4 Collaborative Filtering
+                p Technique user by many recommender systems with concept of matching people with similar interests and making recommendations on this basis. 
